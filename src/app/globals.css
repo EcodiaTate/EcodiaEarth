@@ -1,13 +1,20 @@
-@tailwind utilities;
-@import "tailwindcss/preflight"
+/* src/app/globals.css */
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at top left, #7fd06933 0, transparent 55%),
-    radial-gradient(circle at bottom right, #f4d35e33 0, transparent 55%),
-    #0c1411;
+/* New Tailwind style */
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+/* Custom base styles */
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+      radial-gradient(circle at top left, #7fd06933 0, transparent 55%),
+      radial-gradient(circle at bottom right, #f4d35e33 0, transparent 55%),
+      #0c1411;
+    color: white;
+  }
 }
