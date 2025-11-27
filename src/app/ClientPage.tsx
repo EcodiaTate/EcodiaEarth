@@ -12,18 +12,18 @@ export default function Home() {
         </div>
 
         <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Local eco loops.
-          <span className="block text-emerald-300">Planet-scale intent.</span>
+          Make looking after your patch
+          <span className="block text-emerald-300">feel normal, not heroic.</span>
         </h1>
 
         <p className="mt-3 text-xs text-white/65 sm:text-sm">
-          Right now that intent lives as Ecodia AU.
+          We&apos;re starting with one sandbox: Australia.
         </p>
 
         <div className="mt-8 flex justify-center">
           <Link
             href="https://ecodia.au"
-            className="inline-flex items-center rounded-full border border-white/40 px-6 py-2.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:border-white hover:bg-white/5 active:bg-white/10"
+            className="inline-flex items-center rounded-full border border-white/35 px-6 py-2.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:border-white hover:bg-white/5 active:bg-white/10"
           >
             Go to Ecodia AU
           </Link>
