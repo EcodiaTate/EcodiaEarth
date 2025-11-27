@@ -12,13 +12,11 @@ export default function Home() {
         </div>
 
         <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Make looking after your patch
-          <span className="block text-emerald-300">feel normal, not heroic.</span>
+          This is the big map.
+          <span className="block text-emerald-300">
+            Right now we&apos;re testing one corner.
+          </span>
         </h1>
-
-        <p className="mt-3 text-xs text-white/65 sm:text-sm">
-          We&apos;re starting with one sandbox: Australia.
-        </p>
 
         <div className="mt-8 flex justify-center">
           <Link

@@ -19,7 +19,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* Comfortaa on the whole site */}
       <body className={comfortaa.className}>{children}</body>
     </html>
   );
