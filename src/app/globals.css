@@ -2,15 +2,164 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at top left, #7fd06933 0, transparent 55%),
-    radial-gradient(circle at bottom right, #f4d35e33 0, transparent 55%),
-    #0c1411;
-  color: white;
+/* =========================================================
+   Brand tokens (light theme, airy)
+   ========================================================= */
+:root {
+  /* Colors */
+  --mint:    #7FD069;  /* MINT */
+  --gold:    #F4D35E;  /* GOLD */
+  --forest:  #396041;  /* FOREST */
+  --ink:     #0F1712;  /* INK (nearly-black) */
+  --bg:      #FFFFFF;  /* Page background */
+  --muted:   #3B3F3C;  /* Body text secondary */
+  --border:  #E7ECE9;  /* Light borders */
+  --glass:   rgba(255,255,255,0.6);
+
+  /* Fonts (wired via next/font; these are fallbacks) */
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-display: "Fjalla One", var(--font-sans);
+
+  /* Radii */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+
+  /* Shadows */
+  --shadow-soft: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-lift: 0 12px 40px rgba(0,0,0,0.12);
+
+  /* System hints */
+  color-scheme: light;
+  accent-color: var(--mint);
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+@layer base {
+  html, body, #__next, #__root {
+    height: 100%;
+  }
+
+  html {
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(1200px 800px at 8% 5%, color-mix(in oklab, var(--mint) 20%, white) 0%, transparent 55%),
+      radial-gradient(1000px 700px at 92% 96%, color-mix(in oklab, var(--gold) 22%, white) 0%, transparent 50%),
+      var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--mint) 35%, white);
+    color: var(--ink);
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.2px;
+  }
+
+  a {
+    color: var(--forest);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+
+  /* Media normalization */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Light borders as default ring */
+  * {
+    border-color: var(--border);
+  }
+
+  /* Keyboard focus ring utility */
+  :focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--mint) 55%, white);
+    outline-offset: 2px;
+  }
+}
+
+/* =========================================================
+   Components
+   ========================================================= */
+@layer components {
+  .soft-glass-light {
+    background: var(--glass);
+    /* backdrop filters can be expensive; keep them light */
+    backdrop-filter: saturate(150%) blur(8px);
+    border: 1px solid rgba(9, 20, 15, 0.06);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .brand-gradient {
+    background-image: linear-gradient(90deg, var(--mint), var(--gold));
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-3 rounded-full font-medium;
+    background-image: linear-gradient(90deg, var(--mint), var(--gold));
+    color: #0F1712;
+    box-shadow: var(--shadow-lift);
+    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+    will-change: transform, filter;
+  }
+  .btn-primary:hover { transform: translateY(-1px); filter: brightness(0.98); }
+  .btn-primary:active { transform: translateY(0); filter: brightness(0.96); }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-5 py-3 rounded-full font-medium;
+    color: var(--forest);
+    border: 1px solid color-mix(in oklab, var(--forest) 25%, white);
+    background: #ffffff;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm;
+    background: color-mix(in oklab, var(--mint) 15%, white);
+    border: 1px solid color-mix(in oklab, var(--mint) 20%, white);
+  }
+
+  .shadow-lift { box-shadow: var(--shadow-lift); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+
+  /* Fullscreen modal layers */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 40;
+    background: color-mix(in oklab, #000 12%, transparent);
+    /* Only apply blur if supported; avoids perf cliff on some GPUs */
+    will-change: opacity;
+  }
+  @supports (backdrop-filter: blur(8px)) {
+    .modal-backdrop { backdrop-filter: blur(8px); }
+  }
+
+  .modal-panel {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(255,255,255,0.98);
+    /* prevent accidental composite storms on large panels */
+    contain: layout paint style;
+  }
+}
+
+/* =========================================================
+   Motion preferences
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

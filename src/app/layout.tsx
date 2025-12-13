@@ -1,25 +1,25 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import { Comfortaa } from "next/font/google";
-
-const comfortaa = Comfortaa({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
+import type { Metadata } from "next";
+import { inter, fjalla } from "./fonts";
 
 export const metadata: Metadata = {
-  title: "Ecodia Earth",
-  description: "Ecodia’s planetary layer.",
+  title: "Ecodia — earth",
+  description: "We turn action into joy.",
 };
 
 export default function RootLayout({
   children,
+  modal, // <-- parallel slot rendered on top of the page
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={comfortaa.className}>{children}</body>
+    <html lang="en" className={`${inter.variable} ${fjalla.variable}`}>
+      <body>
+        {children}
+        {modal}
+      </body>
     </html>
   );
 }
