@@ -5,62 +5,83 @@ import { SmoothLink } from "@/components/nav/SmoothLink";
 
 type NavItemProps = {
   href: string;
-  label: string; // The small "technical" text (e.g. "01 — FUTURE")
-  title: string; // The main text (e.g. "The Roadmap")
-  color: "emerald" | "amber" | "indigo";
+  label: string;
+  title: string;
+  color: "mint" | "amber" | "indigo";
 };
 
 export function CinematicNav({ items }: { items: NavItemProps[] }) {
   return (
-    <nav className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 w-full">
-      {items.map((item) => (
-        <NavBeacon key={item.title} {...item} />
+    <nav className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-6 max-w-7xl mx-auto">
+      {items.map((item, i) => (
+        <NavCard key={item.title} {...item} index={i} />
       ))}
     </nav>
   );
 }
 
-function NavBeacon({ href, label, title, color }: NavItemProps) {
-  // Map our "souls" to Tailwind classes
-  const colors = {
-    emerald: "hover:text-emerald-700 hover:border-emerald-300/50 decoration-emerald-300",
-    amber: "hover:text-amber-700 hover:border-amber-300/50 decoration-amber-300",
-    indigo: "hover:text-indigo-700 hover:border-indigo-300/50 decoration-indigo-300",
-  };
+function NavCard({ href, label, title, color, index }: NavItemProps & { index: number }) {
+  
+  // Light Mode Accents: Deep, rich colors for text/borders
+  const theme = {
+    mint: "group-hover:border-ink/30 group-hover:text-ink",
+    amber:   "group-hover:border-gold/30 group-hover:text-gold",
+    indigo:  "group-hover:border-indigo-600/30 group-hover:text-indigo-700",
+  }[color];
 
-  const monoColors = {
-    emerald: "text-emerald-600/60",
-    amber: "text-amber-600/60",
-    indigo: "text-indigo-600/60",
-  };
+  const bgHover = {
+    mint: "group-hover:bg-mint",
+    amber:   "group-hover:bg-gold",
+    indigo:  "group-hover:bg-indigo-200",
+  }[color];
 
   return (
     <SmoothLink
       href={href}
       className={`
-        group relative flex flex-col items-start p-4 
-        w-full md:w-64 rounded-xl
-        border border-transparent hover:border-stone-200/60 hover:bg-white/40
+        group relative w-full h-96 rounded-2xl overflow-hidden
+        bg-white border border-border
         transition-all duration-500 ease-out
-        ${colors[color]}
+        hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)]
+        ${theme}
       `}
     >
-      {/* 1. The "Technical" Label (Monospace) */}
-      <span className={`text-[10px] font-mono tracking-widest uppercase mb-2 transition-colors ${monoColors[color]}`}>
-        {label}
-      </span>
+      {/* 1. BACKGROUND TINT (Subtle color wash on hover) */}
+      <div className={`absolute inset-0 transition-colors duration-500 ${bgHover}`} />
 
-      {/* 2. The Main Title (Display Serif) */}
-      <span className="font-display text-2xl text-slate-800 group-hover:text-inherit transition-colors">
-        {title}
-      </span>
+      {/* 2. PAPER TEXTURE (Gives it that 'Field Guide' feel) */}
+      <div className="absolute inset-0 opacity-[0.6] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-multiply" />
 
-      {/* 3. The "Cinema" Arrow 
-          It slides in from the left when you interact.
-      */}
-      <span className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-xl">
-        →
-      </span>
+      {/* 3. CONTENT CONTAINER */}
+      <div className="relative h-full flex flex-col justify-between p-10 z-10">
+         
+         {/* Top Row: Label & Number */}
+         <div className="flex justify-between items-center border-b border-border pb-6 group-hover:border-border/0 transition-colors">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted group-hover:text-muted transition-colors">
+               {label}
+            </span>
+            <span className="font-serif italic text-muted text-lg group-hover:text-muted transition-colors">
+               0{index + 1}
+            </span>
+         </div>
+
+         {/* Bottom Row: Title & Action */}
+         <div>
+            <h3 className="font-display text-4xl text-ink mb-6 leading-[0.95] group-hover:scale-[1.02] origin-left transition-transform duration-500">
+               {title}
+            </h3>
+            
+            <div className="flex items-center gap-3">
+               <span className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-muted group-hover:border-muted group-hover:text-muted group-hover:bg-white transition-all duration-300 shadow-sm">
+                  →
+               </span>
+               <span className="font-mono text-[10px] uppercase tracking-widest text-muted opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 delay-75">
+                  Open
+               </span>
+            </div>
+         </div>
+
+      </div>
     </SmoothLink>
   );
 }

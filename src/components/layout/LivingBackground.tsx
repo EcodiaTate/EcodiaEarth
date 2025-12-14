@@ -27,7 +27,7 @@ export function LivingBackground() {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 -z-10 overflow-hidden bg-stone-50"
+      className="fixed inset-0 -z-10 overflow-hidden bg-border"
       style={{ willChange: "transform" }} // Hints for mobile GPU
     >
       {/* NOISE TEXTURE: Essential for "Tactile" feel on high-res mobile screens */}

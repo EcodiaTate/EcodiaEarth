@@ -1,134 +1,89 @@
 // src/app/page.tsx
-import { LivingBackground } from "@/components/layout/LivingBackground"; 
-import { StickyNarrative } from "@/components/sections/StickyNarrative";
-import VisionSection from "@/components/sections/Vision";
+import Link from "next/link";
 import { HeroTitle } from "@/components/sections/HeroTitle";
-import { CinematicButton } from "@/components/ui/CinematicButton";
-import { SmoothLink } from "@/components/nav/SmoothLink";
-import { CineRise, CineStagger, CineItem } from "@/components/motion/Cinematic";
-import { CinematicNav } from "@/components/nav/CinematicNav"; // Import the new component
+import { StickyNarrative } from "@/components/sections/StickyNarrative";
+import { TechnologySection } from "@/components/sections/TechSection"; // The Blueprint (Dark)
+import { HomeLabs } from "@/components/sections/HomeLabs"; // New Component
+import { HomeValues } from "@/components/sections/HomeValues"; // The Moral Compass (NEW)
+import { HomeEcosystem } from "@/components/sections/HomeEcosystem"; // The Garden (Warm)
+import { InfiniteTicker } from "@/components/ui/InfiniteTicker";
+import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
-    // FIX: Removed 'overflow-x-hidden'. 
-    // Now the sticky elements can "see" the viewport height and stick correctly.
-    <main className="min-h-screen relative">
+    <main className="min-h-screen bg-white text-ink selection:bg-mint selection:text-ink">
       
-      {/* 1. ATMOSPHERE */}
-      <div className="fixed inset-0 -z-10 bg-stone-50">
-         <div className="opacity-40">
-            <LivingBackground />
-         </div>
+      {/* 1. TEXTURE & ATMOSPHERE */}
+      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.4] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+         <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-gold/30 rounded-full blur-[120px] opacity-60 mix-blend-multiply" />
+         <div className="absolute bottom-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-mint/40 rounded-full blur-[120px] opacity-60 mix-blend-multiply" />
       </div>
 
-      {/* 2. HERO */}
-      <section className="relative px-6 pt-32 pb-20 mx-auto max-w-6xl">
-        <div className="mb-8">
-           <HeroTitle />
-        </div>
-
-        <CineRise delay={0.4}>
-          <p className="mt-6 max-w-lg text-lg text-muted-foreground leading-relaxed">
-            Ecodia is a social economy where doing good feels good. Bright, human, and local.
-          </p>
-        </CineRise>
+      {/* 2. HERO SECTION */}
+      <section className="relative min-h-screen w-full flex flex-col px-6 sm:px-12 pt-32 pb-24 max-w-[90rem] mx-auto">
+         {/* Top Tag */}
+         <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-ink animate-pulse" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+               Regenerative_OS_v1.0
+            </span>
+         </div>
+         {/* Title */}
+         <div className="flex-1 flex flex-col justify-center items-center py-12">
+            <HeroTitle />
+         </div>
+         {/* Control Deck (FIXED FOR CENTERING) */}
+    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 mt-auto">
         
-        <CineRise delay={0.6}>
-          <div className="flex flex-wrap gap-4 mt-12">
-             <CinematicButton className="btn-primary w-full sm:w-auto" href="https://ecodia.au">
-               Enter the app
-             </CinematicButton>
-             
-             <SmoothLink className="btn-outline w-full sm:w-auto justify-center" href="/vision">
-               Our vision
-             </SmoothLink>
-          </div>
-        </CineRise>
-      </section>
+        {/* LEFT: Geo Data (Visible on Desktop) */}
+        <div className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest text-left opacity-100 min-w-[120px]">
+            <span>Lat: 26.6528° S</span>
+        </div>
+        
+        {/* CENTER: Main Action (Explicitly linked to /company) */}
+        <a 
+            href="/company" 
+            className="group relative px-10 py-4 bg-ink text-white rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:shadow-ink/20 w-full md:w-auto text-center"
+        >
+            <div className="relative z-10 flex items-center justify-center gap-3 font-medium tracking-wide text-sm md:text-base">
+                <span>Step In</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.19,1,0.22,1]" />
+        </a>
+        {/* LEFT: Geo Data (Visible on Desktop) */}
+        <div className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest text-left opacity-100 min-w-[120px]">
+            <span>Lon: 153.0896° E</span>
+        </div>
+       
 
-      <div className="h-24" /> 
+    </div>
+</section>
 
-      {/* 3. EXPERIENCE: The "Deep Tunnel" Narrative 
-          This will now stick perfectly for 300vh of scrolling.
-      */}
+      {/* 3. TICKER */}
+      <div className="border-y border-ink/10 bg-white py-4 md:py-6">
+         <InfiniteTicker items={[
+            "Optimism is a strategy", "•", "Ecology is Technology", "•", "The Commons", "•", "Regeneration", "•"
+         ]} />
+      </div>
+
+      {/* 4. NARRATIVE (Sticky Scroll) */}
       <StickyNarrative />
 
-      {/* 3b. NAVIGATION: The Beacons */}
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        {/* We wrap it in CineRise so the whole menu floats up together */}
-        <CineRise delay={0.2}>
-          <CinematicNav 
-            items={[
-              { 
-                label: "01 — PROGRESS", 
-                title: "See the roadmap", 
-                href: "/roadmap", 
-                color: "emerald" 
-              },
-              { 
-                label: "02 — MEDIA", 
-                title: "Press kit", 
-                href: "/press", 
-                color: "amber" 
-              },
-              { 
-                label: "03 — TALK", 
-                title: "Get in contact", 
-                href: "/contact", 
-                color: "indigo" 
-              },
-            ]} 
-          />
-        </CineRise>
-      </section>
+      {/* 5. SEGMENT: TECHNOLOGY (Dark Blueprint) */}
+      <TechnologySection />
 
-      <div className="h-24" /> 
-
-      <div className="h-24" />
-
-      {/* 5. STRUCTURE */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-         <div className="border-t border-slate-200 mb-16" /> 
-         
-         <div className="grid gap-16 md:grid-cols-2">
-            <CineRise>
-               <h3 className="font-display text-3xl mb-4 text-emerald-900">Ecodia Pty Ltd</h3>
-               <p className="text-lg text-muted-foreground leading-relaxed max-w-prose">
-                 The platform and community. Operations, partnerships, and the everyday experience.
-               </p>
-               <div className="mt-6">
-                 <SmoothLink href="/company" className="font-medium underline underline-offset-4 decoration-slate-300 hover:decoration-emerald-500 transition-all">
-                   Learn more
-                 </SmoothLink>
-               </div>
-            </CineRise>
-
-            <CineRise delay={0.2} className="md:border-l md:pl-16 border-slate-200">
-               <h3 className="font-display text-3xl mb-4 text-indigo-900">Ecodia Labs Pty Ltd</h3>
-               <p className="text-lg text-muted-foreground leading-relaxed max-w-prose">
-                 R&D, IP, and ethics. We invent, test, and protect the engine behind Ecodia.
-               </p>
-               <div className="mt-6">
-                 <SmoothLink href="/labs" className="font-medium underline underline-offset-4 decoration-slate-300 hover:decoration-indigo-500 transition-all">
-                   Inside Labs
-                 </SmoothLink>
-               </div>
-            </CineRise>
-         </div>
-      </section>
-
-      {/* 6. FOOTER */}
-      <section className="py-24 px-6 text-center border-t border-slate-200/60">
-        <CineRise>
-           <p className="text-xl sm:text-2xl font-display text-slate-800 mb-8">
-             If you create, organise, or want to help — 
-             <SmoothLink href="/contact" className="ml-2 underline underline-offset-4 decoration-2 decoration-emerald-400 hover:text-emerald-700 hover:decoration-emerald-600 transition-all">
-               join us
-             </SmoothLink>.
-           </p>
-        </CineRise>
-      </section>
+      {/* 6. SEGMENT: ECOSYSTEM (Warm Network) */}
+      <HomeEcosystem />
+      <HomeLabs />
+      <HomeValues />
       
+      {/* (You could add a 'HomeLabs' segment here too if you wanted, 
+         but usually 2 big feature sections is enough before the footer) 
+      */}
+
+      <Footer />
     </main>
   );
 }

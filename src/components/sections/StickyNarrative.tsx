@@ -6,96 +6,132 @@ import { useRef } from "react";
 
 const FEATURES = [
   {
-    title: "Play",
-    desc: "Sidequests spark real-world action.",
-    color: "text-emerald-900",
+    id: "01",
+    title: "PLAY",
+    subtitle: "A world you can step into",
+    desc: "Sidequests turn participation into something you can feel. Small actions become shared momentum.",
+    align: "items-start text-left",
+    color: "text-ink",
+    barColor: "bg-ink",
   },
   {
-    title: "Creation",
-    desc: "Upcycling turns waste into culture.",
-    color: "text-blue-900",
+    id: "02",
+    title: "CREATE",
+    subtitle: "Culture, made on purpose",
+    desc: "Design, repair, reuse, build. A new layer of everyday life - shaped by people who show up.",
+    align: "items-end text-right",
+    color: "text-mint",
+    barColor: "bg-mint",
   },
   {
-    title: "Economy",
-    desc: "ECO rewards fuel a shared commons.",
-    color: "text-indigo-900",
+    id: "03",
+    title: "THRIVE",
+    subtitle: "A world that holds",
+    desc: "Cities that breathe, districts that green, communities that benefit together - as the world grows.",
+    align: "items-center text-center",
+    color: "text-gold",
+    barColor: "bg-gold",
   },
 ];
 
 export function StickyNarrative() {
   const containerRef = useRef<HTMLDivElement>(null);
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const cameraZ = useTransform(scrollYProgress, [0, 1], [0, 2]);
-
   return (
-    <div ref={containerRef} className="relative h-[300vh]">
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center perspective-1000">
-        {FEATURES.map((feature, index) => (
-          <TunnelItem
-            key={feature.title}
-            feature={feature}
-            index={index}
-            cameraZ={cameraZ}
-          />
-        ))}
+    <section ref={containerRef} className="relative h-[400vh] bg-white">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
+        {/* 1. BACKGROUND GRID */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
+        <div className="relative w-full max-w-[90rem] mx-auto px-6 sm:px-12 h-full z-10">
+          {FEATURES.map((feature, index) => {
+            const rangeStep = 1 / FEATURES.length;
+            const start = index * rangeStep;
+            const end = start + rangeStep;
+
+            return (
+              <NarrativeItem
+                key={feature.id}
+                feature={feature}
+                range={[start, end]}
+                progress={scrollYProgress}
+              />
+            );
+          })}
+        </div>
+
+        {/* 2. PROGRESS BAR */}
+        <div className="absolute bottom-0 left-0 h-2 w-full bg-border z-20">
+          <motion.div className="h-full bg-ink origin-left" style={{ scaleX: scrollYProgress }} />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
-function TunnelItem({
+function NarrativeItem({
   feature,
-  index,
-  cameraZ,
+  range,
+  progress,
 }: {
   feature: typeof FEATURES[0];
-  index: number;
-  cameraZ: MotionValue<number>;
+  range: [number, number];
+  progress: MotionValue<number>;
 }) {
-  const distance = useTransform(cameraZ, (z) => index - z);
-
-  // -- TUNED VISUALS --
-
-  // 1. WIDENED SWEET SPOT:
-  // We effectively "clamp" the scale to 1 for a bit so it rests in front of you.
-  const scale = useTransform(distance, [1, 0.2, -0.2, -1], [0.8, 1, 1, 2.5]);
-
-  // 2. OPACITY CONTROL:
-  // It stays invisible (0) until it's much closer (0.5 distance).
-  // It fades out fully before it gets too huge.
-  const opacity = useTransform(distance, [1, 0.5, 0.1, -0.1, -0.8], [0, 0.2, 1, 1, 0]);
-
-  // 3. REDUCED BLUR:
-  // Background blur reduced to 4px (was 12).
-  // Motion blur reduced to 8px (was 20).
-  // Crucially: It stays at 0px blur for the range [0.2 to -0.2].
-  const blurValue = useTransform(distance, [1, 0.2, -0.2, -1], [4, 0, 0, 8]);
-  const filter = useTransform(blurValue, (v) => `blur(${v}px)`);
+  const [start, end] = range;
+  const opacity = useTransform(
+    progress,
+    [start, start + 0.10, end - 0.10, end],
+    [0, 1, 1, 0]
+  );
   
-  const zIndex = useTransform(distance, (d) => (d > 0.2 ? 0 : 10));
+  const y = useTransform(progress, [start, end], [70, -70]);
+  const clip = useTransform(
+    progress,
+    [start, start + 0.12],
+    ["inset(110% 0 0 0)", "inset(0% 0 0 0)"]
+  );
+    const pointerEvents = useTransform(opacity, (val) => (val > 0.1 ? "auto" : "none"));
 
   return (
     <motion.div
-      className="absolute px-6 text-center w-full max-w-3xl will-change-transform"
-      style={{
-        scale,
-        opacity,
-        filter,
-        zIndex,
-        y: 0,
-      }}
+      className={`absolute inset-0 flex flex-col justify-center ${feature.align} px-4 md:px-20`}
+      style={{ opacity, pointerEvents }}
     >
-      <h2 className={`font-display text-5xl sm:text-7xl mb-6 ${feature.color}`}>
-        {feature.title}
-      </h2>
-      <p className="text-xl sm:text-2xl text-slate-700 leading-relaxed font-medium">
+      {/* 1. DECORATIVE BAR */}
+      <motion.div
+        className={`mb-6 h-2 w-24 ${feature.barColor}`}
+        style={{ scaleX: useTransform(progress, [start, start + 0.2], [0, 1]), originX: 0 }}
+      />
+
+      {/* 2. SUBTITLE */}
+      <div className="overflow-hidden mb-2">
+        <motion.span className="block font-serif italic text-2xl text-muted" style={{ y }}>
+          {feature.subtitle}
+        </motion.span>
+      </div>
+
+      <motion.h2
+  className={`font-display text-[15vw] leading-[0.92] tracking-tighter ${feature.color} pt-[0.08em]`}
+  style={{ clipPath: clip }}
+>
+  {feature.title}
+</motion.h2>
+
+
+      {/* 4. DESCRIPTION */}
+      <motion.p
+        className="mt-8 text-xl md:text-2xl text-muted font-light max-w-lg leading-relaxed"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
         {feature.desc}
-      </p>
+      </motion.p>
     </motion.div>
   );
 }

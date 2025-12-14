@@ -5,8 +5,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   experimental: {
-    // Keep this off unless you're ready to wire the babel plugin.
-    reactCompiler: false,
+   
     // Helps reduce bundle size for these libs (auto-imports per module)
     optimizePackageImports: ["framer-motion", "lucide-react"],
   },

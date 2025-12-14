@@ -51,7 +51,7 @@ export function CineImage({
     <div 
       ref={ref} 
       // FIX: Added 'w-full h-full' so this div fills the parent aspect-ratio box
-      className={`relative w-full h-full overflow-hidden bg-stone-100 ${className}`} 
+      className={`relative w-full h-full overflow-hidden bg-border ${className}`} 
       style={{ contain: "paint" }}
     >
       {grain && (

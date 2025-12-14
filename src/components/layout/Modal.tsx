@@ -96,16 +96,6 @@ export default function Modal({ children, labelledById }: ModalProps) {
           onMouseDown={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
           onPointerDown={(e: React.PointerEvent<HTMLDivElement>) => e.stopPropagation()}
         >
-          {/* FIX 3: Changed absolute -> fixed. 
-              This keeps the button visible even when you scroll down long content. */}
-          <button
-            aria-label="Close"
-            onClick={() => router.back()}
-            className="fixed right-6 top-6 z-50 rounded-full px-4 py-2 brand-gradient text-ink shadow-soft hover:scale-105 active:scale-95 transition-transform"
-          >
-            Close
-          </button>
-
           {children}
         </motion.div>
       </motion.div>
