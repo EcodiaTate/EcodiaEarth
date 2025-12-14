@@ -4,7 +4,7 @@ import VisionSection from "@/components/sections/Vision";
 export default function VisionModalPage() {
   return (
     <Modal labelledById="vision-heading">
-      <VisionSection headingId="vision-heading" />
+      <VisionSection />
     </Modal>
   );
 }
