@@ -113,21 +113,31 @@ export default function PressSection() {
       </div>
 
       {/* CLOSE */}
-      <motion.button
-        onClick={() => router.back()}
-        initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-6 right-6 z-50 group active:scale-95 transition-transform"
-        aria-label="Close"
-      >
-        <div className="flex items-center gap-3 bg-white/90 backdrop-blur border border-[#FF4D35]/25 px-4 py-2 rounded-full shadow-sm hover:border-[#FF4D35] transition-colors">
-          <span className="w-2 h-2 rounded-full bg-[#FF4D35] animate-pulse" />
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#FF4D35]">
-            Close
-          </span>
-        </div>
-      </motion.button>
+<motion.button
+  onClick={() => router.back()}
+  initial={{ y: -24, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+  className="fixed top-6 right-6 z-50 active:scale-[0.99] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4D35]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+  aria-label="Close"
+>
+  <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-forest/12 shadow-[0_10px_24px_rgba(15,23,18,0.10)] hover:border-[#FF4D35]/35 transition-colors active:translate-y-[1px]"
+ >
+    <span className="relative flex items-center justify-center w-6 h-6 rounded-full border border-[#FF4D35]/35 bg-[#FF4D35]/10">
+      <span className="absolute w-3.5 h-[2px] bg-[#FF4D35] rotate-45" />
+      <span className="absolute w-3.5 h-[2px] bg-[#FF4D35] -rotate-45" />
+    </span>
+
+    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-[#FF4D35]">
+      Close
+    </span>
+
+    <span className="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-forest/35">
+      Press kit
+    </span>
+  </div>
+</motion.button>
+
 
       {/* CONTENT */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32">

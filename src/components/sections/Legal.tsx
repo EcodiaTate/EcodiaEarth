@@ -93,11 +93,7 @@ export default function LegalSection() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.45 }}
-        className="
-          fixed z-50
-          top-4 right-4 sm:top-6 sm:right-6
-          active:scale-95 transition-transform
-        "
+        className="flex items-center gap-3 bg-border border-2 border-ink/70 px-4 py-2 rounded-xl shadow-[4px_4px_0px_rgba(15,23,18,0.30)] hover:bg-white/35 active:translate-y-[2px] active:translate-x-[2px] active:shadow-none transition-all"
         aria-label="Close"
       >
         <div className="flex items-center gap-3 bg-border border-2 border-ink/70 px-4 py-2 rounded-xl shadow-[4px_4px_0px_rgba(15,23,18,0.30)] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none transition-all">

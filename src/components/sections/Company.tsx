@@ -106,36 +106,23 @@ export default function CompanySection() {
 
   return (
     <motion.section className="relative w-full overflow-hidden" initial={false}>
-      <motion.button
+     <motion.button
   onClick={() => router.back()}
-  initial={{ y: -20, opacity: 0 }}
+  initial={{ y: -14, opacity: 0 }}
   animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.45 }}
-  className="
-    fixed z-50
-    top-4 right-4 sm:top-6 sm:right-6
-    active:scale-95 transition-transform
-  "
-  aria-label="Back"
+  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+  className="fixed z-50 top-4 right-4 sm:top-6 sm:right-6 rounded-2xl active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+
+  aria-label="Close"
 >
-  <div
-    className="
-      flex items-center gap-3
-      rounded-2xl px-4 py-2
-      border border-white/15
-      bg-white/5
-      backdrop-blur-xl
-      shadow-[0_10px_30px_rgba(0,0,0,0.25)]
-      hover:bg-white/8
-      transition-colors
-    "
-  >
-    <span className="text-lg leading-none text-white/80">←</span>
-    <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/75">
-      Back
+  <div className="flex items-center gap-3 rounded-2xl px-4 py-2 border border-white/14 bg-gradient-to-b from-white/10 to-white/4 shadow-[0_10px_30px_rgba(0,0,0,0.28)] hover:from-white/14 hover:to-white/6 transition-colors">
+    <span className="text-lg leading-none text-white/80">×</span>
+    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/75">
+      Close
     </span>
   </div>
 </motion.button>
+
       {/* BACKGROUND: brighter “ink glass” with gradients + orbs */}
       <div className="absolute inset-0 pointer-events-none">
         <div

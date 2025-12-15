@@ -57,18 +57,26 @@ export default function EcosystemSection() {
       className="relative w-full min-h-screen bg-[#fff7ed] text-ink overflow-hidden eco-section-wrapper"
     >
       {/* CLOSE */}
-      <motion.button
-        initial={{ opacity: 0, rotate: -90 }}
-        animate={{ opacity: 1, rotate: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-        onClick={() => router.back()}
-        className="fixed top-6 right-6 md:top-10 md:right-10 z-50 group"
-      >
-        <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-white/80 backdrop-blur-xl border border-gold/30 shadow-lg group-hover:border-gold transition-all active:scale-95">
-          <span className="absolute w-5 h-[2px] bg-ink rotate-45" />
-          <span className="absolute w-5 h-[2px] bg-ink -rotate-45" />
-        </div>
-      </motion.button>
+<motion.button
+  initial={{ opacity: 0, y: -14 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+  onClick={() => router.back()}
+  className="fixed top-6 right-6 md:top-10 md:right-10 z-50 rounded-full active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fff7ed]"
+  aria-label="Close"
+>
+  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-[#fffbeb] border border-ink/15 shadow-[0_10px_25px_rgba(15,23,18,0.12)] hover:shadow-[0_14px_35px_rgba(15,23,18,0.16)] hover:border-ink/20 transition-all active:translate-y-[1px]"
+>
+    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink/60">
+      Close
+    </span>
+    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-gold/25 bg-white">
+      <span className="absolute w-4 h-[2px] bg-ink/70 rotate-45" />
+      <span className="absolute w-4 h-[2px] bg-ink/70 -rotate-45" />
+    </span>
+  </div>
+</motion.button>
+
 
       {/* BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none">

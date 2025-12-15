@@ -51,37 +51,24 @@ export default function ContactSection() {
       </div>
 
       {/* BACK */}
+{/* CLOSE */}
 <motion.button
   onClick={() => router.back()}
-  initial={{ y: -30, opacity: 0 }}
+  initial={{ y: -18, opacity: 0 }}
   animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.45 }}
-  className="
-    fixed z-50
-    top-4 right-4 sm:top-6 sm:right-6
-    active:scale-95 transition-transform
-  "
-  aria-label="Back"
+  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+  className="fixed z-50 top-4 right-4 sm:top-6 sm:right-6 active:scale-[0.99] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+
+  aria-label="Close"
 >
-  <div
-    className="
-      flex items-center gap-3
-      bg-white/90 backdrop-blur
-      border-2 border-ink/70
-      px-4 py-2 rounded-xl
-      shadow-[4px_4px_0px_rgba(15,23,18,0.30)]
-      active:translate-y-[2px]
-      active:translate-x-[2px]
-      active:shadow-none
-      transition-all
-    "
-  >
-    <span className="text-xl leading-none text-ink/70">←</span>
-    <span className="font-mono text-xs font-bold uppercase tracking-widest text-ink/80">
-      Back
+  <div className="flex items-center gap-3 bg-[#fffbeb] border-2 border-ink/70 px-4 py-2 rounded-xl shadow-[4px_4px_0px_rgba(15,23,18,0.22)] hover:bg-white transition-colors active:translate-y-[2px] active:translate-x-[2px] active:shadow-none">
+    <span className="text-xl leading-none text-ink/70">×</span>
+    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-ink/80">
+      Close
     </span>
   </div>
 </motion.button>
+
 
       {/* 3. MAIN CONTENT */}
       <div className="relative z-10 max-w-2xl mx-auto px-6 py-24 min-h-screen flex flex-col justify-center">

@@ -66,22 +66,28 @@ export default function ValuesSection() {
       ref={containerRef}
       className="relative w-full min-h-screen py-32 bg-white text-ink eco-section-wrapper"
     >
-      {/* CLOSE BUTTON */}
-      <motion.button
-        initial={{ opacity: 0, rotate: -90 }}
-        animate={{ opacity: 1, rotate: 0 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        onClick={() => router.back()}
-        className="fixed top-6 right-6 md:top-10 md:right-10 z-50 group"
-        aria-label="Close"
-      >
-        <div className="eco-ui-element relative flex items-center justify-center w-14 h-14 rounded-full bg-white/90 backdrop-blur-xl border border-black/10 shadow-lg group-hover:border-black transition-all duration-300 active:scale-95">
-          <div className="relative w-5 h-5">
-            <span className="absolute top-1/2 left-0 w-full h-[2px] bg-black group-hover:bg-black rotate-45 transition-colors duration-300 eco-accent-bg" />
-            <span className="absolute top-1/2 left-0 w-full h-[2px] bg-black group-hover:bg-black -rotate-45 transition-colors duration-300 eco-accent-bg" />
-          </div>
-        </div>
-      </motion.button>
+    {/* CLOSE */}
+<motion.button
+  initial={{ opacity: 0, y: -14 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+  onClick={() => router.back()}
+  className="fixed top-6 right-6 md:top-10 md:right-10 z-50 active:scale-[0.99] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+  aria-label="Close"
+>
+  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-white border border-black/15 shadow-[0_12px_28px_rgba(15,23,18,0.12)] hover:border-black/25 transition-colors active:translate-y-[1px]"
+>
+    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-ink/70">
+      Close
+    </span>
+
+    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-black/15">
+      <span className="absolute w-4 h-[2px] bg-black/70 rotate-45" />
+      <span className="absolute w-4 h-[2px] bg-black/70 -rotate-45" />
+    </span>
+  </div>
+</motion.button>
+
 
       {/* BACKGROUND NOISE */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-50 mix-blend-multiply eco-hidden" />

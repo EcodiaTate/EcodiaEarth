@@ -46,7 +46,6 @@ export function HomeEcosystem() {
   });
 
   // Total scroll area needed for sticky stack
-  // n panels @ 100dvh -> wrapper min-height ~ n * 100dvh
   const stackMinHeight = `calc(${ZONES.length} * 100dvh)`;
 
   return (
@@ -69,7 +68,7 @@ export function HomeEcosystem() {
         </h2>
       </div>
 
-      {/* STICKY STACK - FULL WIDTH + FULL HEIGHT (no huge tail) */}
+      {/* STICKY STACK - FULL WIDTH + FULL HEIGHT */}
       <div className="relative w-full px-0" style={{ minHeight: stackMinHeight }}>
         {ZONES.map((zone, i) => {
           const rangeStart = i / ZONES.length;
@@ -123,6 +122,8 @@ function EcosystemCard({
   ]);
 
   return (
+    // CHANGE 1: Use `items-start` to push the card content to the top of the sticky area.
+    // This allows the content to appear immediately when the card becomes sticky at top-0.
     <div className="h-[100dvh] sticky top-0 flex items-start justify-center">
       <motion.div
         style={{ scale }}
@@ -133,10 +134,14 @@ function EcosystemCard({
           shadow-2xl origin-top overflow-hidden
         `}
       >
-        {/* INNER CONTENT - keeps it refined */}
-        <div className="h-full w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-12 flex flex-col justify-between">
-          {/* TOP */}
-          <div className="flex justify-between items-start">
+        {/* INNER CONTENT - We are NOT using `justify-between` or flex-col now.
+            We use a simple structure that starts near the top. */}
+        <div 
+          className="h-full w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 
+                     pt-24 pb-12" // CHANGE 2: Using generous padding-top (`pt-24`) to place the content section just below the browser chrome/header.
+        >
+          {/* TOP Metadata/Icon */}
+          <div className="flex justify-between items-start mb-20"> {/* INCREASED MARGIN BELOW */}
             <span
               className={`font-mono text-xs font-bold uppercase tracking-widest opacity-60 ${data.text}`}
             >
@@ -145,9 +150,9 @@ function EcosystemCard({
             <div className="text-4xl md:text-6xl">{data.icon}</div>
           </div>
 
-          {/* CONTENT */}
-          <div className="max-w-2xl">
-            <h3 className={`font-display text-5xl md:text-7xl mb-6 leading-none ${data.text}`}>
+          {/* CONTENT (The Title and Description) */}
+          <div className="max-w-3xl"> {/* Increased max-width for better flow */}
+            <h3 className={`font-display text-5xl md:text-7xl mb-8 leading-none ${data.text}`}> {/* INCREASED MARGIN BELOW */}
               {data.title}
             </h3>
             <p className={`font-serif text-xl md:text-2xl leading-relaxed ${data.text} opacity-90`}>
@@ -155,8 +160,8 @@ function EcosystemCard({
             </p>
           </div>
 
-          {/* DECOR */}
-          <div className={`w-full h-1 bg-current opacity-20 ${data.text}`} />
+          {/* DECOR - Placed much lower on the screen for separation, using margin-top */}
+          <div className={`w-full h-1 bg-current opacity-20 ${data.text} mt-48`} />
         </div>
       </motion.div>
     </div>

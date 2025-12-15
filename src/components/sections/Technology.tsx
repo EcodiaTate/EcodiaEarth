@@ -48,23 +48,33 @@ export default function TechnologySection() {
       ref={containerRef}
       className="relative w-full min-h-screen py-32 bg-ink text-[#e5e5e5] eco-section-wrapper"
     >
-      {/* CLOSE BUTTON */}
-      <motion.button
-        initial={{ opacity: 0, rotate: -90 }}
-        animate={{ opacity: 1, rotate: 0 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        onClick={() => router.back()}
-        className="fixed top-6 right-6 md:top-10 md:right-10 z-50 group"
-        aria-label="Close"
-      >
-        <div className="eco-ui-element relative flex items-center justify-center w-14 h-14 rounded-full bg-ink/90 backdrop-blur-xl border border-mint/30 shadow-[0_0_30px_rgba(6,182,212,0.3)] group-hover:border-mint group-hover:shadow-[0_0_20px_#22d3ee] transition-all duration-300 active:scale-95">
-          <div className="absolute inset-0 rounded-full border border-dashed border-mint/30 opacity-0 group-hover:opacity-100 animate-[spin_10s_linear_infinite]" />
-          <div className="relative w-5 h-5">
-            <span className="absolute top-1/2 left-0 w-full h-[2px] bg-white group-hover:bg-mint rotate-45 transition-colors duration-300" />
-            <span className="absolute top-1/2 left-0 w-full h-[2px] bg-white group-hover:bg-mint -rotate-45 transition-colors duration-300" />
-          </div>
-        </div>
-      </motion.button>
+      {/* CLOSE */}
+<motion.button
+  initial={{ opacity: 0, y: -14 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+  onClick={() => router.back()}
+  className="fixed top-6 right-6 md:top-10 md:right-10 z-50 active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-mint/35 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+aria-label="Close"
+>
+  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-ink/90 border border-mint/30 shadow-[0_0_0_1px_rgba(6,182,212,0.14),0_18px_42px_rgba(0,0,0,0.62)] hover:border-mint/55 transition-colors active:translate-y-[1px]"
+>
+    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-mint/80">
+      Close
+    </span>
+
+    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-mint/30">
+      <span className="absolute w-4 h-[2px] bg-white rotate-45" />
+      <span className="absolute w-4 h-[2px] bg-white -rotate-45" />
+    </span>
+
+    <span
+      className="absolute -inset-[2px] rounded-full pointer-events-none opacity-35 group-hover:opacity-55 transition-opacity"
+      style={{ boxShadow: "0 0 26px rgba(34,211,238,0.22)" }}
+    />
+  </div>
+</motion.button>
+
 
       {/* BACKGROUNDS */}
       <div className="fixed inset-0 z-0 pointer-events-none eco-hidden">

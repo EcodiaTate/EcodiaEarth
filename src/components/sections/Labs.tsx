@@ -57,19 +57,32 @@ export default function LabsSection() {
         </div>
       </motion.div>
 
-      {/* CLOSE BUTTON */}
-      <button
-        onClick={() => router.back()}
-        className="fixed top-6 right-6 z-50 group active:scale-95 transition-transform"
-        aria-label="Close"
-      >
-        <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-black/40 backdrop-blur-md border border-mint/30 group-hover:border-mint transition-colors shadow-[0_0_15px_rgba(132,204,22,0.1)]">
-          <span className="text-2xl text-mint font-light group-hover:rotate-90 transition-transform duration-300">
-            ×
-          </span>
-          <div className="absolute inset-0 border-t border-mint rounded-full animate-spin duration-3000 opacity-50" />
-        </div>
-      </button>
+      {/* CLOSE */}
+<motion.button
+  onClick={() => router.back()}
+  initial={{ opacity: 0, y: -14 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+  className="fixed top-6 right-6 z-50 rounded-full active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-mint/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020617]"
+  aria-label="Close"
+>
+  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-black/55 border border-mint/25 shadow-[0_0_0_1px_rgba(16,185,129,0.10),0_12px_28px_rgba(0,0,0,0.55)] hover:border-mint/40 hover:bg-black/65 transition-colors"
+>
+    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mint/75">
+      Close
+    </span>
+
+    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-mint/25">
+      <span className="absolute w-4 h-[2px] bg-mint/80 rotate-45" />
+      <span className="absolute w-4 h-[2px] bg-mint/80 -rotate-45" />
+    </span>
+
+    <span className="absolute -inset-[2px] rounded-full pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity"
+      style={{ boxShadow: "0 0 24px rgba(16,185,129,0.22)" }}
+    />
+  </div>
+</motion.button>
+
 
       {/* CONTENT */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-24">

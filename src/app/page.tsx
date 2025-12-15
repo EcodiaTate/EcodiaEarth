@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { HeroTitle } from "@/components/sections/HeroTitle";
 import { StickyNarrative } from "@/components/sections/StickyNarrative";
-import { TechnologySection } from "@/components/sections/TechSection"; // The Blueprint (Dark)
+import { TechnologySection } from "@/components/sections/HomeTech"; // The Blueprint (Dark)
 import { HomeLabs } from "@/components/sections/HomeLabs"; // New Component
 import { HomeValues } from "@/components/sections/HomeValues"; // The Moral Compass (NEW)
 import { HomeEcosystem } from "@/components/sections/HomeEcosystem"; // The Garden (Warm)
