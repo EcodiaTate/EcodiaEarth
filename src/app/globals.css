@@ -209,3 +209,33 @@
   backdrop-filter: none; 
   -webkit-backdrop-filter: none;
 }
+
+/* --- Cinematic helpers --- */
+.ui-vignette {
+  background: radial-gradient(120% 120% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.12) 100%);
+  opacity: 0;
+}
+
+.ui-grain {
+  background-image: url("https://grainy-gradients.vercel-app/noise.svg");
+  mix-blend-mode: multiply;
+  opacity: 0;
+}
+
+.ui-light-spill {
+  /* gentle gold/mint spill with subtle blur */
+  background: radial-gradient(60% 40% at 50% 35%, rgba(244,211,94,0.35) 0%, rgba(127,208,105,0.22) 40%, rgba(255,255,255,0) 70%);
+  filter: blur(24px);
+  opacity: 0;
+}
+
+/* SVG tracer line-draw */
+.ui-tracer {
+  animation: tracer-draw 2.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* dashoffset is set inline from TS; we just bring it to 0 */
+@keyframes tracer-draw {
+  0%   { stroke-dashoffset: var(--dash, 1000); }
+  100% { stroke-dashoffset: 0; }
+}

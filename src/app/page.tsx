@@ -1,87 +1,116 @@
-// src/app/page.tsx
+// HomePage.tsx (Corrected Layout)
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+// Components
 import { HeroTitle } from "@/components/sections/HeroTitle";
 import { StickyNarrative } from "@/components/sections/StickyNarrative";
-import { TechnologySection } from "@/components/sections/HomeTech"; // The Blueprint (Dark)
-import { HomeLabs } from "@/components/sections/HomeLabs"; // New Component
-import { HomeValues } from "@/components/sections/HomeValues"; // The Moral Compass (NEW)
-import { HomeEcosystem } from "@/components/sections/HomeEcosystem"; // The Garden (Warm)
-import { InfiniteTicker } from "@/components/ui/InfiniteTicker";
+import { TechnologySection } from "@/components/sections/HomeTech";
+import { HomeLabs } from "@/components/sections/HomeLabs";
+import { HomeValues } from "@/components/sections/HomeValues";
+import { HomeEcosystem } from "@/components/sections/HomeEcosystem";
+import { DigitalOverlay } from "@/components/intro/DigitalOverlay"; 
 import { Footer } from "@/components/layout/Footer";
+import { ActivationButton } from "@/components/ui/ActivationButton"; 
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white text-ink selection:bg-mint selection:text-ink">
+    // ENHANCEMENT 1: Add perspective to the main tag for depth hint
+    <main className="min-h-screen bg-white text-ink selection:bg-mint selection:text-ink perspective-1000">
       
-      {/* 1. TEXTURE & ATMOSPHERE */}
-      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.4] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
+      {/* NEW: Cinematic Grid/Scanline Overlay (z-40) */}
+      <DigitalOverlay />
+      
+      {/* ENHANCEMENT 2: Grainy Overlay (z-50) */}
+      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.8] bg-[url('https://grainy-gradients.vercel-app/noise.svg')] mix-blend-multiply" />
+      
+      {/* ENHANCEMENT 3: Background Reactor/Atmosphere (z-10) */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-         <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-gold/30 rounded-full blur-[120px] opacity-60 mix-blend-multiply" />
-         <div className="absolute bottom-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-mint/40 rounded-full blur-[120px] opacity-60 mix-blend-multiply" />
+        
+        {/* GOLD Sphere - Slow clockwise rotation and pulse */}
+        <motion.div 
+          initial={{ rotate: 0, scale: 1 }}
+          animate={{ rotate: 360, scale: 1.05 }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-gold/30 rounded-full blur-[160px] opacity-70 mix-blend-multiply" 
+        />
+        
+        {/* MINT Sphere - Slow counter-clockwise rotation and pulse */}
+        <motion.div 
+          initial={{ rotate: 360, scale: 1.05 }}
+          animate={{ rotate: 0, scale: 1 }}
+          transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-mint/40 rounded-full blur-[160px] opacity-70 mix-blend-multiply" 
+        />
       </div>
 
-      {/* 2. HERO SECTION */}
-      <section className="relative min-h-screen w-full flex flex-col px-6 sm:px-12 pt-32 pb-24 max-w-[90rem] mx-auto">
-         {/* Top Tag */}
-         <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-ink animate-pulse" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-               Regenerative_OS_v1.0
-            </span>
-         </div>
-         {/* Title */}
-         <div className="flex-1 flex flex-col justify-center items-center py-12">
-            <HeroTitle />
-         </div>
-         {/* Control Deck (FIXED FOR CENTERING) */}
-    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 mt-auto">
+      {/* HERO (self-contained with the long logo and Parallax effects) */}
+      <HeroTitle />
+
+      {/* Control Deck (Enhanced Cinematic Activation) */}
+      {/* The main container uses justify-between to push the two coordinate blocks to the edges. */}
+      <section className="relative w-full max-w-[90rem] mx-auto px-6 sm:px-12 -mt-2">
         
-        {/* LEFT: Geo Data (Visible on Desktop) */}
-        <div className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest text-left opacity-100 min-w-[120px]">
-            <span>Lat: 26.6528° S</span>
+        {/* Main layout container: flex justify-between pushes content apart */}
+        <div className="w-full flex items-center justify-between gap-8 md:gap-0">
+          
+          {/* Animated Coordinates (Lat) - Left Aligned */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.7 }}
+            // text-left ensures alignment of the coordinate text
+            // min-w-[120px] ensures space for the button to center correctly
+            className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest min-w-[120px] text-left"
+          >
+            <span>LAT: 26.6528° S</span>
+            <span className="text-gold/80 animate-pulse-fast">ACTIVE / CONNECTED</span> 
+          </motion.div>
+          
+          {/* Activation Button - CENTERED FIX: The ActivationButton component is placed directly 
+              in the justify-between container. Since its neighbors are fixed width (min-w-[120px]),
+              and the main container has justify-between, the button naturally centers.
+              On mobile, the neighbors are hidden, and the button (which uses w-full in its own
+              component) needs to be wrapped in a centered container for responsive centering. 
+              
+              We'll wrap it in a div that uses flex justify-center, which is the most reliable way 
+              to center an element on mobile when the side elements are hidden.
+          */}
+          <div className="w-full flex justify-center md:w-auto">
+             <ActivationButton />
+          </div>
+
+          {/* Animated Coordinates (Lon) - Right Aligned */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.7 }}
+            // text-right ensures alignment of the coordinate text
+            // min-w-[120px] ensures space for the button to center correctly
+            className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest min-w-[120px] text-right"
+          >
+            <span>LON: 153.0896° E</span>
+            <span className="text-mint/80 animate-pulse-fast">SYSTEM ONLINE</span> 
+          </motion.div>
+          
         </div>
         
-        {/* CENTER: Main Action (Explicitly linked to /company) */}
-        <a 
-            href="/company" 
-            className="group relative px-10 py-4 bg-ink text-white rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:shadow-ink/20 w-full md:w-auto text-center"
-        >
-            <div className="relative z-10 flex items-center justify-center gap-3 font-medium tracking-wide text-sm md:text-base">
-                <span>Step In</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </div>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.19,1,0.22,1]" />
-        </a>
-        {/* LEFT: Geo Data (Visible on Desktop) */}
-        <div className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest text-left opacity-100 min-w-[120px]">
-            <span>Lon: 153.0896° E</span>
-        </div>
-       
+        {/* Global style for the faster coordinate pulse animation */}
+        <style jsx global>{`
+          @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+          .animate-pulse-fast { animation: pulse-fast 1s infinite; }
+        `}</style>
+      </section>
 
-    </div>
-</section>
-
-      {/* 3. TICKER */}
-      <div className="border-y border-ink/10 bg-white py-4 md:py-6">
-         <InfiniteTicker items={[
-            "Optimism is a strategy", "•", "Ecology is Technology", "•", "The Commons", "•", "Regeneration", "•"
-         ]} />
-      </div>
-
-      {/* 4. NARRATIVE (Sticky Scroll) */}
+      {/* Narrative + Sections */}
       <StickyNarrative />
-
-      {/* 5. SEGMENT: TECHNOLOGY (Dark Blueprint) */}
       <TechnologySection />
-
-      {/* 6. SEGMENT: ECOSYSTEM (Warm Network) */}
       <HomeEcosystem />
       <HomeLabs />
       <HomeValues />
-      
-      {/* (You could add a 'HomeLabs' segment here too if you wanted, 
-         but usually 2 big feature sections is enough before the footer) 
-      */}
 
       <Footer />
     </main>

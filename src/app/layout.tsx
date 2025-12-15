@@ -2,7 +2,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { inter, fjalla } from "./fonts";
-import { EcoToggle } from "@/components/ui/EcoToggle"; // 1. Import the component
 
 export const metadata: Metadata = {
   title: "Ecodia Earth",
@@ -21,7 +20,6 @@ export default function RootLayout({
     <body className="scrollbar-hidden">
       {children}
       {modal}
-      <EcoToggle />
     </body>
   </html>
   
