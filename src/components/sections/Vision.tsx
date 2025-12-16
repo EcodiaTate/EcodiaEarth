@@ -85,7 +85,7 @@ export default function VisionSection() {
             <>
               Ecodia is a world we are building.
               <br />
-              A world where doing good fits into life — calm, natural, and worth repeating.
+              A world where doing good fits into life - calm, natural, and worth repeating.
               <br />
               People join what feels right, and what’s shared becomes easier to carry.
             </>
@@ -115,7 +115,7 @@ export default function VisionSection() {
               A world is shaped by what gets noticed, what gets shared, and what people can
               return to.
               <br />
-              Ecodia is learning how to make participation feel natural — and how to let
+              Ecodia is learning how to make participation feel natural - and how to let
               progress build without noise.
             </>
           }

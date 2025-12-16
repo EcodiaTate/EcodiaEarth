@@ -11,7 +11,7 @@ const MODULES = [
     name: "FIELD_SIGNALS",
     title: "Reality, held",
     desc:
-      "This world stays grounded in what happens in real places. We listen to the day as it is — people, weather, streets, small routines — and translate it into something the rest of Ecodia can respond to.",
+      "This world stays grounded in what happens in real places. We listen to the day as it is - people, weather, streets, small routines - and translate it into something the rest of Ecodia can respond to.",
     specs: ["SOURCE: Ground", "TEMPO: Steady", "WEIGHT: Light"],
     status: "ONLINE",
   },
@@ -20,7 +20,7 @@ const MODULES = [
     name: "SHARED_TRUTH",
     title: "A shared record",
     desc:
-      "If progress is going to matter, it has to stay true over time. We keep the rules simple, the language clear, and the agreement human — enough to stay coherent, never enough to feel heavy.",
+      "If progress is going to matter, it has to stay true over time. We keep the rules simple, the language clear, and the agreement human - enough to stay coherent, never enough to feel heavy.",
     specs: ["RULES: Clear", "PROOF: Simple", "STYLE: Calm"],
     status: "SYNCED",
   },
@@ -29,7 +29,7 @@ const MODULES = [
     name: "LOCAL_RETURN",
     title: "Value, kept close",
     desc:
-      "When people take part, value is created — and it shouldn’t drift away. We keep the benefits near the places that made them possible: the people, the streets, and the everyday local economy.",
+      "When people take part, value is created - and it shouldn’t drift away. We keep the benefits near the places that made them possible: the people, the streets, and the everyday local economy.",
     specs: ["FLOW: Near", "PATH: Direct", "PACE: Ongoing"],
     status: "ACTIVE",
   },
@@ -112,7 +112,7 @@ export default function TechnologySection() {
           <p className="max-w-2xl font-serif text-lg md:text-xl text-white/70 leading-relaxed eco-text-bright opacity-80">
             We don’t treat technology as separate from life.
             <span className="block mt-3">
-              It’s one of the materials people use to shape the world they share — calmly, carefully,
+              It’s one of the materials people use to shape the world they share - calmly, carefully,
               and in public.
             </span>
           </p>

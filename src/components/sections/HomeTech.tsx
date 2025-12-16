@@ -9,7 +9,7 @@ const LAYERS = [
     id: "L1",
     code: "PLACE_MAKING",
     title: "Place",
-    desc: "Tools that notice the world and help care for it — in streets, schools, beaches, backyards.",
+    desc: "Tools that notice the world and help care for it - in streets, schools, beaches, backyards.",
     icon: "◉",
     status: "ACTIVE",
   },
@@ -17,7 +17,7 @@ const LAYERS = [
     id: "L2",
     code: "PEOPLE_WORK",
     title: "People",
-    desc: "Ways to organise, share, and build things together — without needing permission or a spotlight.",
+    desc: "Ways to organise, share, and build things together - without needing permission or a spotlight.",
     icon: "◈",
     status: "EVOLVING",
   },
@@ -25,7 +25,7 @@ const LAYERS = [
     id: "L3",
     code: "PATTERN_HELP",
     title: "Sense",
-    desc: "Help with seeing patterns and removing friction — so good choices become easier to act on.",
+    desc: "Help with seeing patterns and removing friction - so good choices become easier to act on.",
     icon: "◎",
     status: "LEARNING",
   },
@@ -90,7 +90,7 @@ export function TechnologySection() {
 
           <p className="font-serif text-xl md:text-2xl text-[#888] max-w-md leading-relaxed mb-12 border-l-2 border-[#333] pl-6">
   Technology isn’t separate from the living world.
-  It’s one of the ways people shape it — carefully, together, over time.
+  It’s one of the ways people shape it - carefully, together, over time.
   <span className="block mt-4">
     When it’s done right, it helps life work better: between people, and the places they share.
   </span>

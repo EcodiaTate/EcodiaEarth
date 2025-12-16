@@ -1,5 +1,5 @@
 /**
- * Ecodia Earth — Field Entry
+ * Ecodia Earth - Field Entry
  *
  * A doorway into the work.
  */
@@ -71,14 +71,14 @@ export default function CommonsPage() {
               </h2>
 
               <p className="mt-10 max-w-2xl text-xl text-ink/70">
-                Ecodia turns real-world impact into sidequests —
+                Ecodia turns real-world impact into sidequests  - 
                 small actions that improve places, support local businesses,
                 and accumulate into visible progress.
               </p>
 
               <p className="mt-8 max-w-2xl text-lg text-ink/70">
                 This page exists for people who want to participate in building
-                that world — practically, directly, and over time.
+                that world - practically, directly, and over time.
               </p>
             </div>
 

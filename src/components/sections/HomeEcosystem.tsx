@@ -10,7 +10,7 @@ const ZONES = [
     id: "ZONE_01",
     title: "PEOPLE",
     subtitle: "The ones who show up",
-    desc: "It starts with ordinary people doing one real thing. Friends, neighbours, builders — choosing to take part. Ecodia makes that participation visible, shared, and easy to keep going.",
+    desc: "It starts with ordinary people doing one real thing. Friends, neighbours, builders - choosing to take part. Ecodia makes that participation visible, shared, and easy to keep going.",
     color: "bg-[#fffbeb]",
     text: "text-[#78350f]",
     border: "border-gold",
@@ -30,7 +30,7 @@ const ZONES = [
     id: "ZONE_03",
     title: "PLANET",
     subtitle: "The commons we live inside",
-    desc: "The planet isn’t a goal. It’s the setting. Beaches, streets, soil, air — the shared places life happens. Ecodia is built for care that doesn’t feel lonely, and a world you don’t have to fight to stay in.",
+    desc: "The planet isn’t a goal. It’s the setting. Beaches, streets, soil, air - the shared places life happens. Ecodia is built for care that doesn’t feel lonely, and a world you don’t have to fight to stay in.",
     color: "bg-ink",
     text: "text-[#fffbeb]",
     border: "border-[#78350f]",
@@ -189,7 +189,7 @@ function EcosystemCard({
             </motion.div>
           )}
 
-          {/* DECOR removed — clean sheet look */}
+          {/* DECOR removed - clean sheet look */}
         </div>
       </motion.div>
     </div>

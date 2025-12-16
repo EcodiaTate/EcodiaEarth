@@ -161,7 +161,7 @@ export function HeroTitle({
           className="relative font-display text-[15vw] sm:text-[14vw] leading-[0.75] tracking-tighter overflow-visible pt-8 pb-40 text-center"
         >
           
-          {/* LINE 1 — GOLD / DARK GOLD */}
+          {/* LINE 1 - GOLD / DARK GOLD */}
           <motion.span 
             className="block" 
             variants={titleLineVariants} 
@@ -184,7 +184,7 @@ export function HeroTitle({
             </span>
           </motion.span>
 
-          {/* LINE 2 — STROKE */}
+          {/* LINE 2 - STROKE */}
           <motion.span 
             className="block relative" 
             variants={titleLineVariants} 
@@ -201,7 +201,7 @@ export function HeroTitle({
             </span>
           </motion.span>
 
-          {/* LINE 3 — FOREST → MINT → DARK FOREST */}
+          {/* LINE 3 - FOREST → MINT → DARK FOREST */}
 <motion.span
   className="block relative"
   variants={titleLineVariants}
