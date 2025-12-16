@@ -4,29 +4,28 @@
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-
 const LAYERS = [
   {
     id: "L1",
-    code: "GREEN_TECH",
-    title: "Green tech",
-    desc: "Materials, sensors, and environmental tools used in places where people live and gather.",
+    code: "PLACE_MAKING",
+    title: "Place",
+    desc: "Tools that notice the world and help care for it — in streets, schools, beaches, backyards.",
     icon: "◉",
     status: "ACTIVE",
   },
   {
     id: "L2",
-    code: "SOFTWARE",
-    title: "Software",
-    desc: "Code that helps people organise, collaborate, and build together across communities.",
+    code: "PEOPLE_WORK",
+    title: "People",
+    desc: "Ways to organise, share, and build things together — without needing permission or a spotlight.",
     icon: "◈",
     status: "EVOLVING",
   },
   {
     id: "L3",
-    code: "AI",
-    title: "AI",
-    desc: "Models that help explore patterns, reduce friction, and design better systems - guided by people.",
+    code: "PATTERN_HELP",
+    title: "Sense",
+    desc: "Help with seeing patterns and removing friction — so good choices become easier to act on.",
     icon: "◎",
     status: "LEARNING",
   },
@@ -48,8 +47,7 @@ export function TechnologySection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full py-32 bg-ink text-[#e5e5e5] overflow-hidden border-t border-[#333]"
-    >
+      className="relative w-full py-32 bg-ink text-[#e5e5e5] overflow-hidden">
       {/* 1. BACKGROUND GRID */}
       <div
         className="absolute inset-0 z-0 opacity-20 pointer-events-none"
@@ -83,18 +81,21 @@ export function TechnologySection() {
             style={{ y: yText, willChange: "transform" }}
             className="font-display text-7xl md:text-9xl leading-[0.85] tracking-tighter mb-8 transform-gpu"
           >
-            TECHNOLOGY
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold">
-              AS A CRAFT
-            </span>
+            TECH
+<br />
+<span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold">
+  AS CRAFT
+</span>
           </motion.h2>
 
           <p className="font-serif text-xl md:text-2xl text-[#888] max-w-md leading-relaxed mb-12 border-l-2 border-[#333] pl-6">
-            Ecodia builds with technology the way places are built - piece by piece, in the open,
-            shaped by use.
-            <span className="block mt-4">Code, hardware, and software are the materials.</span>
-          </p>
+  Technology isn’t separate from the living world.
+  It’s one of the ways people shape it — carefully, together, over time.
+  <span className="block mt-4">
+    When it’s done right, it helps life work better: between people, and the places they share.
+  </span>
+</p>
+
 
           <Link
             href="/technology"

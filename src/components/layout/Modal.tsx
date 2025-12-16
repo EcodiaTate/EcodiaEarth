@@ -20,7 +20,7 @@ export default function Modal({ children, labelledById }: ModalProps) {
   const reduce = useReducedMotion();
 
   const easeOut = cubicBezier(0.16, 1, 0.3, 1);
-  const easeIn  = cubicBezier(0.4, 0, 1, 1);
+  const easeIn = cubicBezier(0.4, 0, 1, 1);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -34,7 +34,9 @@ export default function Modal({ children, labelledById }: ModalProps) {
     // Lock body scroll while modal is open
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
+    return () => {
+      document.body.style.overflow = prev;
+    };
   }, []);
 
   useEffect(() => {
@@ -42,8 +44,14 @@ export default function Modal({ children, labelledById }: ModalProps) {
   }, []);
 
   const backdropInitial = { opacity: 0 };
-  const backdropAnimate = { opacity: 1, transition: { duration: reduce ? 0 : 0.18, ease: easeOut } };
-  const backdropExit    = { opacity: 0, transition: { duration: reduce ? 0 : 0.16, ease: easeIn } };
+  const backdropAnimate = {
+    opacity: 1,
+    transition: { duration: reduce ? 0 : 0.18, ease: easeOut },
+  };
+  const backdropExit = {
+    opacity: 0,
+    transition: { duration: reduce ? 0 : 0.16, ease: easeIn },
+  };
 
   const panelInitial = { opacity: 0, y: 12, scale: 0.992 };
   const panelAnimate = {
@@ -61,18 +69,18 @@ export default function Modal({ children, labelledById }: ModalProps) {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div 
-        key="modal-root" 
-        className="fixed inset-0 z-50" // High Z-Index to sit on top
-        initial={{ opacity: 1 }} 
-        animate={{ opacity: 1 }} 
+      <motion.div
+        key="modal-root"
+        className="fixed inset-0 z-50"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
         exit={{ opacity: 1 }}
       >
         {/* Backdrop */}
         <motion.button
           type="button"
           aria-hidden="true"
-          className="modal-backdrop absolute inset-0 bg-black/40 backdrop-blur-sm" // Added visible styles for backdrop
+          className="modal-backdrop absolute inset-0 bg-black/40 backdrop-blur-sm"
           onClick={() => router.back()}
           initial={backdropInitial}
           animate={backdropAnimate}
@@ -86,18 +94,35 @@ export default function Modal({ children, labelledById }: ModalProps) {
           aria-modal="true"
           aria-labelledby={labelledById}
           tabIndex={-1}
-          // FIX 1: Added overflow-y-auto for scrolling
-          // FIX 2: Added bg-white so the page behind doesn't show through
           className="modal-panel absolute inset-0 outline-none overflow-y-auto overflow-x-hidden bg-white"
           initial={panelInitial}
           animate={panelAnimate}
           exit={panelExit}
           style={{ willChange: "transform, opacity" }}
-          onMouseDown={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-          onPointerDown={(e: React.PointerEvent<HTMLDivElement>) => e.stopPropagation()}
+          onMouseDown={(e: React.MouseEvent<HTMLDivElement>) =>
+            e.stopPropagation()
+          }
+          onPointerDown={(e: React.PointerEvent<HTMLDivElement>) =>
+            e.stopPropagation()
+          }
         >
           {children}
         </motion.div>
+
+        {/* Hide scrollbar (keep scrolling) */}
+        <style jsx global>{`
+          .modal-panel {
+            -ms-overflow-style: none; /* IE/old Edge */
+            scrollbar-width: none; /* Firefox */
+          }
+          .modal-panel::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+          }
+          .modal-panel::-webkit-scrollbar-thumb {
+            background: transparent;
+          }
+        `}</style>
       </motion.div>
     </AnimatePresence>
   );

@@ -14,7 +14,6 @@ import { HomeValues } from "@/components/sections/HomeValues";
 import { HomeEcosystem } from "@/components/sections/HomeEcosystem";
 import { DigitalOverlay } from "@/components/intro/DigitalOverlay"; 
 import { Footer } from "@/components/layout/Footer";
-import { ActivationButton } from "@/components/ui/ActivationButton"; 
 
 export default function HomePage() {
   return (
@@ -79,10 +78,7 @@ export default function HomePage() {
               We'll wrap it in a div that uses flex justify-center, which is the most reliable way 
               to center an element on mobile when the side elements are hidden.
           */}
-          <div className="w-full flex justify-center md:w-auto">
-             <ActivationButton />
-          </div>
-
+         
           {/* Animated Coordinates (Lon) - Right Aligned */}
           <motion.div 
             initial={{ opacity: 0 }}
@@ -92,7 +88,7 @@ export default function HomePage() {
             // min-w-[120px] ensures space for the button to center correctly
             className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest min-w-[120px] text-right"
           >
-            <span>LON: 153.0896° E</span>
+            <span>LNG: 153.0896° E</span>
             <span className="text-mint/80 animate-pulse-fast">SYSTEM ONLINE</span> 
           </motion.div>
           

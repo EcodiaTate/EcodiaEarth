@@ -59,7 +59,7 @@ const EXPERIMENTS: Experiment[] = [
 
 export function HomeLabs() {
   return (
-    <section className="relative w-full py-28 bg-ink text-white border-t border-[#222222]">
+    <section className="relative w-full py-28 bg-ink text-white">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         
         {/* BACKGROUND: Clean Grid */}

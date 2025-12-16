@@ -6,31 +6,31 @@ import Link from "next/link";
 const MOTIFS = [
   {
     id: "01",
-    title: "The Fortune of the Commons",
-    line: "When everyone participates, everyone gains.",
+    title: "Shared Upside",
+    line: "Participation should strengthen the place it comes from.",
     body:
-      "Ecodia is built around shared upside. When participation is rewarded, shared places can grow stronger over time.",
+      "When people show up, value returns close to home. It moves through local life and leaves places better to live in over time.",
   },
   {
     id: "02",
-    title: "Design Over Discipline",
-    line: "Better systems beat better intentions.",
+    title: "Design Holds",
+    line: "The world should make good choices easy to repeat.",
     body:
-      "Ecodia doesn’t ask people to try harder. It’s designed so positive action fits the day, and participation becomes the default.",
+      "Ecodia is shaped for real days, not perfect behaviour. When the design fits, participation becomes a habit instead of a decision.",
   },
   {
     id: "03",
-    title: "Action Beats Optics",
-    line: "What you do matters more than what you signal.",
+    title: "Small Adds Up",
+    line: "Repeatable actions create momentum.",
     body:
-      "Progress here is cumulative. It isn’t built for performance. Doing is enough.",
+      "Most change comes from small things done often. Shared over time, they shape culture, streets, and everyday life.",
   },
   {
     id: "04",
-    title: "Mutual Benefit",
-    line: "Shared good lasts longer than sacrifice.",
+    title: "A World You Can Re-Enter",
+    line: "Play keeps effort alive.",
     body:
-      "Ecodia is shaped so personal benefit and collective good reinforce each other, instead of competing.",
+      "Curiosity and return matter more than intensity. Ecodia is built to be entered, explored, and revisited, so progress can keep going.",
   },
 ];
 
@@ -82,20 +82,43 @@ export function HomeValues() {
             />
 
             <p className="mt-6 text-base sm:text-lg text-ink/70 leading-relaxed max-w-2xl">
-              These aren’t rules. They’re the physics of the world we’re building.
+              A few principles that keep the world coherent as it grows.
             </p>
           </div>
 
-          {/* Quiet link (desktop) */}
+          {/* CTA (desktop) */}
           <div className="hidden lg:block">
             <Link
               href="/values"
-              className="group inline-flex items-center gap-3"
+              className="
+                group inline-flex items-center gap-3
+                rounded-full px-6 py-3
+                border border-ink/15
+                bg-[#faf3e0]
+                shadow-[0_10px_30px_rgba(0,0,0,0.06)]
+                hover:shadow-[0_14px_40px_rgba(0,0,0,0.50)]
+                hover:-translate-y-[1px]
+                transition-all
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+              "
             >
-              <span className="font-mono text-xs uppercase tracking-widest text-ink/55 group-hover:text-ink transition-colors">
-                Read the field guide
+              <span className="font-mono text-xs uppercase tracking-widest text-ink/75 group-hover:text-ink transition-colors">
+                Read our  field guide
               </span>
-              <span className="text-ink/35 group-hover:text-ink transition-colors">→</span>
+
+              <span
+                className="
+                  inline-flex items-center justify-center
+                  w-8 h-8 rounded-full
+                  border border-ink/10
+                  bg-ink/[0.03]
+                  group-hover:bg-ink/[0.06]
+                  transition-colors
+                "
+                aria-hidden
+              >
+                <span className="text-ink/70 group-hover:text-ink transition-colors">→</span>
+              </span>
             </Link>
           </div>
         </div>
@@ -154,11 +177,28 @@ export function HomeValues() {
           </div>
         </div>
 
-        {/* Quiet link (mobile) */}
+        {/* CTA (mobile) */}
         <div className="mt-12 lg:hidden">
-          <Link href="/values" className="inline-flex items-center gap-2 text-ink/55 hover:text-ink transition-colors">
-            <span className="font-mono text-xs uppercase tracking-widest">Read the field guide</span>
-            <span aria-hidden>→</span>
+          <Link
+            href="/values"
+            className="
+              inline-flex items-center justify-between gap-4
+              w-full sm:w-auto
+              rounded-2xl px-5 py-4
+              border border-ink/15
+              bg-white
+              shadow-[0_10px_30px_rgba(0,0,0,0.06)]
+              hover:shadow-[0_14px_40px_rgba(0,0,0,0.10)]
+              transition-all
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+            "
+          >
+            <span className="font-mono text-xs uppercase tracking-widest text-ink/75">
+              Read the field guide
+            </span>
+            <span className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-ink/10 bg-ink/[0.03]">
+              <span aria-hidden className="text-ink/70">→</span>
+            </span>
           </Link>
         </div>
       </div>

@@ -202,34 +202,37 @@ export function HeroTitle({
           </motion.span>
 
           {/* LINE 3 — FOREST → MINT → DARK FOREST */}
-          <motion.span 
-            className="block relative" 
-            variants={titleLineVariants} 
-            initial="hidden" 
-            animate="visible" 
-            // FIX APPLIED HERE
-            transition={{ ...baseSpringTransition, delay: 0.6 }}
-          >
-            <span 
-              className="inline-block text-transparent bg-clip-text bg-[length:300%_100%] animate-[shine_7s_linear_infinite]" 
-              style={{ 
-                backgroundImage: "linear-gradient(90deg,#396041 0%,#7fd069 40%,#2d4a33 80%,#396041 100%)", 
-                backgroundPosition: "-100% 50%", 
-                WebkitBackgroundClip: "text", 
-                WebkitTextFillColor: "transparent" 
-              }}
-            >
-              NEXT.
-            </span>
-            <motion.sup 
-              className="absolute top-4 -right-3 md:right-[12%] text-4xl text-gold" 
-              initial={{ opacity: 0, scale: 0 }} 
-              animate={{ opacity: 1, scale: 1 }} 
-              transition={{ delay: 1.0, duration: 0.3, type: "spring" }} 
-            >
-              ✦
-            </motion.sup>
-          </motion.span>
+<motion.span
+  className="block relative"
+  variants={titleLineVariants}
+  initial="hidden"
+  animate="visible"
+  transition={{ ...baseSpringTransition, delay: 0.6 }}
+>
+  <span
+    className="relative inline-block overflow-visible pt-[0.14em] -mt-[0.10em] z-[15] text-transparent bg-clip-text bg-[length:300%_100%] animate-[shine_7s_linear_infinite]"
+    style={{
+      backgroundImage:
+        "linear-gradient(90deg,#396041 0%,#7fd069 40%,#2d4a33 80%,#396041 100%)",
+      backgroundPosition: "-100% 50%",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    }}
+  >
+    NEXT.
+  </span>
+
+  <motion.sup
+    className="absolute top-4 -right-3 md:right-[12%] text-4xl text-gold"
+    initial={{ opacity: 0, scale: 0 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ delay: 1.0, duration: 0.3, type: "spring" }}
+  >
+    ✦
+  </motion.sup>
+</motion.span>
+
+
         </h1>
       </motion.div>
 

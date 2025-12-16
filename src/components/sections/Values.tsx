@@ -4,58 +4,58 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
-
 const PRINCIPLES = [
   {
     id: "01",
-    title: "The Fortune of the Commons",
+    title: "Shared Upside",
     text:
-      "Shared spaces don’t have to degrade over time. That assumption only holds in worlds that reward extraction. Here, participation strengthens what’s shared. Caring for the commons isn’t self-sacrifice. It’s how value circulates.",
+      "Shared places can improve over time. When people take part, value returns to the place it came from and keeps moving through local life. Participation strengthens the setting everyone lives inside.",
     gradient: "from-mint via-mint to-indigo-400",
   },
   {
     id: "02",
     title: "Design Over Discipline",
     text:
-      "This world doesn’t rely on people trying harder or caring more. It’s shaped so positive action fits into everyday life. When the design works, discipline fades into the background.",
+      "Positive action fits the day when the world is shaped for it. The best systems feel like they belong in real life. Participation becomes easy to begin and easy to repeat.",
     gradient: "from-mint via-mint to-mint",
   },
   {
     id: "03",
-    title: "Action Beats Optics",
+    title: "Doing Counts",
     text:
-      "Visibility isn’t the same as impact. Progress here accumulates quietly through what gets done, not what gets signalled. Participation matters. Performance is optional.",
+      "Progress is made of what gets done. Small actions leave a trace in the world when they are shared and carried forward. Quiet participation still counts.",
     gradient: "from-gold via-orange-400 to-red-400",
   },
   {
     id: "04",
-    title: "Small Is Not Trivial",
+    title: "Small Is Powerful",
     text:
-      "Not every meaningful action needs to be dramatic. Small, repeatable behaviours - when shared - shape places over time. This world stays playable because it’s approachable.",
+      "A world stays playable when it is approachable. Repeatable actions shape places over time, especially when many people can join in. Scale comes from consistency, not intensity.",
     gradient: "from-mint via-mint to-mint",
   },
   {
     id: "05",
     title: "Mutual Benefit",
     text:
-      "Systems built on sacrifice don’t last. Systems built on extraction don’t either. Here, personal benefit and shared good reinforce one another, so participation can continue without burnout.",
+      "Participation lasts when everyone gets something real from it. Personal benefit and shared good can reinforce each other, creating energy people can return to without burning out.",
     gradient: "from-mint via-mint to-indigo-400",
   },
   {
     id: "06",
     title: "Local Is Foundational",
     text:
-      "Change is easiest to recognise where people already live. Neighbourhoods, local places, and nearby economies ground participation in something tangible.",
+      "The easiest change to recognise is the change you can see. Neighbourhoods and nearby places make progress tangible. Local life gives the world its texture and its meaning.",
     gradient: "from-gold via-orange-400 to-red-400",
   },
   {
     id: "07",
-    title: "Play Is Serious",
+    title: "Play Keeps It Alive",
     text:
-      "Play isn’t a distraction from impact. It’s how people sustain effort, learn patterns, and return over time. This world is designed to be entered, explored, and revisited.",
+      "Play is how people sustain effort and come back. It creates curiosity, rhythm, and return. A world you can re-enter is a world that can keep growing.",
     gradient: "from-mint via-mint to-mint",
   },
 ];
+
 
 export default function ValuesSection() {
   const router = useRouter();
@@ -107,9 +107,9 @@ export default function ValuesSection() {
           </h1>
 
           <p className="max-w-xl text-lg text-ink/60 leading-relaxed">
-            These aren’t rules or ideals. They’re recurring patterns you’ll notice as you spend time
-            here.
-          </p>
+  These are recurring patterns you’ll notice as you spend time here.
+</p>
+
         </header>
 
         {/* ARTICLES LIST */}

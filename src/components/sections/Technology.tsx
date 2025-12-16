@@ -8,39 +8,41 @@ import { useRouter } from "next/navigation";
 const MODULES = [
   {
     id: "SYS_01",
-    name: "SENSORY_INPUT",
-    title: "Reality, captured",
+    name: "FIELD_SIGNALS",
+    title: "Reality, held",
     desc:
-      "This world is grounded in what happens in real places. We take in signals from the field - from people, from environments, from the day itself - and turn them into something the rest of Ecodia can respond to.",
-    specs: ["INPUT: Field", "RHYTHM: Steady", "FORM: Lightweight"],
+      "This world stays grounded in what happens in real places. We listen to the day as it is — people, weather, streets, small routines — and translate it into something the rest of Ecodia can respond to.",
+    specs: ["SOURCE: Ground", "TEMPO: Steady", "WEIGHT: Light"],
     status: "ONLINE",
   },
   {
     id: "SYS_02",
-    name: "CONSENSUS_ENGINE",
+    name: "SHARED_TRUTH",
     title: "A shared record",
     desc:
-      "Progress here is meant to hold up over time. Not because it’s loud, but because it’s consistent. We favour simple checks, clear definitions, and shared agreement - enough to keep the world coherent without making it heavy.",
-    specs: ["CHECKS: Simple", "BASIS: Shared", "STYLE: Calm"],
+      "If progress is going to matter, it has to stay true over time. We keep the rules simple, the language clear, and the agreement human — enough to stay coherent, never enough to feel heavy.",
+    specs: ["RULES: Clear", "PROOF: Simple", "STYLE: Calm"],
     status: "SYNCED",
   },
   {
     id: "SYS_03",
-    name: "LIQUIDITY_ROUTER",
+    name: "LOCAL_RETURN",
     title: "Value, kept close",
     desc:
-      "When participation creates value, that value should move back through the places that made it possible. Ecodia routes rewards in ways that keep local ecosystems healthy - people, places, and the nearby economy.",
-    specs: ["FLOW: Local", "PATH: Direct", "PACE: Ongoing"],
+      "When people take part, value is created — and it shouldn’t drift away. We keep the benefits near the places that made them possible: the people, the streets, and the everyday local economy.",
+    specs: ["FLOW: Near", "PATH: Direct", "PACE: Ongoing"],
     status: "ACTIVE",
   },
-];
+] as const;
+
+type Module = (typeof MODULES)[number];
 
 export default function TechnologySection() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
 
-  // A subtle "Scan Line" that moves down the page
+  // Subtle scan line drifting down the page
   const scanLine = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
@@ -49,32 +51,30 @@ export default function TechnologySection() {
       className="relative w-full min-h-screen py-32 bg-ink text-[#e5e5e5] eco-section-wrapper"
     >
       {/* CLOSE */}
-<motion.button
-  initial={{ opacity: 0, y: -14 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-  onClick={() => router.back()}
-  className="fixed top-6 right-6 md:top-10 md:right-10 z-50 active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-mint/35 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-aria-label="Close"
->
-  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-ink/90 border border-mint/30 shadow-[0_0_0_1px_rgba(6,182,212,0.14),0_18px_42px_rgba(0,0,0,0.62)] hover:border-mint/55 transition-colors active:translate-y-[1px]"
->
-    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-mint/80">
-      Close
-    </span>
+      <motion.button
+        initial={{ opacity: 0, y: -14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        onClick={() => router.back()}
+        className="fixed top-6 right-6 md:top-10 md:right-10 z-50 active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-mint/35 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+        aria-label="Close"
+      >
+        <div className="group relative flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-ink/90 border border-mint/30 shadow-[0_0_0_1px_rgba(6,182,212,0.14),0_18px_42px_rgba(0,0,0,0.62)] hover:border-mint/55 transition-colors active:translate-y-[1px]">
+          <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-mint/80">
+            Close
+          </span>
 
-    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-mint/30">
-      <span className="absolute w-4 h-[2px] bg-white rotate-45" />
-      <span className="absolute w-4 h-[2px] bg-white -rotate-45" />
-    </span>
+          <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-mint/30">
+            <span className="absolute w-4 h-[2px] bg-white rotate-45" />
+            <span className="absolute w-4 h-[2px] bg-white -rotate-45" />
+          </span>
 
-    <span
-      className="absolute -inset-[2px] rounded-full pointer-events-none opacity-35 group-hover:opacity-55 transition-opacity"
-      style={{ boxShadow: "0 0 26px rgba(34,211,238,0.22)" }}
-    />
-  </div>
-</motion.button>
-
+          <span
+            className="absolute -inset-[2px] rounded-full pointer-events-none opacity-35 group-hover:opacity-55 transition-opacity"
+            style={{ boxShadow: "0 0 26px rgba(34,211,238,0.22)" }}
+          />
+        </div>
+      </motion.button>
 
       {/* BACKGROUNDS */}
       <div className="fixed inset-0 z-0 pointer-events-none eco-hidden">
@@ -82,7 +82,7 @@ aria-label="Close"
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[50vh] bg-ink/20 blur-[120px] mix-blend-screen" />
       </div>
 
-      {/* SCAN LINE ANIMATION */}
+      {/* SCAN LINE */}
       <motion.div
         style={{ top: scanLine }}
         className="fixed left-0 w-full h-[2px] bg-mint/50 shadow-[0_0_20px_#06b6d4] z-20 pointer-events-none eco-hidden"
@@ -99,23 +99,26 @@ aria-label="Close"
           </div>
 
           <h1 className="font-display text-6xl md:text-8xl leading-none tracking-tighter mb-6 eco-text-bright">
-            THE TECH
+            THE CRAFT
             <br />
             <span
               className="text-transparent eco-stroke-bright"
-              style={{ WebkitTextStroke: "1px #06b6d4" }}
+              style={{ WebkitTextStroke: "1px #f4d35e" }}
             >
-              WE BUILD WITH.
+              UNDERNEATH IT.
             </span>
           </h1>
 
           <p className="max-w-2xl font-serif text-lg md:text-xl text-white/70 leading-relaxed eco-text-bright opacity-80">
-            Ecodia isn’t a lecture. It’s a world with better defaults. This is some of the work
-            underneath it - designed to be calm, durable, and useful in real life.
+            We don’t treat technology as separate from life.
+            <span className="block mt-3">
+              It’s one of the materials people use to shape the world they share — calmly, carefully,
+              and in public.
+            </span>
           </p>
         </header>
 
-        {/* TERMINAL LIST */}
+        {/* LIST */}
         <div className="flex flex-col">
           {MODULES.map((mod, i) => (
             <TechRow key={mod.id} data={mod} index={i} />
@@ -123,6 +126,7 @@ aria-label="Close"
         </div>
       </div>
 
+      {/* ECO MODE OVERRIDES */}
       <style jsx global>{`
         .eco-mode .eco-section-wrapper {
           background-color: #000000 !important;
@@ -153,7 +157,7 @@ aria-label="Close"
   );
 }
 
-function TechRow({ data, index }: { data: any; index: number }) {
+function TechRow({ data, index }: { data: Module; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -168,8 +172,9 @@ function TechRow({ data, index }: { data: any; index: number }) {
           <span className="font-mono text-xs text-mint font-bold uppercase tracking-widest eco-accent-text">
             {data.id}
           </span>
+
           <div className="font-mono text-[10px] text-[#666666] flex flex-col gap-1">
-            {data.specs.map((s: string) => (
+            {data.specs.map((s) => (
               <span key={s}>{s}</span>
             ))}
           </div>
@@ -183,6 +188,7 @@ function TechRow({ data, index }: { data: any; index: number }) {
               {data.title}
             </h2>
           </div>
+
           <p className="font-serif text-lg text-[#888] leading-relaxed max-w-2xl eco-text-bright opacity-80">
             {data.desc}
           </p>

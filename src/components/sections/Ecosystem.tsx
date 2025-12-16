@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation";
 const STRATA = [
   {
     zone: "ZONE 00",
-    name: "The Commons",
-    role: "Shared ground",
+    name: "Shared Ground",
+    role: "Where life overlaps",
     desc:
-      "The commons is not owned or managed. It’s held.\nOpen spaces, shared protocols, and collective resources that only work when people participate.",
+      "Life happens in places we hold together.\nStreets, parks, coastlines, local knowledge.\nThis layer is the shared setting. It is where participation becomes possible.",
     tone: "from-gold/30 via-transparent to-transparent",
     glow: "bg-gold/20",
     align: "center",
@@ -18,34 +18,36 @@ const STRATA = [
   {
     zone: "ZONE 01",
     name: "Regenerators",
-    role: "Hands in the soil",
+    role: "Hands in the work",
     desc:
-      "People who work with living systems - growing, repairing, restoring.\nTheir knowledge isn’t abstract. It’s earned through time and place.",
+      "People who improve the places they live through practical effort.\nGrowing food, repairing what breaks, restoring what’s been worn down.\nTheir knowledge comes from showing up, again and again, in the same places.",
     tone: "from-mint/30 via-transparent to-transparent",
     glow: "bg-mint/20",
     align: "left",
   },
   {
     zone: "ZONE 02",
-    name: "Verifiers",
-    role: "Ways of knowing",
+    name: "Shared Understanding",
+    role: "How a system remembers",
     desc:
-      "Observation, science, and shared understanding.\nNot to control outcomes - but to notice what’s actually happening.",
+      "Ecosystems last because they learn, adapt.\nThis layer is paying attention together.\nPatterns become shared knowledge, and knowledge becomes continuity and evolution.",
     tone: "from-indigo-300/30 via-transparent to-transparent",
     glow: "bg-indigo-300/20",
     align: "right",
   },
   {
     zone: "ZONE 03",
-    name: "Capital",
-    role: "Energy in motion",
+    name: "Circulation",
+    role: "How energy moves",
     desc:
-      "Resources that move through the system rather than sitting above it.\nValue flows where participation creates it.",
+      "Energy moves through healthy ecosystems.\nEffort turns into support, resources, and opportunity that travel through a place.\nThis circulation keeps participation active and the world responsive over time.",
     tone: "from-amber-400/30 via-transparent to-transparent",
     glow: "bg-amber-400/20",
     align: "center",
   },
-];
+] as const;
+
+type Stratum = (typeof STRATA)[number];
 
 export default function EcosystemSection() {
   const router = useRouter();
@@ -57,32 +59,28 @@ export default function EcosystemSection() {
       className="relative w-full min-h-screen bg-[#fff7ed] text-ink overflow-hidden eco-section-wrapper"
     >
       {/* CLOSE */}
-<motion.button
-  initial={{ opacity: 0, y: -14 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-  onClick={() => router.back()}
-  className="fixed top-6 right-6 md:top-10 md:right-10 z-50 rounded-full active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fff7ed]"
-  aria-label="Close"
->
-  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-[#fffbeb] border border-ink/15 shadow-[0_10px_25px_rgba(15,23,18,0.12)] hover:shadow-[0_14px_35px_rgba(15,23,18,0.16)] hover:border-ink/20 transition-all active:translate-y-[1px]"
->
-    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink/60">
-      Close
-    </span>
-    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-gold/25 bg-white">
-      <span className="absolute w-4 h-[2px] bg-ink/70 rotate-45" />
-      <span className="absolute w-4 h-[2px] bg-ink/70 -rotate-45" />
-    </span>
-  </div>
-</motion.button>
-
+      <motion.button
+        initial={{ opacity: 0, y: -14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        onClick={() => router.back()}
+        className="fixed top-6 right-6 md:top-10 md:right-10 z-50 rounded-full active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fff7ed]"
+        aria-label="Close"
+      >
+        <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-[#fffbeb] border border-ink/15 shadow-[0_10px_25px_rgba(15,23,18,0.12)] hover:shadow-[0_14px_35px_rgba(15,23,18,0.16)] hover:border-ink/20 transition-all active:translate-y-[1px]">
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink/60">
+            Close
+          </span>
+          <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-gold/25 bg-white">
+            <span className="absolute w-4 h-[2px] bg-ink/70 rotate-45" />
+            <span className="absolute w-4 h-[2px] bg-ink/70 -rotate-45" />
+          </span>
+        </div>
+      </motion.button>
 
       {/* BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Grain */}
         <div className="absolute inset-0 opacity-40 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
-        {/* Soft soil gradient */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,#fde68a33,transparent_70%)]" />
       </div>
 
@@ -100,9 +98,11 @@ export default function EcosystemSection() {
           </h1>
 
           <p className="font-serif text-xl text-ink/60">
-            
-            <br />
-         Relationships only work when they’re nurtured.
+            Ecodia is shaped like a natural ecosystem.
+            <span className="block mt-4">
+              Layers of place, people, learning, and flow. Each one supports the others, and the
+              whole world keeps moving.
+            </span>
           </p>
         </header>
 
@@ -115,8 +115,8 @@ export default function EcosystemSection() {
 
         {/* FOOT */}
         <div className="mt-40 text-center font-mono text-xs text-gold/40">
-          // This stays unfinished on purpose //
-        </div>
+  // This is part of a larger cycle //
+  </div>
       </div>
 
       <style jsx global>{`
@@ -129,7 +129,7 @@ export default function EcosystemSection() {
   );
 }
 
-function StrataBand({ data, index }: { data: any; index: number }) {
+function StrataBand({ data, index }: { data: Stratum; index: number }) {
   const align =
     data.align === "left"
       ? "md:mr-auto md:text-left"
@@ -146,9 +146,7 @@ function StrataBand({ data, index }: { data: any; index: number }) {
       className={`relative max-w-3xl ${align}`}
     >
       {/* AMBIENT GLOW */}
-      <div
-        className={`absolute -inset-24 rounded-full blur-3xl ${data.glow} opacity-60`}
-      />
+      <div className={`absolute -inset-24 rounded-full blur-3xl ${data.glow} opacity-60`} />
 
       {/* CONTENT */}
       <div className="relative">
@@ -164,7 +162,6 @@ function StrataBand({ data, index }: { data: any; index: number }) {
           {data.desc}
         </p>
 
-        {/* SOFT HORIZON LINE */}
         <div className="mt-10 h-px w-32 bg-gradient-to-r from-gold/60 to-transparent" />
       </div>
     </motion.div>

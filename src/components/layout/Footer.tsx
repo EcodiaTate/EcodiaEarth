@@ -55,10 +55,10 @@ export function Footer() {
          <div className="flex flex-col md:flex-row justify-between items-start gap-12 w-full">
             
             {/* Tech Spec Left */}
-            <div className="font-mono text-[10px] text-[#7fd069]/80 uppercase tracking-widest space-y-2 border-l border-[#7fd069]/20 pl-4">
+            <div className="font-mono text-[10px] text-[#7fd069]/80 tracking-widest space-y-2 border-l border-[#7fd069]/20 pl-4">
                <p>Lat: 26.6528 S</p>
                <p>Lng: 153.0896 E</p>
-               <p className="pt-4 text-white">t=0: <span className="text-[#7fd069] font-bold">Sunshine Coast</span></p>
+               <p className="pt-4 text-white">x(t=0)= <span className="text-[#7fd069] font-bold">Sunshine Coast</span></p>
             </div>
 
             {/* Links */}
@@ -106,8 +106,8 @@ export function Footer() {
          {/* MIDDLE: QUOTE */}
          <div className="my-24 md:my-32 text-center max-w-4xl mx-auto">
              <p className="font-sans text-2xl md:text-4xl font-light leading-tight text-white">
-               "Built as a system.<br /> 
-               <span className="font-serif italic text-[#7fd069]">Lived as a world."</span>
+               "A system built,<br /> 
+               <span className="font-serif italic text-[#7fd069]">to be lived as a world."</span>
              </p>
          </div>
 

@@ -1,8 +1,8 @@
 // src/components/sections/CompanySection.tsx
 "use client";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 /**
  * Ecodia (Op Co) - homepage/section
@@ -18,9 +18,8 @@ const FILES = [
     id: "01",
     label: "Product",
     sub: "Real-world sidequests",
-    kicker: "How Ecodia feels in use",
+    kicker: "How it feels in use",
     theme: {
-      // Brighter base gradient (still ink)
       bg: "from-[#0F1712] via-[#132019] to-[#1A2A21]",
       orbA: "bg-mint/32",
       orbB: "bg-gold/28",
@@ -34,14 +33,10 @@ const FILES = [
       surfaceSoft: "bg-white/7",
     },
     content: [
-      "Ecodia turns everyday impact into sidequests - small actions that fit the day, feel rewarding, and add up when they’re shared.",
-      "You don’t get asked to care harder. You get a better set of defaults: clear prompts, real places, and progress that stays visible over time.",
+      "Ecodia turns everyday impact into sidequests. Small actions that fit the day, feel rewarding, and add up when they’re shared.",
+      "The experience is simple on purpose. Clear prompts, real places, and progress you can come back to.",
     ],
-    bullets: [
-      "Sidequests designed for real life",
-      "Shared progress that compounds",
-      "A calmer way to participate",
-    ],
+    bullets: ["Designed for real life", "Shared progress that builds", "A calmer way to take part"],
     tags: ["SIDEQUESTS", "SHARED_PROGRESS", "BETTER_DEFAULTS"],
   },
   {
@@ -63,17 +58,17 @@ const FILES = [
       surfaceSoft: "bg-white/7",
     },
     content: [
-      "Ecodia is built around neighbourhoods and nearby economies - because that’s where the world becomes tangible.",
-      "We’re designing the flow so participation strengthens the places that make it possible: local businesses, local spaces, local communities.",
+      "Ecodia starts local because that’s where change becomes tangible.",
+      "We’re building the flow so participation strengthens the places that make it possible. Local businesses, nearby spaces, community life.",
     ],
-    bullets: ["Local sidequests", "Local rewards", "Real places, returned to"],
+    bullets: ["Local sidequests", "Local rewards", "Returned to place"],
     tags: ["NEARBY", "PLACES", "RETURN_VALUE"],
   },
   {
     id: "03",
     label: "Studio",
     sub: "Upcycled marketplace",
-    kicker: "Create the next version",
+    kicker: "Make the next version",
     theme: {
       bg: "from-[#0F1712] via-[#151F1A] to-[#24223A]",
       orbA: "bg-mint/24",
@@ -88,10 +83,10 @@ const FILES = [
       surfaceSoft: "bg-white/7",
     },
     content: [
-      "Ecodia Studio is where making and re-making becomes normal - upcycle, repair, re-wear. Practical, creative, and worth coming back to.",
-      "It’s not framed as sacrifice. It’s framed as taste, craft, and a better way to choose what you live in.",
+      "Ecodia Studio is where making and remaking becomes normal. Upcycle, repair, rewear. Practical, creative, worth returning to.",
+      "It’s framed as taste and craft. A better way to choose what you live in.",
     ],
-    bullets: ["Upcycled drops", "Repair culture", "Creators, close to community"],
+    bullets: ["Upcycled drops", "Repair culture", "Creators close to community"],
     tags: ["UPCYCLE", "REPAIR", "REWEAR"],
   },
 ] as const;
@@ -106,30 +101,27 @@ export default function CompanySection() {
 
   return (
     <motion.section className="relative w-full overflow-hidden" initial={false}>
-     <motion.button
-  onClick={() => router.back()}
-  initial={{ y: -14, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-  className="fixed z-50 top-4 right-4 sm:top-6 sm:right-6 rounded-2xl active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+      {/* CLOSE */}
+      <motion.button
+        onClick={() => router.back()}
+        initial={{ y: -14, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed z-50 top-4 right-4 sm:top-6 sm:right-6 rounded-2xl active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+        aria-label="Close"
+      >
+        <div className="group flex items-center gap-3 rounded-2xl px-4 py-2 border border-white/14 bg-gradient-to-b from-white/10 to-white/4 shadow-[0_10px_30px_rgba(0,0,0,0.28)] hover:from-white/14 hover:to-white/6 transition-colors">
+          <span className="text-lg leading-none text-white/80">×</span>
+          <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/75">
+            Close
+          </span>
+        </div>
+      </motion.button>
 
-  aria-label="Close"
->
-  <div className="flex items-center gap-3 rounded-2xl px-4 py-2 border border-white/14 bg-gradient-to-b from-white/10 to-white/4 shadow-[0_10px_30px_rgba(0,0,0,0.28)] hover:from-white/14 hover:to-white/6 transition-colors">
-    <span className="text-lg leading-none text-white/80">×</span>
-    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/75">
-      Close
-    </span>
-  </div>
-</motion.button>
-
-      {/* BACKGROUND: brighter “ink glass” with gradients + orbs */}
+      {/* BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none">
-        <div
-          className={`absolute inset-0 bg-gradient-to-br ${item.theme.bg} transition-colors duration-700`}
-        />
+        <div className={`absolute inset-0 bg-gradient-to-br ${item.theme.bg} transition-colors duration-700`} />
 
-        {/* Soft orbs */}
         <motion.div
           key={`${item.id}-orb-a`}
           className={`absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full blur-3xl ${item.theme.orbA}`}
@@ -145,56 +137,39 @@ export default function CompanySection() {
           transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        {/* Grain (local-only, no external URL) */}
         <div className="absolute inset-0 opacity-[0.10] mix-blend-overlay bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.10),transparent_55%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_60%)]" />
-
-        {/* Subtle grid */}
         <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:56px_56px]" />
-
-        {/* Softer vignette (brighter overall) */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06)_0%,rgba(0,0,0,0.42)_72%,rgba(0,0,0,0.62)_100%)]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-20 lg:py-24">
         {/* HEADER */}
-        <div
-          className={`flex flex-col gap-8 pb-8 sm:pb-10 border-b ${item.theme.border}`}
-        >
+        <div className={`flex flex-col gap-8 pb-8 sm:pb-10 border-b ${item.theme.border}`}>
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
               <span className={`h-2 w-2 rounded-full ${item.theme.line}`} />
-              <span
-                className={`font-mono text-[10px] uppercase tracking-[0.22em] ${item.theme.muted}`}
-              >
+              <span className={`font-mono text-[10px] uppercase tracking-[0.22em] ${item.theme.muted}`}>
                 Ecodia / Operating Company
               </span>
             </div>
 
-            <h2
-              className={`font-display text-4xl sm:text-5xl md:text-6xl leading-[0.98] tracking-tight ${item.theme.text}`}
-            >
+            <h2 className={`font-display text-4xl sm:text-5xl md:text-6xl leading-[0.98] tracking-tight ${item.theme.text}`}>
               Ecodia, in practice.
             </h2>
 
             <p className={`mt-5 text-base sm:text-lg leading-relaxed ${item.theme.muted} max-w-2xl`}>
-              A world where doing good fits the day - designed to be returned to.
+              A world where doing good fits the day, and stays easy to return to.
             </p>
           </div>
 
-          {/* Mobile meta line */}
           <div className="flex items-center justify-between">
-            <div className={`font-mono text-[10px] uppercase tracking-widest ${item.theme.muted}`}>
-              Status
-            </div>
-            <div className={`font-mono text-[10px] uppercase tracking-widest ${item.theme.text}`}>
-              BUILDING / LIVE ITERATION
-            </div>
+            <div className={`font-mono text-[10px] uppercase tracking-widest ${item.theme.muted}`}>Status</div>
+            <div className={`font-mono text-[10px] uppercase tracking-widest ${item.theme.text}`}>BUILDING / LIVE ITERATION</div>
           </div>
         </div>
 
-        {/* MOBILE-FIRST LAYOUT: nav chips then fixed-height cards */}
         <div className="mt-10">
-          {/* NAV (mobile oriented) */}
+          {/* NAV */}
           <div className={`rounded-3xl border ${item.theme.border} ${item.theme.surface} backdrop-blur-xl`}>
             <div className={`p-4 sm:p-5 border-b ${item.theme.border}`}>
               <div className={`font-mono text-[10px] uppercase tracking-[0.22em] ${item.theme.muted}`}>
@@ -240,15 +215,14 @@ export default function CompanySection() {
               <span className="font-mono uppercase tracking-widest text-[10px] block mb-2 opacity-70">
                 Note
               </span>
-            A snapshot of what we’re building right now.
+              A snapshot of what we’re building right now.
             </div>
           </div>
 
-          {/* CONTENT: consistent height, mobile-oriented stack */}
+          {/* CONTENT */}
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 lg:gap-8 items-stretch">
             {/* Main Card */}
             <div className={`rounded-3xl border ${item.theme.border} ${item.theme.surface} backdrop-blur-xl overflow-hidden`}>
-              {/* Card header */}
               <div className={`p-6 sm:p-8 border-b ${item.theme.border}`}>
                 <div className="flex flex-col gap-5">
                   <div>
@@ -265,7 +239,6 @@ export default function CompanySection() {
                     </h3>
                   </div>
 
-                  {/* Accent chips */}
                   <div className="flex flex-wrap gap-2">
                     {item.tags.map((t) => (
                       <span
@@ -285,7 +258,6 @@ export default function CompanySection() {
                 </div>
               </div>
 
-              {/* Fixed-height content region to prevent jitter */}
               <div className="relative">
                 <div className="relative min-h-[520px] sm:min-h-[520px] md:min-h-[480px] lg:min-h-[520px]">
                   <AnimatePresence mode="wait" initial={false}>
@@ -299,21 +271,17 @@ export default function CompanySection() {
                       style={{ willChange: "transform, opacity, filter" }}
                     >
                       <div className="p-6 sm:p-8">
-                        {/* Main copy */}
                         <div>
                           {item.content.map((p, i) => (
                             <p
                               key={i}
-                              className={`text-base sm:text-lg leading-relaxed ${item.theme.text} ${
-                                i === 0 ? "" : "mt-4"
-                              } opacity-90`}
+                              className={`text-base sm:text-lg leading-relaxed ${item.theme.text} ${i === 0 ? "" : "mt-4"} opacity-90`}
                             >
                               {p}
                             </p>
                           ))}
                         </div>
 
-                        {/* Bullets */}
                         <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                           {item.bullets.map((b) => (
                             <div
@@ -330,7 +298,6 @@ export default function CompanySection() {
                           ))}
                         </div>
 
-                        {/* Ribbon (kept, but inside fixed region) */}
                         <div className={`mt-10 pt-6 border-t ${item.theme.border} overflow-hidden`}>
                           <motion.div
                             className={`whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.22em] ${item.theme.muted}`}
@@ -352,18 +319,17 @@ export default function CompanySection() {
               </div>
             </div>
 
-            {/* Side card (mobile second card) */}
+            {/* Side card */}
             <div className={`rounded-3xl border ${item.theme.border} ${item.theme.surface} backdrop-blur-xl overflow-hidden`}>
               <div className={`p-6 sm:p-8 border-b ${item.theme.border}`}>
                 <div className={`font-mono text-[10px] uppercase tracking-widest ${item.theme.muted}`}>
                   If you’re reaching out
                 </div>
                 <p className={`mt-3 text-sm sm:text-base leading-relaxed ${item.theme.muted}`}>
-                  Partnerships, local venues, creator work, early pilots - short messages are best.
+                  Partnerships, local venues, creator work, early pilots. Short messages work best.
                 </p>
               </div>
 
-              {/* Fixed-height rail for consistency */}
               <div className="p-6 sm:p-8 min-h-[220px] flex flex-col gap-3">
                 <a
                   href="/contact"
@@ -380,7 +346,7 @@ export default function CompanySection() {
                 </a>
 
                 <div className={`mt-2 text-xs leading-relaxed ${item.theme.muted}`}>
-                  Prefer async? Keep it short + specific - we’ll reply with next steps.
+                  Prefer async? Keep it short and specific. We’ll reply with next steps.
                 </div>
               </div>
             </div>
