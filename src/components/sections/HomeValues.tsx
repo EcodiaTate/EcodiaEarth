@@ -1,207 +1,148 @@
+// src/components/sections/HomeValues.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const MOTIFS = [
+const PRINCIPLES = [
   {
     id: "01",
     title: "Shared Upside",
-    line: "Participation should strengthen the place it comes from.",
-    body:
-      "When people show up, value returns close to home. It moves through local life and leaves places better to live in over time.",
+    text:
+      "When a place improves, the upside should circulate through the people who live there. Value returns to the setting and keeps moving through local life.",
+    gradient: "from-mint via-mint to-indigo-400",
   },
   {
     id: "02",
-    title: "Design Holds",
-    line: "The world should make good choices easy to repeat.",
-    body:
-      "Ecodia is shaped for real days, not perfect behaviour. When the design fits, participation becomes a habit instead of a decision.",
+    title: "Design Over Discipline",
+    text:
+      "Good systems lower friction. Participation becomes easy to begin, easy to repeat, and simple to carry into real days.",
+    gradient: "from-mint via-mint to-mint",
   },
   {
     id: "03",
-    title: "Small Adds Up",
-    line: "Repeatable actions create momentum.",
-    body:
-      "Most change comes from small things done often. Shared over time, they shape culture, streets, and everyday life.",
+    title: "Doing Counts",
+    text:
+      "Progress is made of what gets done. Small actions leave a trace when they’re shared and carried forward. Quiet participation still counts.",
+    gradient: "from-gold via-orange-400 to-red-400",
   },
   {
     id: "04",
-    title: "A World You Can Re-Enter",
-    line: "Play keeps effort alive.",
-    body:
-      "Curiosity and return matter more than intensity. Ecodia is built to be entered, explored, and revisited, so progress can keep going.",
+    title: "Small Is Powerful",
+    text:
+      "Approachable actions keep a world playable. Scale comes from consistency—many people returning to the same simple act over time.",
+    gradient: "from-mint via-mint to-mint",
+  },
+  {
+    id: "05",
+    title: "Mutual Benefit",
+    text:
+      "Participation lasts when everyone gets something real from it. Personal benefit and shared good reinforce each other and keep the system alive.",
+    gradient: "from-mint via-mint to-indigo-400",
   },
 ];
 
 export function HomeValues() {
   return (
-    <section className="relative w-full py-28 sm:py-32 bg-white text-ink overflow-hidden border-t border-black/5">
-      {/* Paper grain */}
-      <div className="absolute inset-0 z-0 opacity-[0.10] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
+    <section
+      id="values"
+      className="relative w-full py-40 bg-white text-ink overflow-hidden"
+    >
+      {/* Header */}
+      <div className="mx-auto max-w-5xl px-6 text-left">
+        <span className="font-mono text-xs uppercase tracking-[0.3em] text-ink/40 block mb-6">
+          Document_Ref: FIELD_NOTES
+        </span>
 
-      {/* Soft “ink wash” */}
-      <motion.div
-        aria-hidden
-        className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full blur-3xl opacity-[0.10] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at 30% 30%, rgba(127,208,105,0.9), transparent 55%), radial-gradient(circle at 70% 70%, rgba(244,211,94,0.9), transparent 55%)",
-        }}
-        animate={{ x: [0, -24, 0], y: [0, 16, 0], rotate: [0, 6, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
+        <h2 className="font-display text-6xl md:text-[7vw] leading-[0.85] tracking-tighter text-ink mb-8">
+          HOW THIS
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#396041] to-black">
+            WORLD WORKS
+          </span>
+          .
+        </h2>
 
-      <div className="relative z-10 px-6 sm:px-12">
-        {/* Header row */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-1.5 h-1.5 bg-ink/60 rounded-full" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink/45">
-                How the world works here
-              </span>
-            </div>
+        <p className="max-w-xl text-lg text-ink/70 leading-relaxed">
+          Recurring patterns you’ll notice as you spend time here.
+        </p>
+      </div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6 }}
-              className="font-display text-5xl sm:text-6xl md:text-7xl leading-[0.95] tracking-tight"
-            >
-              The world we build next
-            </motion.h2>
-
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-6 h-[2px] w-40 bg-ink origin-left"
-            />
-
-            <p className="mt-6 text-base sm:text-lg text-ink/70 leading-relaxed max-w-2xl">
-              A few principles that keep the world coherent as it grows.
-            </p>
-          </div>
-
-          {/* CTA (desktop) */}
-          <div className="hidden lg:block">
-            <Link
-              href="/values"
-              className="
-                group inline-flex items-center gap-3
-                rounded-full px-6 py-3
-                border border-ink/15
-                bg-[#faf3e0]
-                shadow-[0_10px_30px_rgba(0,0,0,0.06)]
-                hover:shadow-[0_14px_40px_rgba(0,0,0,0.50)]
-                hover:-translate-y-[1px]
-                transition-all
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white
-              "
-            >
-              <span className="font-mono text-xs uppercase tracking-widest text-ink/75 group-hover:text-ink transition-colors">
-                Read our  field guide
-              </span>
-
-              <span
-                className="
-                  inline-flex items-center justify-center
-                  w-8 h-8 rounded-full
-                  border border-ink/10
-                  bg-ink/[0.03]
-                  group-hover:bg-ink/[0.06]
-                  transition-colors
-                "
-                aria-hidden
-              >
-                <span className="text-ink/70 group-hover:text-ink transition-colors">→</span>
-              </span>
-            </Link>
-          </div>
+      {/* Value Rows */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 mt-20">
+        <div className="flex flex-col">
+          {PRINCIPLES.map((p, i) => (
+            <PrincipleRow key={p.id} data={p} index={i} />
+          ))}
         </div>
 
-        {/* Layout: spine + motifs */}
-        <div className="mt-14 sm:mt-16 grid grid-cols-1 lg:grid-cols-[64px_1px_1fr] gap-8 lg:gap-12">
-          {/* Left rail */}
-          <div className="hidden lg:flex flex-col justify-between">
-            <div className="font-mono text-[11px] tracking-widest text-ink/30">
-              01–04
-            </div>
-            <div className="font-mono text-[11px] tracking-widest text-ink/30">
-              /values
-            </div>
+        {/* CTA */}
+        <div className="mt-20 flex items-center justify-between gap-6 border-t-4 border-black/10 pt-8">
+          <div className="font-mono text-xs uppercase tracking-widest text-ink/40">
+            Written as we build
+            <br />
+            And revised as we learn
           </div>
 
-          {/* Spine */}
-          <div className="hidden lg:block bg-black/10" />
-
-          {/* Motifs list */}
-          <div className="divide-y divide-black/10">
-            {MOTIFS.map((m, i) => (
-              <motion.div
-                key={m.id}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: i * 0.06, duration: 0.55 }}
-                className="py-10 sm:py-12"
-              >
-                <div className="flex items-baseline justify-between gap-8">
-                  <h3 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.02] tracking-tight">
-                    {m.title}
-                  </h3>
-                  <span className="font-mono text-[11px] tracking-widest text-ink/30">
-                    {m.id}
-                  </span>
-                </div>
-
-                <p className="mt-5 font-serif text-lg sm:text-xl text-ink/80 leading-relaxed max-w-2xl">
-                  {m.line}
-                </p>
-
-                <p className="mt-4 text-sm sm:text-base text-ink/65 leading-relaxed max-w-2xl">
-                  {m.body}
-                </p>
-
-                {/* tiny accent that feels “designed”, not “card” */}
-                <div className="mt-8 flex items-center gap-3">
-                  <span className="h-[2px] w-10 bg-mint/70" />
-                  <span className="h-[2px] w-10 bg-ink/10" />
-                  <span className="h-[2px] w-10 bg-gold/60" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA (mobile) */}
-        <div className="mt-12 lg:hidden">
           <Link
             href="/values"
-            className="
-              inline-flex items-center justify-between gap-4
-              w-full sm:w-auto
-              rounded-2xl px-5 py-4
-              border border-ink/15
-              bg-white
-              shadow-[0_10px_30px_rgba(0,0,0,0.06)]
-              hover:shadow-[0_14px_40px_rgba(0,0,0,0.10)]
-              transition-all
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white
-            "
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#f4d35e] text-black font-mono text-xs uppercase tracking-widest hover:scale-[1.03] transition-transform"
           >
-            <span className="font-mono text-xs uppercase tracking-widest text-ink/75">
-              Read the field guide
-            </span>
-            <span className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-ink/10 bg-ink/[0.03]">
-              <span aria-hidden className="text-ink/70">→</span>
-            </span>
+            <span>Explore the full values</span>
+            <span className="text-base">→</span>
           </Link>
         </div>
       </div>
     </section>
+  );
+}
+
+function PrincipleRow({
+  data,
+  index,
+}: {
+  data: { title: string; text: string; gradient: string };
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      className="relative group border-b-2 border-black/10"
+    >
+      {/* Ambient gradient strip */}
+      <div
+        className={`absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r ${data.gradient} opacity-50`}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 py-12 md:py-16">
+        {/* Index */}
+        <div className="md:col-span-2 flex items-center">
+          <span className="font-display text-6xl md:text-7xl leading-none text-black/10 select-none">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* Title */}
+        <div className="md:col-span-5 flex flex-col justify-center">
+          <h3 className="font-display text-3xl md:text-4xl leading-[1.05] tracking-tight text-ink group-hover:text-[#396041] transition-colors duration-300">
+            {data.title}
+          </h3>
+        </div>
+
+        {/* Text */}
+        <div className="md:col-span-5 flex flex-col justify-center">
+          <p className="font-serif text-lg md:text-xl leading-relaxed text-ink/80 group-hover:text-ink transition-colors duration-300">
+            {data.text}
+          </p>
+        </div>
+      </div>
+
+      {/* Hover outline */}
+      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute inset-0 ring-1 ring-[#7fd069]/40" />
+      </div>
+    </motion.div>
   );
 }
