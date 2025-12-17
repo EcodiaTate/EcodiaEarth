@@ -30,7 +30,7 @@ export function HomeVision() {
             className="absolute top-[-5rem] left-[-2rem] opacity-7 text-[10rem] md:text-[20rem] leading-[0.8] tracking-tighter pointer-events-none font-display text-gray-900/10 [text-shadow:2px_2px_0_rgba(0,0,0,0.04)] hidden md:block"
             data-speed="-0.1"
           >
-            DESIGN
+            SYSTEMS
           </div>
 
           <h2 className="font-display text-6xl md:text-[160px] tracking-tighter leading-[0.92] md:leading-[0.86] max-w-6xl">
@@ -38,14 +38,13 @@ export function HomeVision() {
               className="text-transparent"
               style={{ WebkitTextStroke: `1px ${FOREST_GREEN}` }}
             >
-              IS SIMPLY
+              MAKE GOOD
             </span>
 
             <span className="block" style={{ color: FOREST_GREEN }}>
-              BETTER DESIGNED.
+              THE DEFAULT.
             </span>
 
-            {/* softer pill + less harsh shadow */}
             <span
               className="block text-[22px] sm:text-[28px] md:text-[52px] mt-7 md:mt-10 font-mono tracking-normal leading-[1.1] font-normal italic px-4 py-2.5 rounded-2xl shadow-[0_18px_50px_rgba(0,0,0,0.25)]"
               style={{
@@ -54,7 +53,7 @@ export function HomeVision() {
                 display: "inline-block",
               }}
             >
-              WATCH THE SHIFT TAKE HOLD.
+              See it take hold.
             </span>
           </h2>
         </div>
@@ -68,17 +67,15 @@ export function HomeVision() {
             style={{
               borderColor: "transparent",
               boxShadow: "0 30px 90px rgba(0,0,0,0.10)",
-              // Tailwind ring color via inline to keep your palette
-              // (ring-1 is set above)
               // @ts-ignore
               "--tw-ring-color": "rgba(127, 208, 105, 0.35)",
             }}
           >
             <p className="font-serif text-xl md:text-3xl leading-relaxed text-black max-w-xl">
-              Ecodia is built as a mechanism you can step into.
+              Ecodia is a way to take part.
               <span className="block mt-5 md:mt-7 text-lg md:text-2xl font-light border-t pt-5 border-black/15">
-                Less friction. Clear actions. Shared visibility. The point where
-                personal benefit and collective good reinforce each other.
+                Clear actions. Low friction. Shared momentum. What’s good for
+                you and what’s good for the commons—working together.
               </span>
             </p>
           </div>
@@ -90,9 +87,10 @@ export function HomeVision() {
           >
             <div className="rounded-3xl bg-white/70 backdrop-blur-sm ring-1 ring-black/10 px-6 md:px-8 py-6 md:py-8 shadow-[0_24px_70px_rgba(0,0,0,0.08)]">
               <div className="space-y-3 font-mono text-xs md:text-sm uppercase tracking-widest text-black/60">
-                <p className="font-bold text-black">// System Axioms</p>
+                <p className="font-bold text-black">// System Principles</p>
                 <p className="pl-4">// Design does the work.</p>
-                <p className="pl-4">// Individuals are supported.</p>
+                <p className="pl-4">// Small actions add up.</p>
+                <p className="pl-4">// Shared makes it stronger.</p>
               </div>
             </div>
           </div>
@@ -110,13 +108,13 @@ export function HomeVision() {
             <div className="flex justify-between items-center text-white">
               <div className="text-left">
                 <span className="font-display text-3xl md:text-6xl tracking-tight text-white block">
-                  View Architecture
+                  See the system
                 </span>
                 <span
                   className="font-mono text-xs md:text-base uppercase tracking-[0.2em] block mt-1.5 md:mt-2"
                   style={{ color: LIGHT_MINT }}
                 >
-                  Enter system view
+                  Open the map
                 </span>
               </div>
 
