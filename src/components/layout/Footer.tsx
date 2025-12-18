@@ -272,7 +272,7 @@ export function Footer() {
               <h4 className="font-serif italic text-xl text-[#7fd069]">Connect</h4>
               <nav className="flex flex-col gap-2 font-sans text-sm font-medium text-white/70">
                 <a
-                  href="https://instagram.com/ecodia.earth"
+                  href="https://instagram.com/ecodia.au"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/70 hover:text-[#7fd069] transition-colors"
@@ -280,7 +280,7 @@ export function Footer() {
                   Instagram
                 </a>
                 <a
-                  href="https://linkedin.com/company/ecodia"
+                  href="https://linkedin.com/company/ecodia-a"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/70 hover:text-[#7fd069] transition-colors"

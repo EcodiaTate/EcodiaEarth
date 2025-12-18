@@ -45,15 +45,16 @@ export function HomeVision() {
               THE DEFAULT.
             </span>
 
+            {/* Badge */}
             <span
-              className="block text-[22px] sm:text-[28px] md:text-[52px] mt-7 md:mt-10 font-mono tracking-normal leading-[1.1] font-normal italic px-4 py-2.5 rounded-2xl shadow-[0_18px_50px_rgba(0,0,0,0.25)]"
+              className="block text-[22px] sm:text-[28px] md:text-[52px] mt-7 md:mt-10 font-mono tracking-normal leading-[1.1] font-normal px-4 py-2.5 rounded-2xl shadow-[0_18px_50px_rgba(0,0,0,0.25)]"
               style={{
                 color: GOLD,
-                backgroundColor: "rgba(0,0,0,0.82)",
+                backgroundColor: "rgba(0,0,0,0.84)",
                 display: "inline-block",
               }}
             >
-              See it take hold.
+              Watch it work.
             </span>
           </h2>
         </div>
@@ -72,10 +73,10 @@ export function HomeVision() {
             }}
           >
             <p className="font-serif text-xl md:text-3xl leading-relaxed text-black max-w-xl">
-              Ecodia is a way to take part.
+              Ecodia turns real-world care into sidequests.
               <span className="block mt-5 md:mt-7 text-lg md:text-2xl font-light border-t pt-5 border-black/15">
-                Clear actions. Low friction. Shared momentum. What’s good for
-                you and what’s good for the commons—working together.
+                Clear actions. Small enough to start now. Designed to repeat.
+                Progress you can see — alone or together.
               </span>
             </p>
           </div>
@@ -87,10 +88,10 @@ export function HomeVision() {
           >
             <div className="rounded-3xl bg-white/70 backdrop-blur-sm ring-1 ring-black/10 px-6 md:px-8 py-6 md:py-8 shadow-[0_24px_70px_rgba(0,0,0,0.08)]">
               <div className="space-y-3 font-mono text-xs md:text-sm uppercase tracking-widest text-black/60">
-                <p className="font-bold text-black">// System Principles</p>
-                <p className="pl-4">// Design does the work.</p>
-                <p className="pl-4">// Small actions add up.</p>
-                <p className="pl-4">// Shared makes it stronger.</p>
+                <p className="font-bold text-black">SYSTEM RULES</p>
+                <p className="pl-4">Design reduces effort.</p>
+                <p className="pl-4">Small actions compound.</p>
+                <p className="pl-4">Shared makes it stick.</p>
               </div>
             </div>
           </div>
@@ -108,13 +109,13 @@ export function HomeVision() {
             <div className="flex justify-between items-center text-white">
               <div className="text-left">
                 <span className="font-display text-3xl md:text-6xl tracking-tight text-white block">
-                  See the system
+                  View the system
                 </span>
                 <span
                   className="font-mono text-xs md:text-base uppercase tracking-[0.2em] block mt-1.5 md:mt-2"
                   style={{ color: LIGHT_MINT }}
                 >
-                  Open the map
+                  Explore the map
                 </span>
               </div>
 
@@ -144,7 +145,7 @@ export function HomeVision() {
         {/* Footer detail */}
         <div className="mt-28 md:mt-56 pt-6 md:pt-10 border-t border-black/10 mx-auto max-w-4xl text-center">
           <p className="font-mono text-[8px] md:text-[10px] tracking-widest text-black/40 uppercase">
-            Built for people who pay attention.
+            Built for repeatable action.
           </p>
         </div>
       </div>
