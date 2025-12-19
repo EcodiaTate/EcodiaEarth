@@ -23,7 +23,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-white text-ink selection:bg-mint selection:text-ink perspective-1000">
       {/* Cinematic overlays */}
       <DigitalOverlay />
-      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.8] bg-[url('https://grainy-gradients.vercel-app/noise.svg')] mix-blend-multiply" />
+      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.8] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
 
       {/* Atmosphere */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">

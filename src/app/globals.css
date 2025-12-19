@@ -217,7 +217,7 @@
 }
 
 .ui-grain {
-  background-image: url("https://grainy-gradients.vercel-app/noise.svg");
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
   mix-blend-mode: multiply;
   opacity: 0;
 }

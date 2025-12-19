@@ -92,7 +92,7 @@ export function CinematicExperience({
         {showGrain && (
           <div
             className="pointer-events-none absolute inset-0 mix-blend-multiply opacity-20"
-            style={{ backgroundImage: "url('https://grainy-gradients.vercel-app/noise.svg')" }}
+            style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
           />
         )}
 
