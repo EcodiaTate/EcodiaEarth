@@ -1,5 +1,5 @@
 /**
- * Ecodia Earth — Field Entry (Bold / Statement / Out-there)
+ * Ecodia Earth - Field Entry (Bold / Statement / Out-there)
  *
  * Stakeholder doorway: partners, investors, collaborators, deployment sites.
  * High-contrast editorial layout. Minimal effects (no heavy blur/noise loops).

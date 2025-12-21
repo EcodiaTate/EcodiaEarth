@@ -33,7 +33,7 @@ const FILES = [
       surfaceSoft: "bg-white/7",
     },
     content: [
-      "Ecodia is a system for doing real things — small actions that fit the day and add up over time.",
+      "Ecodia is a system for doing real things - small actions that fit the day and add up over time.",
       "You get clear prompts, real places, and progress that’s easy to pick back up.",
     ],
     bullets: ["Fits real life", "Progress you can return to", "Shared, without the noise"],
@@ -59,7 +59,7 @@ const FILES = [
     },
     content: [
       "We start local because it’s easier to feel what’s changing.",
-      "The goal is simple: when people participate, the places around them get stronger — businesses, venues, community spaces.",
+      "The goal is simple: when people participate, the places around them get stronger - businesses, venues, community spaces.",
     ],
     bullets: ["Nearby quests", "Local rewards", "Back into place"],
     tags: ["NEARBY", "PLACES", "RETURN_VALUE"],
@@ -83,7 +83,7 @@ const FILES = [
       surfaceSoft: "bg-white/7",
     },
     content: [
-      "Studio is for remaking things — upcycle, repair, rewear. Practical and creative.",
+      "Studio is for remaking things - upcycle, repair, rewear. Practical and creative.",
       "It’s built around craft and taste, not guilt. Just better defaults.",
     ],
     bullets: ["Upcycled drops", "Repair-friendly", "Creators close to community"],
@@ -259,7 +259,7 @@ export default function CompanySection() {
               <span className="font-mono uppercase tracking-widest text-[10px] block mb-2 opacity-70">
                 Note
               </span>
-              A quick snapshot — this changes fast.
+              A quick snapshot - this changes fast.
             </div>
           </div>
 

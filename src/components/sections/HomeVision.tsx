@@ -76,7 +76,7 @@ export function HomeVision() {
               Ecodia turns real-world care into sidequests.
               <span className="block mt-5 md:mt-7 text-lg md:text-2xl font-light border-t pt-5 border-black/15">
                 Clear actions. Small enough to start now. Designed to repeat.
-                Progress you can see — alone or together.
+                Progress you can see - alone or together.
               </span>
             </p>
           </div>

@@ -2,7 +2,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ecodia.earth";
+  const siteUrl = process.env.NEXT_PUBLIC_ECODIA_URL ?? "https://ecodia.earth";
 
   // Only the canonical pages (NOT @modal intercept routes)
   const routes = [

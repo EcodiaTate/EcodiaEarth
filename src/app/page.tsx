@@ -47,7 +47,7 @@ export default function HomePage() {
       {/* Vision peek near the top; full page lives at /vision */}
      
 
-      {/* Control Deck — coordinates & global pulse keyframes */}
+      {/* Control Deck - coordinates & global pulse keyframes */}
       <section className="relative w-full max-w-[90rem] mx-auto px-6 sm:px-12 -mt-2">
         <div className="w-full flex items-center justify-between gap-8 md:gap-0">
           <div className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest min-w-[120px] text-left">
