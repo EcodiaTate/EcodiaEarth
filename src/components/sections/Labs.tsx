@@ -1,312 +1,221 @@
-// src/components/sections/LabsSection.tsx
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import * as React from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { SmoothLink } from "@/components/nav/SmoothLink";
+import { ArrowLeft, ArrowDownRight, Compass, Cpu, Activity, Zap } from "lucide-react";
 
 /**
- * Ecodia Labs
- * IP + R&D - where we build the tools behind the world.
- *
- * Constraints:
- * - No cards.
- * - Avoid corporate/buzzwords.
- * - Avoid authority tone.
- * - Banned words: real, verifiable, proof, loop, quiet, actually.
- * - Avoid “Not X, just Y” patterns.
+ * ECODIA LABS (IP + R&D)
+ * Strategy: Structural Gravity. No Cards. No Gimmicks.
+ * Materiality: Warm Paper (#F9F8F5) | Charcoal Ink (#2D2B28)
  */
 
 export default function LabsSection() {
   const router = useRouter();
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  const scanLineY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <main
-      ref={containerRef}
-      className="relative w-full min-h-screen bg-[#020617] text-white overflow-hidden selection:bg-mint selection:text-black"
-    >
-      {/* BACKGROUND */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-darkForest via-forest to-ink" />
-
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(52, 211, 153, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(52, 211, 153, 0.2) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-ink/20 rounded-full blur-[100px] mix-blend-screen animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-mint/20 rounded-full blur-[100px] mix-blend-screen" />
+    <main className="relative min-h-screen w-full overflow-x-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]">
+      
+      {/* 1. EXIT PROTOCOL (OFFSET) */}
+      <div className="fixed right-12 top-12 z-50">
+        <button
+          onClick={() => router.back()}
+          className="group flex items-center gap-3 border border-[#2D2B28] px-4 py-2 transition-all hover:bg-[#2D2B28] hover:text-[#F9F8F5]"
+        >
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-[10px] font-black uppercase tracking-[0.3em]">Return</span>
+        </button>
       </div>
 
-      {/* SCANNER LINE */}
-      <motion.div
-        style={{ top: scanLineY }}
-        className="fixed left-0 right-0 h-[2px] bg-mint/50 z-20 shadow-[0_0_20px_#84cc16] pointer-events-none hidden md:block"
-      >
-        <div className="absolute right-4 -top-2 text-[10px] font-mono text-mint bg-black/50 px-1">
-          FIELD_SCAN
-        </div>
-      </motion.div>
+      {/* 2. CALIBRATION GRID (RESIDUE) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
+        <div className="absolute left-[5%] top-0 h-full w-px bg-[#2D2B28]" />
+        <div className="absolute right-[8%] top-0 h-full w-px bg-[#2D2B28]" />
+        <div className="absolute left-0 top-[15%] w-full h-px bg-[#2D2B28]" />
+        <div className="absolute left-0 top-[60%] w-full h-px bg-[#2D2B28]" />
+      </div>
 
-      {/* CLOSE */}
-<motion.button
-  onClick={() => router.back()}
-  initial={{ opacity: 0, y: -14 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-  className="fixed top-6 right-6 z-50 rounded-full active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-mint/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020617]"
-  aria-label="Close"
->
-  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-black/55 border border-mint/25 shadow-[0_0_0_1px_rgba(16,185,129,0.10),0_12px_28px_rgba(0,0,0,0.55)] hover:border-mint/40 hover:bg-black/65 transition-colors"
->
-    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mint/75">
-      Close
-    </span>
-
-    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-mint/25">
-      <span className="absolute w-4 h-[2px] bg-mint/80 rotate-45" />
-      <span className="absolute w-4 h-[2px] bg-mint/80 -rotate-45" />
-    </span>
-
-    <span className="absolute -inset-[2px] rounded-full pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity"
-      style={{ boxShadow: "0 0 24px rgba(16,185,129,0.22)" }}
-    />
-  </div>
-</motion.button>
-
-
-      {/* CONTENT */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-24">
-        {/* HEADER */}
-        <header className="flex flex-col gap-7">
-          <div className="inline-flex items-center gap-3 self-start px-4 py-2 rounded-full border border-white/10 bg-black/20 backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-mint animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.25)]" />
-            <span className="font-mono text-xs text-mint tracking-widest uppercase">
-              Ecodia_Labs // IP + R&D
+      <div className="relative z-10 mx-auto max-w-7xl px-8 py-32">
+        
+        {/* HEADER: MAXIMUM MASS */}
+        <header className="mb-48 space-y-12">
+          <div className="flex items-center gap-4">
+            <div className="h-3 w-3 bg-[#7FD069]" />
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-50">
+              Ecodia_Labs // IP + R&D_Unit
             </span>
           </div>
-
-          <h1 className="font-display text-[15vw] md:text-[8.5rem] leading-[0.78] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-mint/15 drop-shadow-[0_0_30px_rgba(16,185,129,0.18)]">
+          
+          <h1 className="text-[18vw] font-black leading-[0.75] tracking-tighter md:text-[12rem] lg:text-[14rem]">
             LABS
           </h1>
 
-          <p className="max-w-2xl text-xl md:text-2xl text-white/70 font-serif leading-relaxed">
-            This is where we build the tools behind the world.
-            <br />
-            Code. Green-tech. AI. Field experiments.
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            <Jump href="#work">What we’re building</Jump>
-            <Jump href="#ip">IP + research</Jump>
-            <Jump href="#partner">Build with us</Jump>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-8">
+              <p className="text-2xl font-medium leading-tight tracking-tight opacity-80 sm:text-3xl">
+                The assembly of tools behind the world. <br />
+                Hardware. Intelligence. Field logic.
+              </p>
+            </div>
+            <nav className="flex flex-col gap-4 lg:col-span-4 lg:items-end lg:justify-end">
+              <Jump href="#work">Work_Log</Jump>
+              <Jump href="#ip">Intellectual_Property</Jump>
+              <Jump href="#partner">Initiate_Handshake</Jump>
+            </nav>
           </div>
         </header>
 
-        <div className="mt-14 h-px w-full bg-white/10" />
+        {/* 3. WORK LOG: THE LINE ITEMS (NO CARDS) */}
+        <section id="work" className="mb-64">
+          <div className="mb-16 border-b-2 border-[#2D2B28] pb-8">
+             <h2 className="text-xs font-black uppercase tracking-[0.4em]">Current_Deployments</h2>
+          </div>
 
-        {/* WHAT WE’RE BUILDING */}
-        <section id="work" className="mt-16">
-          <SectionTitle
-            label="WORK"
-            title="What we’re building"
-            subtitle="Concrete projects. Built in pieces. Tested in place."
-          />
-
-          <div className="mt-10 space-y-8">
-            <LineItem
-              code="ECO-DISTRICT"
-              title="Eco-district groundwork"
-              body="We’re mapping what an Ecodia district needs to function: participation mechanics, local collaborations, and ways to make greening easy to maintain."
-              tags={["district design", "partners", "participation"]}
+          <div className="divide-y divide-[#2D2B28]/10">
+            <LineItem 
+              id="01"
+              code="DISTRICT_ARCHITECTURE"
+              title="District Foundation"
+              body="Mapping the requirements for an Ecodia district to function. This includes participation mechanics and local integration protocols."
+              tags={["Mechanics", "Nodes", "Integration"]}
             />
-
-            <LineItem
-              code="URBAN_GREENING"
-              title="Urban greening experiments"
-              body="We’re exploring street-level greening where it matters: shade, heat, water, biodiversity. That includes sensors and field tooling when it helps."
-              tags={["street trees", "heat", "water", "biodiversity"]}
+            <LineItem 
+              id="02"
+              code="STRUCTURAL_GREENING"
+              title="Urban Heat Mitigation"
+              body="Field exploration of street-level biodiversity. Utilizing sensors and physical tooling to manage shade, water, and heat."
+              tags={["Sensors", "Biodiversity", "Heat"]}
             />
-
-            <LineItem
-              code="BENEFICIAL_SOFTWARE"
-              title="Beneficial software"
-              body="We build software that helps people and places coordinate. It’s the part that makes projects legible, repeatable, and easier to join."
-              tags={["coordination", "shared progress", "tooling"]}
+            <LineItem 
+              id="03"
+              code="SYSTEMIC_COORDINATION"
+              title="Coordination Software"
+              body="Infrastructure that facilitates collective action. Making large-scale projects legible and repeatable for the local grid."
+              tags={["Coordination", "Tooling", "Legibility"]}
             />
-
-            <LineItem
-              code="AI_WORKBENCH"
-              title="AI workbench"
-              body="We use models to reduce friction and support decision-making. AI stays assistive. People stay in charge."
-              tags={["assistive AI", "pattern finding", "human direction"]}
+            <LineItem 
+              id="04"
+              code="ASSISTIVE_INTELLIGENCE"
+              title="Decision Support Models"
+              body="Utilizing models to identify patterns and reduce systemic friction. Human intent remains the primary directive."
+              tags={["Pattern_Finding", "Assistance"]}
             />
           </div>
         </section>
 
-        {/* IP + RESEARCH */}
-        <section id="ip" className="mt-20">
-          <SectionTitle
-            label="IP"
-            title="IP + research"
-            subtitle="How we hold the work while it grows."
-          />
-
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-7 rounded-2xl border border-white/10 bg-black/20 backdrop-blur-sm p-8">
-              <h3 className="font-display text-3xl tracking-tight">A place for the deep work</h3>
-              <p className="mt-4 text-white/70 font-serif text-lg leading-relaxed">
-                Labs exists for the hard parts: the ideas that need time, testing, and iteration.
-                When they’re ready, they move into the world through collaborations and product teams.
+        {/* 4. IP + RESEARCH: THE DEEP WORK */}
+        <section id="ip" className="mb-64 grid grid-cols-1 gap-20 lg:grid-cols-12">
+          <div className="lg:col-span-7 space-y-12">
+            <div className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">Section_02 // IP</div>
+            <h2 className="text-5xl font-black leading-none tracking-tighter sm:text-7xl">
+              HOW WE HOLD <br />THE WORK.
+            </h2>
+            <div className="space-y-8 text-xl opacity-70 leading-relaxed">
+              <p>
+                Labs serves as the anchor for ideas requiring long-term calibration. 
+                We test the hard parts in isolation before they enter the ecosystem.
               </p>
-              <p className="mt-4 text-white/60 font-serif text-lg leading-relaxed">
-                Some work is shared openly. Some work becomes licensed technology. Some work stays experimental.
-                The aim is durable tools that keep making participation easier.
+              <p>
+                Licensing, open-source documentation, and experimental technology 
+                are managed here to ensure the durability of the local grid.
               </p>
             </div>
-
-            <div className="lg:col-span-5 rounded-2xl border border-mint/20 bg-black/15 backdrop-blur-sm p-8">
-              <div className="font-mono text-xs text-mint/80 uppercase tracking-widest">How we build</div>
-              <ul className="mt-5 space-y-3 text-white/70 font-serif text-lg">
-                <li className="flex gap-3">
-                  <span className="text-mint">⟡</span>
-                  <span>Field pilots before big claims</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-mint">⟡</span>
-                  <span>Pieces that can be extended</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-mint">⟡</span>
-                  <span>Human intent stays central</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-mint">⟡</span>
-                  <span>Built with partners, shaped by use</span>
-                </li>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="border border-[#2D2B28] p-10 space-y-10">
+              <h3 className="text-xs font-black uppercase tracking-widest">Principles of Build</h3>
+              <ul className="space-y-6">
+                <Principle icon={<Compass size={14} />} text="Field pilots over theoretical claims." />
+                <Principle icon={<Cpu size={14} />} text="Extensible components only." />
+                <Principle icon={<Activity size={14} />} text="Human intent remains the center." />
+                <Principle icon={<Zap size={14} />} text="Use-case driven development." />
               </ul>
+              {/* CROP MARK RESIDUE */}
+              <div className="flex gap-2">
+                 <div className="h-4 w-[1px] bg-[#2D2B28]" />
+                 <div className="h-4 w-[1px] bg-[#2D2B28] opacity-20" />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* PARTNER */}
-        <section id="partner" className="mt-20">
-          <SectionTitle
-            label="PARTNER"
-            title="Build with us"
-            subtitle="If you’re building districts, greening streets, or making better tools, we should talk."
-          />
-
-          <div className="mt-10 flex flex-col md:flex-row gap-4 items-start md:items-center">
-            <Link
+        {/* 5. HANDSHAKE (PARTNER) */}
+        <section id="partner" className="border-t-4 border-[#2D2B28] pt-24 pb-48">
+          <div className="max-w-4xl space-y-12">
+            <h2 className="text-6xl font-black tracking-tighter lg:text-8xl">
+              INITIATE <br />COLLABORATION.
+            </h2>
+            <p className="text-xl opacity-60">
+              If you are building districts, greening streets, or engineering 
+              the world we build next, we require your labor.
+            </p>
+            <SmoothLink
               href="/contact"
-              className="inline-flex items-center gap-3 px-7 py-4 bg-white text-black rounded-full font-mono text-xs uppercase tracking-widest hover:bg-mint transition-colors"
+              className="inline-block bg-[#2D2B28] px-12 py-6 text-xs font-black uppercase tracking-widest text-[#F9F8F5] transition-all hover:bg-[#396041]"
             >
-              <span>Start a conversation</span>
-              <span>→</span>
-            </Link>
-
-            <div className="text-white/55 font-mono text-xs uppercase tracking-widest">
-              Partnerships • pilots • research
-            </div>
+              Start_Handshake →
+            </SmoothLink>
           </div>
         </section>
 
-        <div className="mt-20 pt-10 border-t border-white/10 text-white/40 font-mono text-xs uppercase tracking-widest">
-          The world we build next
-        </div>
+        {/* FOOTER: MEASUREMENT TICKS */}
+        <footer className="flex items-center justify-between opacity-20">
+            <div className="text-[8px] uppercase tracking-[0.5em]">Ecodia.Labs // IP_Holding</div>
+            <div className="h-px flex-1 mx-12 bg-[#2D2B28]" />
+            <div className="text-[8px] uppercase tracking-[0.5em]">2025 // Phase_Beta</div>
+        </footer>
       </div>
     </main>
   );
 }
 
-/* ----------------------------- UI bits ----------------------------- */
+/** ----------------------------- UI bits ----------------------------- */
 
 function Jump({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
       href={href}
-      className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/20 backdrop-blur-sm text-white/70 hover:text-white hover:border-white/20 transition-colors font-mono text-[11px] uppercase tracking-widest"
+      className="text-xs font-black uppercase tracking-widest opacity-40 transition-opacity hover:opacity-100 flex items-center gap-2 group"
     >
       {children}
-      <span className="text-white/40">↘</span>
+      <ArrowDownRight size={14} className="group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
     </a>
   );
 }
 
-function SectionTitle({
-  label,
-  title,
-  subtitle,
-}: {
-  label: string;
-  title: string;
-  subtitle: string;
-}) {
+function LineItem({ id, code, title, body, tags }: { id: string, code: string, title: string, body: string, tags: string[] }) {
   return (
-    <div>
-      <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-black/20 backdrop-blur-sm">
-        <span className="w-2 h-2 rounded-full bg-mint/80 shadow-[0_0_10px_rgba(16,185,129,0.25)]" />
-        <span className="font-mono text-xs text-mint/80 tracking-widest uppercase">
-          {label}
-        </span>
-      </div>
-
-      <h2 className="mt-6 font-display text-5xl md:text-6xl leading-[0.9] tracking-tight">
-        {title}
-      </h2>
-
-      <p className="mt-4 max-w-2xl text-white/65 font-serif text-lg md:text-xl leading-relaxed">
-        {subtitle}
-      </p>
-    </div>
-  );
-}
-
-function LineItem({
-  code,
-  title,
-  body,
-  tags,
-}: {
-  code: string;
-  title: string;
-  body: string;
-  tags: string[];
-}) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-black/15 backdrop-blur-sm px-7 py-6">
-      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-        <div className="max-w-3xl">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-mint/80">
-            {code}
-          </div>
-          <h3 className="mt-2 font-display text-3xl tracking-tight">{title}</h3>
-          <p className="mt-3 text-white/70 font-serif text-lg leading-relaxed">
-            {body}
-          </p>
+    <div className="group relative py-12 transition-all hover:pl-4">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
+        <div className="lg:col-span-2">
+          <div className="text-[10px] font-black opacity-30">/{id}</div>
+          <div className="text-[9px] uppercase tracking-widest opacity-40">{code}</div>
         </div>
-
-        <div className="flex flex-wrap gap-2 lg:justify-end">
-          {tags.map((t) => (
-            <span
-              key={t}
-              className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-black/20 text-white/60 font-mono text-[10px] uppercase tracking-widest"
-            >
+        <div className="lg:col-span-7 space-y-4">
+          <h3 className="text-3xl font-black tracking-tighter uppercase">{title}</h3>
+          <p className="text-lg opacity-70 max-w-2xl leading-snug">{body}</p>
+        </div>
+        <div className="lg:col-span-3 flex flex-wrap gap-2 lg:justify-end">
+          {tags.map(t => (
+            <span key={t} className="border border-[#2D2B28]/20 px-3 py-1 text-[9px] uppercase font-bold opacity-50 group-hover:opacity-100">
               {t}
             </span>
           ))}
         </div>
       </div>
+      {/* THE TRACE: ACTIVE ON HOVER */}
+      <div className="absolute left-0 top-0 h-full w-1 bg-[#7FD069] opacity-0 transition-opacity group-hover:opacity-100" />
     </div>
+  );
+}
+
+function Principle({ icon, text }: { icon: React.ReactNode, text: string }) {
+  return (
+    <li className="flex items-center gap-4 text-sm font-medium opacity-70 transition-opacity hover:opacity-100">
+      <div className="text-[#396041]">{icon}</div>
+      <span>{text}</span>
+    </li>
   );
 }

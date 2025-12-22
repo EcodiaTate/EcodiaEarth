@@ -3,35 +3,47 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useRouter } from "next/navigation"; 
+import { SmoothLink } from "@/components/nav/SmoothLink";
+import { ArrowLeft, ArrowDown, Activity, Zap, Compass, Wind } from "lucide-react";
+
+/**
+ * ECODIA GREENPRINT (THE ROADMAP)
+ * Materiality: Warm Paper (#F9F8F5) | Charcoal Ink (#2D2B28)
+ * Strategy: Documentation of Progress. Inertial Drift.
+ */
 
 const phases = [
   {
     year: "2023",
     id: "01",
-    title: "The Seed",
+    title: "THE SEED",
     desc: "Guerrilla testing in urban zones. 100 manual nodes planted to validate the mycorrhizal network.",
-    stat: "PROOF_OF_LIFE"
+    stat: "PROOF_OF_LIFE",
+    trace: "#396041"
   },
   {
     year: "2024",
     id: "02",
-    title: "Germination",
-    desc: "The Impact Graph goes live. We move from tracking clicks to tracking carbon. Philosophy becomes code.",
-    stat: "MAINNET_BETA"
+    title: "GERMINATION",
+    desc: "Impact Graph deployment. Transition from tracking attention to documenting carbon. Philosophy translated to code.",
+    stat: "MAINNET_BETA",
+    trace: "#7FD069"
   },
   {
     year: "2025",
     id: "03",
-    title: "Photosynthesis",
-    desc: "Verification Engine (VRR) activation. The loop closes: Attention → Action → Reward.",
-    stat: "SCALING_L2"
+    title: "PHOTOSYNTHESIS",
+    desc: "Verification Engine (VRR) activation. Closing the loop: Attention → Action → Residue.",
+    stat: "SCALING_L2",
+    trace: "#F4D35E"
   },
   {
     year: "2026",
     id: "04",
-    title: "Canopy",
-    desc: "The API opens. Local communities fork the protocol to govern their own bioregions.",
-    stat: "DAO_GOVERNANCE"
+    title: "CANOPY",
+    desc: "Open API. Local communities fork the protocol to govern their own bioregions and shared spaces.",
+    stat: "DAO_GOVERNANCE",
+    trace: "#396041"
   }
 ];
 
@@ -44,190 +56,124 @@ export default function GreenprintSection() {
     offset: ["start end", "end start"]
   });
   
-  const rulerY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  // MEASUREMENT TICKS DRIFT
+  const rulerY = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
   return (
-    <section 
+    <main 
       ref={containerRef}
-      className="relative w-full py-32 overflow-hidden bg-[#396041] eco-section-wrapper"
+      className="relative min-h-screen w-full overflow-x-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]"
     >
-     {/* CLOSE */}
-<motion.button
-  initial={{ opacity: 0, y: -14 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.25, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-  onClick={() => router.back()}
-  className="fixed top-6 right-6 md:top-10 md:right-10 z-50 active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-mint/35 focus-visible:ring-offset-2 focus-visible:ring-offset-[#396041]"
-  aria-label="Close"
->
-  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-[#396041]/95 border border-[#7fd069]/35 shadow-[0_0_0_1px_rgba(127,208,105,0.12),0_18px_40px_rgba(6,30,20,0.55)] hover:border-[#7fd069]/60 transition-colors active:translate-y-[1px]"
->
-    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-[#7fd069]">
-      Close
-    </span>
-
-    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-[#7fd069]/35">
-      <span className="absolute w-4 h-[2px] bg-white rotate-45" />
-      <span className="absolute w-4 h-[2px] bg-white -rotate-45" />
-    </span>
-
-    <span className="absolute -inset-[2px] rounded-full pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity"
-      style={{ boxShadow: "0 0 24px rgba(127,208,105,0.22)" }}
-    />
-  </div>
-</motion.button>
-
-
-      {/* BACKGROUNDS */}
-      <div className="absolute inset-0 z-0 opacity-30 eco-hidden" 
-        style={{ 
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), 
-            linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)
-          `, 
-          backgroundSize: '40px 40px' 
-        }} 
-      />
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.4),transparent_60%)] mix-blend-overlay eco-hidden" />
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_50%,transparent_20%,rgba(6,30,20,0.8)_100%)] eco-hidden" />
-
-      {/* Decorative Ruler */}
-      <motion.div style={{ y: rulerY }} className="absolute left-0 top-0 bottom-0 w-8 border-r border-white/10 hidden md:flex flex-col justify-between py-4 z-10">
-          {[...Array(20)].map((_, i) => (
-             <div key={i} className="w-full h-px bg-white/20 relative">
-                <span className="absolute left-2 -top-2 text-[8px] font-mono text-white/40">{i * 10}</span>
-             </div>
-          ))}
-      </motion.div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        {/* HEADER */}
-        <div className="mb-24 text-center">
-            <div className="eco-ui-element inline-block border border-[#7fd069] px-4 py-1 rounded-full bg-[#396041]/50 backdrop-blur-md mb-6 shadow-[0_0_15px_rgba(127,208,105,0.3)]">
-                <span className="font-mono text-[#7fd069] text-xs tracking-[0.2em] uppercase">
-                   Project_File: ECODIA_V1
-                </span>
-            </div>
-            
-            <h2 className="eco-text-bright font-display text-[12vw] md:text-9xl text-white tracking-tighter leading-[0.8] mix-blend-overlay opacity-90">
-               THE <br/>
-               <span className="text-transparent eco-stroke-bright" style={{ WebkitTextStroke: "2px #7fd069" }}>
-                 GREENPRINT
-               </span>
-            </h2>
-        </div>
-
-        {/* TIMELINE GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
-           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#7fd069] to-transparent hidden md:block opacity-50" />
-           {phases.map((phase, i) => (
-              <BlueprintCard key={i} data={phase} index={i} />
-           ))}
-        </div>
+      {/* 1. EXIT PROTOCOL */}
+      <div className="fixed right-12 top-12 z-50">
+        <button
+          onClick={() => router.back()}
+          className="group flex items-center gap-3 border border-[#2D2B28] px-4 py-2 transition-all hover:bg-[#2D2B28] hover:text-[#F9F8F5]"
+        >
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-[10px] font-black uppercase tracking-[0.3em]">Return</span>
+        </button>
       </div>
 
-      {/* HIGH CONTRAST ECO STYLES */}
-      <style jsx global>{`
-        /* 1. Reset Container Backgrounds to Transparent (stops black boxes) */
-        .eco-mode .eco-section-wrapper div {
-            background-color: transparent !important;
-            box-shadow: none !important;
-        }
+      {/* 2. TOPOGRAPHIC CALIBRATION */}
+      <motion.div 
+        style={{ y: rulerY }} 
+        className="absolute left-12 top-0 bottom-0 w-px bg-[#2D2B28]/10 hidden md:block z-0"
+      >
+        {[...Array(30)].map((_, i) => (
+          <div key={i} className="absolute left-0 w-4 h-px bg-[#2D2B28]/20" style={{ top: `${i * 100}px` }}>
+            <span className="absolute left-6 -top-2 text-[8px] opacity-30">{i * 10}cm</span>
+          </div>
+        ))}
+      </motion.div>
 
-        /* 2. THE CARD: Give it a wireframe border so we can see it */
-        .eco-mode .eco-card {
-            border: 1px solid #333 !important;
-            background-color: #000 !important; /* Force solid black backing for contrast */
-        }
+      <div className="relative z-10 mx-auto max-w-7xl px-8 py-32">
         
-        /* 3. TITLE TEXT: Pure White & Solid */
-        .eco-mode .eco-text-bright,
-        .eco-mode .eco-card-title {
-            color: #ffffff !important;
-            mix-blend-mode: normal !important;
-            opacity: 1 !important;
-        }
+        {/* HEADER: MASSIVE ANCHOR */}
+        <header className="mb-64 space-y-12">
+          <div className="flex items-center gap-4">
+            <div className="h-2 w-2 bg-[#396041]" />
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">Archive_Ref // Roadmap_v2.0</span>
+          </div>
+          
+          <h1 className="text-6xl font-black leading-[0.8] tracking-tighter sm:text-8xl lg:text-9xl">
+            THE <br />
+            <span className="italic font-light opacity-30 text-[#396041]">GREENPRINT.</span>
+          </h1>
 
-        /* 4. BODY TEXT: Light Grey (Readable) */
-        .eco-mode .eco-card-desc {
-            color: #d4d4d4 !important;
-            opacity: 1 !important;
-        }
+          <p className="max-w-2xl text-2xl font-medium leading-tight tracking-tight opacity-70">
+            The biological timeline of the protocol. From urban guerrilla testing to 
+            autonomous bioregion governance.
+          </p>
+        </header>
 
-        /* 5. STROKE TEXT: Grey Outline */
-        .eco-mode .eco-stroke-bright {
-            -webkit-text-stroke: 1px #888 !important;
-            -webkit-text-fill-color: transparent !important;
-        }
+        {/* 3. TIMELINE: INERTIAL DRIFT */}
+        <div className="relative space-y-48">
+          {phases.map((phase, i) => (
+            <BlueprintRow key={i} data={phase} index={i} />
+          ))}
+          
+          {/* THE CONNECTING FILAMENT */}
+          <div className="absolute left-6 top-0 -z-10 h-full w-px bg-gradient-to-b from-[#2D2B28]/20 via-[#2D2B28]/5 to-transparent md:left-[50%]" />
+        </div>
 
-        /* 6. ACCENTS: Bright Emerald */
-        .eco-mode .eco-accent-text {
-            color: #10b981 !important;
-        }
-        
-        /* 7. UI ELEMENTS (Buttons/Tags): Clean borders */
-        .eco-mode .eco-ui-element {
-            background: transparent !important;
-            border: 1px solid #333 !important;
-        }
-
-        /* 8. Hide Clutter */
-        .eco-mode .eco-hidden {
-            display: none !important;
-        }
-      `}</style>
-    </section>
+        {/* 4. FOOTER: SYSTEM CHECK */}
+        <footer className="mt-64 border-t-2 border-[#2D2B28] pt-12 opacity-30">
+           <div className="flex justify-between items-center text-[9px] uppercase tracking-[0.4em]">
+              <span>Sequence_End</span>
+              <div className="flex gap-2">
+                 <div className="h-4 w-4 border border-[#2D2B28]" />
+                 <div className="h-4 w-4 bg-[#2D2B28]" />
+              </div>
+              <span>26.6500° S // Drift_Stable</span>
+           </div>
+        </footer>
+      </div>
+    </main>
   );
 }
 
-function BlueprintCard({ data, index }: { data: any, index: number }) {
+function BlueprintRow({ data, index }: { data: any, index: number }) {
   const isEven = index % 2 === 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+    <motion.section
+      initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`relative flex ${isEven ? "md:justify-end" : "md:justify-start"} md:py-8`}
+      className={`relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start ${isEven ? "" : "md:text-right"}`}
     >
-        {/* CARD CONTAINER: Added 'eco-card' */}
-        <div className="eco-card group relative w-full max-w-md backdrop-blur-md bg-[#396041]/40 border border-[#7fd069]/30 hover:border-[#7fd069] transition-colors duration-500 rounded-sm overflow-hidden">
-            
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50 pointer-events-none eco-hidden" />
+      <div className={`md:col-span-5 ${isEven ? "md:col-start-1" : "md:col-start-8"}`}>
+        <div className="space-y-6">
+          {/* STATE MARKER */}
+          <div className={`flex items-center gap-4 ${isEven ? "" : "flex-row-reverse"}`}>
+            <span className="text-4xl font-black tracking-tighter opacity-10">{data.year}</span>
+            <div className="h-px flex-1 bg-[#2D2B28]/10" />
+            <div className="h-2 w-2 rounded-full" style={{ backgroundColor: data.trace }} />
+          </div>
 
-            {/* HEADER: Added 'eco-ui-element' to strip background */}
-            <div className="eco-ui-element flex justify-between items-center px-6 py-3 border-b border-[#7fd069]/20 bg-[#000000]/20">
-                <span className="font-mono text-xl text-[#7fd069] font-bold eco-accent-text">{data.year}</span>
-                <span className="font-mono text-[10px] text-white/50 tracking-widest eco-accent-text">PHASE_{data.id}</span>
+          {/* CONTENT */}
+          <div className="space-y-4">
+            <h3 className="text-4xl font-black tracking-tighter uppercase">{data.title}</h3>
+            <p className="text-lg leading-snug opacity-70">
+              {data.desc}
+            </p>
+          </div>
+
+          {/* CALIBRATION READOUT */}
+          <div className={`flex items-center gap-3 ${isEven ? "" : "justify-end"}`}>
+            <div className="text-[10px] font-black uppercase tracking-widest opacity-40">
+              State: {data.stat}
             </div>
-
-            <div className="p-8 relative">
-                <div className="absolute top-4 right-4 text-[#7fd069]/40 text-xs">+</div>
-                <div className="absolute bottom-4 left-4 text-[#7fd069]/40 text-xs">+</div>
-
-                {/* TITLE: Added 'eco-card-title' */}
-                <h3 className="eco-card-title font-display text-3xl text-white mb-2 tracking-wide">
-                  {data.title}
-                </h3>
-                
-                {/* DESCRIPTION: Added 'eco-card-desc' */}
-                <p className="eco-card-desc font-serif text-white/70 text-lg leading-relaxed mb-6 font-light">
-                  {data.desc}
-                </p>
-
-                <div className="flex items-center gap-3 pt-4 border-t border-white/10 eco-ui-element">
-                   <div className="w-2 h-2 bg-mint rounded-sm animate-pulse eco-accent-text" style={{ backgroundColor: 'currentColor' }} />
-                   <span className="font-mono text-xs text-[#7fd069] tracking-wider uppercase eco-accent-text">
-                      Status: {data.stat}
-                   </span>
-                </div>
-            </div>
+            <div className="h-2 w-10 bg-[#2D2B28]/10" />
+          </div>
         </div>
-
-        <div className={`hidden md:block absolute top-1/2 ${isEven ? "-left-[40px]" : "-right-[40px]"} w-[40px] h-[1px] bg-mint/50`}>
-           <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? "left-0" : "right-0"} w-2 h-2 bg-[#396041] border border-[#7fd069] rounded-full`} />
-        </div>
-    </motion.div>
+      </div>
+      
+      {/* ATOMIC HINGE POINT */}
+      <div className="hidden md:flex absolute left-1/2 top-0 bottom-0 -translate-x-1/2 items-start pt-12">
+        <div className="h-4 w-4 border-2 border-[#2D2B28] bg-[#F9F8F5] rotate-45" />
+      </div>
+    </motion.section>
   );
 }

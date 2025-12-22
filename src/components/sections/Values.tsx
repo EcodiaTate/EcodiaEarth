@@ -1,199 +1,178 @@
-// src/components/sections/ValuesSection.tsx
 "use client";
 
+import * as React from "react";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+
+/**
+ * ECODIA VALUES (FIELD NOTES)
+ * Strategy: Structural Principles. 
+ * Materiality: Warm Paper (#F9F8F5) | Charcoal Ink (#2D2B28)
+ */
+
 const PRINCIPLES = [
   {
     id: "01",
     title: "Shared Upside",
-    text:
-      "Shared places can improve over time. When people take part, value returns to the place it came from and keeps moving through local life. Participation strengthens the setting everyone lives inside.",
-    gradient: "from-mint via-mint to-indigo-400",
+    text: "Shared places improve through presence. When you participate, value returns to the site of its origin and circulate through local life.",
+    trace: "#7FD069", // Mint (Life/Action)
   },
   {
     id: "02",
     title: "Design Over Discipline",
-    text:
-      "Positive action fits the day when the world is shaped for it. The best systems feel like they belong in real life. Participation becomes easy to begin and easy to repeat.",
-    gradient: "from-mint via-mint to-mint",
+    text: "Positive action belongs in the day when the architecture is shaped for it. Participation becomes easy to start and easy to repeat.",
+    trace: "#396041", // Forest (Structure)
   },
   {
     id: "03",
     title: "Doing Counts",
-    text:
-      "Progress is made of what gets done. Small actions leave a trace in the world when they are shared and carried forward. Quiet participation still counts.",
-    gradient: "from-gold via-orange-400 to-red-400",
+    text: "Progress is the residue of what gets done. Small actions leave a trace when they are shared and carried forward. Quiet participation counts.",
+    trace: "#F4D35E", // Gold (Calibration)
   },
   {
     id: "04",
     title: "Small Is Powerful",
-    text:
-      "A world stays playable when it is approachable. Repeatable actions shape places over time, especially when many people can join in. Scale comes from consistency, not intensity.",
-    gradient: "from-mint via-mint to-mint",
+    text: "The world stays playable when it is approachable. Scale comes from the consistency of many people joining, not the intensity of a few.",
+    trace: "#7FD069",
   },
   {
     id: "05",
     title: "Mutual Benefit",
-    text:
-      "Participation lasts when everyone gets something real from it. Personal benefit and shared good can reinforce each other, creating energy people can return to without burning out.",
-    gradient: "from-mint via-mint to-indigo-400",
+    text: "Participation lasts when it is real. Personal benefit and shared good reinforce each other, creating energy people can return to.",
+    trace: "#396041",
   },
   {
     id: "06",
     title: "Local Is Foundational",
-    text:
-      "The easiest change to recognise is the change you can see. Neighbourhoods and nearby places make progress tangible. Local life gives the world its texture and its meaning.",
-    gradient: "from-gold via-orange-400 to-red-400",
+    text: "Neighbourhoods make progress tangible. The easiest change to recognise is the change you can see across your own street.",
+    trace: "#F4D35E",
   },
   {
     id: "07",
     title: "Play Keeps It Alive",
-    text:
-      "Play is how people sustain effort and come back. It creates curiosity, rhythm, and return. A world you can re-enter is a world that can keep growing.",
-    gradient: "from-mint via-mint to-mint",
+    text: "Play is how people sustain effort. It creates curiosity and rhythm. A world you can re-enter is a world that can keep growing.",
+    trace: "#7FD069",
   },
 ];
-
 
 export default function ValuesSection() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section
+    <main
       ref={containerRef}
-      className="relative w-full min-h-screen py-32 bg-white text-ink eco-section-wrapper"
+      className="relative min-h-screen w-full overflow-x-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]"
     >
-    {/* CLOSE */}
-<motion.button
-  initial={{ opacity: 0, y: -14 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-  onClick={() => router.back()}
-  className="fixed top-6 right-6 md:top-10 md:right-10 z-50 active:scale-[0.99] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-  aria-label="Close"
->
-  <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-white border border-black/15 shadow-[0_12px_28px_rgba(15,23,18,0.12)] hover:border-black/25 transition-colors active:translate-y-[1px]"
->
-    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-ink/70">
-      Close
-    </span>
+      {/* 1. EXIT PROTOCOL (INERTIAL OFFSET) */}
+      <div className="fixed right-12 top-12 z-50">
+        <button
+          onClick={() => router.back()}
+          className="group flex items-center gap-3 border border-[#2D2B28] px-4 py-2 transition-all hover:bg-[#2D2B28] hover:text-[#F9F8F5]"
+        >
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-[10px] font-black uppercase tracking-[0.3em]">Return</span>
+        </button>
+      </div>
 
-    <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-black/15">
-      <span className="absolute w-4 h-[2px] bg-black/70 rotate-45" />
-      <span className="absolute w-4 h-[2px] bg-black/70 -rotate-45" />
-    </span>
-  </div>
-</motion.button>
+      {/* 2. CALIBRATION TICKS (RESIDUE) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
+        <div className="absolute left-[8%] top-0 h-full w-px bg-[#2D2B28]" />
+        <div className="absolute left-0 top-[30%] h-px w-full bg-[#2D2B28]" />
+      </div>
 
-
-      {/* BACKGROUND NOISE */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-50 mix-blend-multiply eco-hidden" />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
-        <header className="mb-24">
-          <span className="font-mono text-xs uppercase tracking-widest text-ink/40 block mb-6 eco-accent-text">
-            Document_Ref: FIELD_NOTES
-          </span>
-
-          <h1 className="font-display text-7xl md:text-[10vw] leading-[0.8] tracking-tighter text-ink mb-8 eco-text-bright">
-            HOW THIS
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#396041] to-black">
-              WORLD WORKS.
+      <div className="relative z-10 mx-auto max-w-7xl px-8 py-32">
+        
+        {/* HEADER: MASSIVE ANCHOR */}
+        <header className="mb-48 space-y-12 border-b-4 border-[#2D2B28] pb-16">
+          <div className="flex items-center gap-4">
+            <div className="h-2 w-2 bg-[#396041]" />
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-50">
+              Document_Ref // Field_Notes
             </span>
+          </div>
+
+          <h1 className="text-6xl font-black leading-[0.8] tracking-tighter sm:text-8xl lg:text-9xl">
+            HOW THIS <br />
+            <span className="italic font-light opacity-30 text-[#396041]">WORLD WORKS.</span>
           </h1>
 
-          <p className="max-w-xl text-lg text-ink/60 leading-relaxed">
-  These are recurring patterns you’ll notice as you spend time here.
-</p>
-
+          <p className="max-w-xl text-2xl font-medium leading-tight tracking-tight opacity-70">
+            Recurring patterns observed during the assembly of the protocol. 
+            Guidelines for the world we build next.
+          </p>
         </header>
 
-        {/* ARTICLES LIST */}
-        <div className="flex flex-col">
+        {/* 3. PRINCIPLES LIST: STRATA LOGIC */}
+        <div className="flex flex-col border-t border-[#2D2B28]/10">
           {PRINCIPLES.map((p, i) => (
             <PrincipleRow key={p.id} data={p} index={i} />
           ))}
         </div>
 
-        {/* SIGNATURE */}
-        <div className="mt-24 pt-12 border-t-4 border-black flex justify-between items-end eco-ui-element">
-          <div className="font-mono text-xs uppercase tracking-widest text-ink/40 eco-accent-text">
-            Written as we build
-            <br />
-            And revised as we learn
-          </div>
-          <div className="font-display text-4xl text-ink eco-text-bright">Ecodia.</div>
-        </div>
+        {/* FOOTER: THE SIGNATURE */}
+        <footer className="mt-48 flex flex-col items-end gap-6 border-t-4 border-[#2D2B28] pt-12">
+           <div className="text-right space-y-2">
+             <div className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
+               Written as we build. <br /> Revised as we learn.
+             </div>
+             <div className="text-4xl font-black tracking-tighter">ECODIA.</div>
+           </div>
+           {/* THE LEAF CHECKSUM */}
+           <div className="opacity-20">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M10 30C10 30 10 10 30 10" stroke="currentColor" strokeWidth="1" />
+                <circle cx="10" cy="30" r="1.5" fill="currentColor" />
+              </svg>
+           </div>
+        </footer>
       </div>
-
-      <style jsx global>{`
-        .eco-mode .eco-section-wrapper {
-          background-color: #000000 !important;
-          color: #fff !important;
-        }
-        .eco-mode .eco-ui-element {
-          border-color: #fff !important;
-          background: transparent !important;
-        }
-        .eco-mode .eco-text-bright {
-          color: #ffffff !important;
-        }
-        .eco-mode .eco-accent-text {
-          color: #ccc !important;
-        }
-        .eco-mode .eco-accent-bg {
-          background-color: #fff !important;
-        }
-        .eco-mode .eco-hidden {
-          display: none !important;
-        }
-      `}</style>
-    </section>
+    </main>
   );
 }
 
 function PrincipleRow({ data, index }: { data: any; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      className="relative group border-b-2 border-black/10 eco-ui-element"
+      viewport={{ once: true, margin: "-100px" }}
+      className="group relative border-b border-[#2D2B28]/10 transition-colors hover:bg-[#2D2B28]/[0.02]"
     >
-      {/* Ambient Light Leak */}
-      <div
-        className={`
-          absolute top-0 left-0 w-full h-[3px]
-          bg-gradient-to-r ${data.gradient} opacity-50 eco-hidden
-        `}
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 py-12 md:py-16">
-        {/* COLUMN 1: INDEX */}
-        <div className="md:col-span-2 flex items-center">
-          <span className="font-display text-7xl md:text-8xl leading-none text-black/5 eco-text-bright opacity-30 select-none">
+      <div className="grid grid-cols-1 gap-12 py-16 md:grid-cols-12 md:items-start lg:py-24">
+        {/* LEFT: THE MASSIVE INDEX */}
+        <div className="md:col-span-3 flex items-baseline gap-4">
+          <span className="text-7xl font-black tracking-tighter opacity-10 select-none sm:text-8xl md:text-9xl">
             0{index + 1}
           </span>
+          <div 
+            className="h-2 w-2 rounded-full mt-2" 
+            style={{ backgroundColor: data.trace }} 
+          />
         </div>
 
-        {/* COLUMN 2: TITLE */}
-        <div className="md:col-span-5 flex flex-col justify-center">
-          <h2 className="font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-ink eco-text-bright">
+        {/* CENTER: THE TITLE */}
+        <div className="md:col-span-4 flex flex-col justify-center">
+          <h2 className="text-4xl font-black leading-none tracking-tighter uppercase sm:text-5xl">
             {data.title}
           </h2>
         </div>
 
-        {/* COLUMN 3: TEXT */}
+        {/* RIGHT: THE CONTENT */}
         <div className="md:col-span-5 flex flex-col justify-center">
-          <p className="font-serif text-lg md:text-xl leading-relaxed text-ink/80 eco-text-bright opacity-80">
+          <p className="text-xl font-medium leading-snug tracking-tight opacity-70">
             {data.text}
           </p>
         </div>
       </div>
+      
+      {/* THE TRACE: VERTICAL RESIDUE */}
+      <div 
+        className="absolute left-0 top-0 h-full w-1 opacity-0 transition-opacity group-hover:opacity-100" 
+        style={{ backgroundColor: data.trace }}
+      />
     </motion.div>
   );
 }

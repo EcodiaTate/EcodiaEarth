@@ -6,220 +6,115 @@ import { useState } from "react";
 
 type ViewMode = "friction" | "clarity" | "system";
 
+/**
+ * ECODIA VISION PROTOCOL
+ * Materiality: Transitions from Grainy Dark (#080808) to Warm Paper (#F9F8F5)
+ * Strategy: Documentation of the Shift.
+ */
+
 export default function VisionSection() {
   const [mode, setMode] = useState<ViewMode>("friction");
 
   return (
-    <main className="relative w-full bg-ink text-white selection:bg-mint/30 selection:text-ink">
-      {/* CLOSE BUTTON */}
+    <main className={`relative w-full min-h-screen transition-colors duration-1000 ${mode === 'system' ? 'bg-[#F9F8F5] text-[#2D2B28]' : 'bg-[#080808] text-white'}`}>
+      
+      {/* 1. EXIT PROTOCOL (OFFSET) */}
       <motion.button
         onClick={() => window.history.back()}
         initial={{ opacity: 0, y: -14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed z-50 top-6 right-6 active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-white/25 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-        aria-label="Close"
+        className="fixed z-50 top-12 right-12 group flex items-center gap-3 border border-current px-4 py-2 transition-all hover:bg-current hover:invert"
       >
-        <div className="flex items-center gap-3 h-12 pl-4 pr-3 rounded-full bg-ink/90 border border-white/15 shadow-[0_18px_46px_rgba(0,0,0,0.65)] hover:border-white/25 transition-colors active:translate-y-[1px]">
-          <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/70">
-            Close
-          </span>
-          <span className="relative flex items-center justify-center w-8 h-8 rounded-full border border-white/15">
-            <span className="absolute w-4 h-[2px] bg-white/80 rotate-45" />
-            <span className="absolute w-4 h-[2px] bg-white/80 -rotate-45" />
-          </span>
-        </div>
+        <span className="font-mono text-[10px] font-black uppercase tracking-[0.3em]">Return</span>
       </motion.button>
 
-      {/* STICKY VIEWPORT */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden isolate">
+      {/* 2. BACKGROUND TOPOGRAPHY */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden isolate pointer-events-none">
         <BackgroundLens mode={mode} />
-        <InterfaceOverlay mode={mode} />
+        <InertialHUD mode={mode} />
       </div>
 
-      {/* CONTENT STREAM (scroll triggers) */}
+      {/* 3. CONTENT STREAM (FIELD LOGS) */}
       <div className="relative z-30 -mt-[100vh]">
         <Scene
           onEnter={() => setMode("friction")}
           align="left"
-          kicker="Fig_01.1 // Before"
-          title={
-            <>
-              The future
-              <br />
-              felt heavy.
-            </>
-          }
-          body={
-            <>
-              Sustainability became a tone people had to carry.
-              <br />
-              Participation asked for sacrifice and offered little to return.
-              <br />
-              Good intent stayed private, scattered, and hard to keep going.
-            </>
-          }
-          notes={[
-            "Too many expectations",
-            "Participation without belonging",
-            "Effort without shared momentum",
-          ]}
+          kicker="Log_01.1 // The Weight"
+          title="THE FUTURE FELT HEAVY."
+          body="Sustainability was a burden to carry. Participation asked for sacrifice and offered no return. Good intent stayed private, scattered, and stalled by friction."
+          notes={["System_Strain", "Participation_Gap", "Inertial_Resistance"]}
         />
 
-        {/* Increased vertical spacing between scenes for a more generous scroll area */}
-        <div className="h-[25vh] sm:h-[35vh]" />
+        <div className="h-[50vh]" />
 
         <Scene
           onEnter={() => setMode("clarity")}
           align="right"
-          kicker="Fig_02.0 // Shift"
-          kickerAccent="text-mint"
-          title={
-            <>
-              Build better
-              <br />
-              defaults.
-            </>
-          }
-          body={
-            <>
-              Ecodia is a world we are building.
-              <br />
-              A world where doing good fits into life - calm, natural, and worth repeating.
-              <br />
-              People join what feels right, and what’s shared becomes easier to carry.
-            </>
-          }
-          notes={[
-            "Invitation over instruction",
-            "Shared benefit",
-            "Local, visible progress",
-          ]}
+          kicker="Log_02.0 // The Sprout"
+          title="BUILD BETTER DEFAULTS."
+          body="Ecodia is the architecture of the world we build next. A world where participation is the default condition—calm, structural, and worth repeating."
+          notes={["Node_Activation", "Shared_Upside", "Visible_Drift"]}
         />
 
-        {/* Increased vertical spacing between scenes */}
-        <div className="h-[25vh] sm:h-[35vh]" />
+        <div className="h-[50vh]" />
 
         <SceneCenter
           onEnter={() => setMode("system")}
-          kicker="World_Mechanics"
-          title={
-            <>
-              ECOLOGY
-              <br />
-              AS OS.
-            </>
-          }
-          body={
-            <>
-              A world is shaped by what gets noticed, what gets shared, and what people can
-              return to.
-              <br />
-              Ecodia is learning how to make participation feel natural - and how to let
-              progress build without noise.
-            </>
-          }
+          kicker="Protocol_Active"
+          title="ECOLOGY AS OS."
+          body="A world is shaped by residue. Ecodia makes participation natural—allowing progress to accumulate without the noise of marketing."
           columns={[
             {
               title: "Visibility",
-              items: [
-                "Progress becomes something people can see",
-                "Care becomes shared, not private",
-                "Momentum can travel between people and places",
-              ],
+              items: ["Progress becomes physical", "Care becomes structural", "Momentum travels through nodes"],
             },
             {
               title: "Benefit",
-              items: [
-                "Participation supports the person taking part",
-                "Local life gains support through everyday choices",
-                "Collective good can feel normal",
-              ],
+              items: ["Personal and shared logic overlap", "Local economies gain mass", "Collective good is the default"],
             },
             {
               title: "Continuity",
-              items: [
-                "Projects can outlive attention cycles",
-                "Communities can hold memory over time",
-                "The world keeps building forward",
-              ],
+              items: ["Projects outlive attention", "Communities hold memory", "The grid builds forward"],
             },
           ]}
         />
 
-        {/* Final scroll spacer - Increased size for better bottom margin */}
-        <div className="h-[40vh] sm:h-[50vh]" />
+        <div className="h-[50vh]" />
       </div>
     </main>
   );
 }
 
 /* =============================================================================
-    BACKGROUND (No Changes)
+    BACKGROUND EVOLUTION
 ============================================================================= */
 function BackgroundLens({ mode }: { mode: ViewMode }) {
   return (
-    <div className="relative w-full h-full bg-[#080808]">
-      {/* BASE IMAGE (always) */}
-      <Image
-        src="/img/eco-district.png"
-        alt="Background"
-        fill
-        className="object-cover opacity-60"
-        priority
-      />
-
-      {/* GLOBAL DARKEN for legibility */}
-      <div className="absolute inset-0 bg-black/55" />
-
-      {/* MODE: FRICTION (blur + grain) */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-700 ease-out ${
-          mode === "friction" ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <div className="absolute inset-0 backdrop-blur-[6px]" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/80" />
+    <div className="relative w-full h-full overflow-hidden">
+      {/* BASE TOPOGRAPHY */}
+      <div className={`absolute inset-0 transition-opacity duration-1000 ${mode === 'system' ? 'opacity-20 grayscale' : 'opacity-40'}`}>
+        <Image
+          src="/img/eco-district.png"
+          alt="District Map"
+          fill
+          className="object-cover"
+          priority
+        />
       </div>
 
-      {/* MODE: CLARITY (crisper, brighter, NO invert) */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-700 ease-out ${
-          mode === "clarity" ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/70" />
-        <div className="absolute inset-0 bg-mint/5 mix-blend-soft-light" />
+      {/* MODE: FRICTION (DARK / GRAIN) */}
+      <div className={`absolute inset-0 bg-[#080808] transition-opacity duration-1000 ${mode === 'friction' ? 'opacity-80' : 'opacity-0'}`}>
+         <div className="absolute inset-0 backdrop-blur-xl" />
+         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40 mix-blend-overlay" />
       </div>
 
-      {/* MODE: SYSTEM (INVERTED + data overlay) */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-700 ease-out ${
-          mode === "system" ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {/* Invert ONLY this mode */}
-        <div className="absolute inset-0 mix-blend-exclusion brightness-[1.6] invert">
-          <Image
-            src="/img/eco-district.png"
-            alt="System Layer"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-
-        {/* bring it back down so it's readable */}
-        <div className="absolute inset-0 bg-black/65" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-35" />
-
-        <div
-          className="absolute inset-0 opacity-[0.10]"
+      {/* MODE: SYSTEM (WARM PAPER / GRID) */}
+      <div className={`absolute inset-0 bg-[#F9F8F5] transition-opacity duration-1000 ${mode === 'system' ? 'opacity-100' : 'opacity-0'}`}>
+        <div 
+          className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage:
-              "linear-gradient(to_right, rgba(255,255,255,0.7) 1px, transparent 1px), linear-gradient(to_bottom, rgba(255,255,255,0.7) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
+            backgroundImage: "linear-gradient(#2D2B28 1px, transparent 1px), linear-gradient(90deg, #2D2B28 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
           }}
         />
       </div>
@@ -227,79 +122,29 @@ function BackgroundLens({ mode }: { mode: ViewMode }) {
   );
 }
 
-
 /* =============================================================================
-    HUD OVERLAY (No Changes)
+    HUD: INERTIAL READOUTS
 ============================================================================= */
-function InterfaceOverlay({ mode }: { mode: ViewMode }) {
-  const fileName =
-    {
-      friction: "IMG_0042_RAW.PNG",
-      clarity: "IMG_0042_VIEW.JPG",
-      system: "SYS_LOG.DAT",
-    }[mode];
-
-  const metaColor =
-    {
-      friction: "text-white/70",
-      clarity: "text-mint",
-      system: "text-white",
-    }[mode];
-
+function InertialHUD({ mode }: { mode: ViewMode }) {
   return (
-    <div className="absolute inset-0 pointer-events-none z-20 p-6 flex flex-col justify-between">
-      {/* Top Bar */}
-      <div className="flex justify-between items-start">
-        <div className="flex flex-col">
-          <span className={`font-mono text-[10px] uppercase tracking-widest mb-1 ${metaColor}`}>
-            VISION.tsx /
-          </span>
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={fileName}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              className="font-mono text-sm uppercase font-bold"
-            >
-              {fileName}
-            </motion.span>
-          </AnimatePresence>
+    <div className="absolute inset-0 pointer-events-none z-20 p-12 flex flex-col justify-between">
+      <div className="flex justify-between items-start opacity-30">
+        <div className="font-mono text-[9px] uppercase tracking-[0.5em]">
+          Vision_Telemetry // {mode.toUpperCase()}
         </div>
-        <div className="font-mono text-[10px] text-white/30 text-right">
-          REC ● 00:00:14:22
-          <br />
-          ISO 800
+        <div className="text-right font-mono text-[8px] tracking-[0.2em]">
+          Lat: -26.6500 <br /> Lon: 153.0667
         </div>
       </div>
+      
+      {/* CENTER CALIBRATION (SYSTEM ONLY) */}
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-40 w-40 border border-current transition-all duration-1000 ${mode === 'system' ? 'opacity-10 scale-100' : 'opacity-0 scale-150'}`} />
 
-      {/* Crosshairs (fades in system) */}
-      <div
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ${
-          mode === "system" ? "opacity-30 scale-100" : "opacity-10 scale-110"
-        }`}
-      >
-        <div className="w-[20vw] h-[1px] bg-white/50" />
-        <div className="h-[20vh] w-[1px] bg-white/50 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="flex justify-between items-end">
-        <div className="flex gap-4 font-mono text-[10px] text-white/40">
-          <span className={mode === "friction" ? "text-white underline" : ""}>RAW</span>
-          <span className={mode === "clarity" ? "text-mint underline" : ""}>VIEW</span>
-          <span className={mode === "system" ? "text-white underline" : ""}>DATA</span>
-        </div>
-
-        <div className={`transition-opacity duration-500 ${mode === "system" ? "opacity-100" : "opacity-0"}`}>
-          <div className="h-10 w-24 border border-white/20 bg-white/5 relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/20 animate-[shimmer_2s_infinite]" />
-            <div className="flex items-end h-full gap-[2px] p-1 justify-center opacity-50">
-              {[40, 60, 30, 80, 100, 40, 20, 50, 70, 30].map((h, i) => (
-                <div key={i} style={{ height: `${h}%` }} className="w-1.5 bg-white" />
-              ))}
-            </div>
-          </div>
+      <div className="flex justify-between items-end opacity-30">
+        <div className="flex gap-8 font-mono text-[9px] uppercase tracking-widest">
+          <span>Stasis</span>
+          <span>Emergence</span>
+          <span className={mode === 'system' ? 'font-black underline' : ''}>Active</span>
         </div>
       </div>
     </div>
@@ -307,151 +152,26 @@ function InterfaceOverlay({ mode }: { mode: ViewMode }) {
 }
 
 /* =============================================================================
-    SCENES (Padding and Margin Refinements)
+    SCENE: TOPOGRAPHIC CONTENT
 ============================================================================= */
-
-function Scene({
-  onEnter,
-  align,
-  kicker,
-  kickerAccent,
-  title,
-  body,
-  notes,
-}: {
-  onEnter: () => void;
-  align: "left" | "right";
-  kicker: string;
-  kickerAccent?: string;
-  title: React.ReactNode;
-  body: React.ReactNode;
-  notes: string[];
-}) {
+function Scene({ align, kicker, title, body, notes, onEnter }: any) {
   return (
     <TriggerSection onEnter={onEnter}>
-      <div className="mx-auto w-full max-w-7xl px-6 sm:px-12">
-        <div className="grid grid-cols-12 items-end md:items-center min-h-[60vh] md:min-h-[70vh]">
-          {/* alignment */}
-          <div className={`${align === "left" ? "col-span-12 md:col-span-7 lg:col-span-6" : "col-span-12 md:col-start-6 lg:col-start-7 md:col-span-7 lg:col-span-6"} `}>
-            
-            {/* Scrim for readability (NOT a card, is a large, soft gradient overlay) */}
-            <div className="relative">
-              {/* Increased inset for a larger, softer shadow area */}
-              <div
-                className={`pointer-events-none absolute -inset-10 sm:-inset-16 rounded-[3rem] ${
-                  align === "left"
-                    ? "bg-gradient-to-r from-black/85 via-black/45 to-transparent"
-                    : "bg-gradient-to-l from-black/85 via-black/45 to-transparent"
-                }`}
-              />
-              
-              {/* Added padding to the content within the scrim area for breathing room */}
-              <div className={`relative p-4 sm:p-6 ${align === "right" ? "text-right" : "text-left"}`}>
-                
-                {/* Kicker (small label) - Increased bottom margin */}
-                <div className={`flex items-center gap-3 mb-8 ${align === "right" ? "justify-end" : "justify-start"}`}>
-                  {align === "right" ? (
-                    <>
-                      <span className={`font-mono text-xs uppercase tracking-[0.2em] font-bold ${kickerAccent ?? "text-white/60"}`}>
-                        {kicker}
-                      </span>
-                      <div className={`w-2 h-2 rounded-full ${kickerAccent ? "bg-mint" : "bg-white/30"}`} />
-                    </>
-                  ) : (
-                    <>
-                      <div className="w-2 h-2 rounded-full bg-white/30" />
-                      <span className={`font-mono text-xs uppercase tracking-[0.2em] font-bold ${kickerAccent ?? "text-white/60"}`}>
-                        {kicker}
-                      </span>
-                    </>
-                  )}
-                </div>
-
-                {/* Body - Increased top margin for separation from Title */}
-                <p className="mt-10 font-serif text-xl sm:text-2xl leading-relaxed text-white/85">
-                  {body}
-                </p>
-
-                {/* Notes/Metadata - Increased top margin and padding for separation */}
-                <div className="mt-12 pt-10 border-t border-white/20">
-                  <ul className={`space-y-4 font-mono text-[11px] uppercase tracking-widest text-white/60 ${align === "right" ? "ml-auto" : ""}`}>
-                    {notes.map((n) => (
-                      <li key={n} className={`flex gap-3 ${align === "right" ? "justify-end" : ""}`}>
-                        <div className="w-[1px] h-3 bg-white/20" /> 
-                        <span>{n}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+      <div className={`mx-auto max-w-7xl px-12 grid grid-cols-12 min-h-[70vh] items-center`}>
+        <div className={`${align === 'left' ? 'col-span-12 lg:col-span-6' : 'col-span-12 lg:col-start-7 lg:col-span-6'} space-y-12`}>
+          <div className="space-y-4">
+             <div className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">{kicker}</div>
+             <h2 className="text-6xl font-black leading-[0.85] tracking-tighter sm:text-7xl lg:text-8xl">
+                {title}
+             </h2>
           </div>
-
-          {/* spacer column to keep right scene truly right on desktop */}
-          <div className={`${align === "left" ? "hidden md:block md:col-span-5 lg:col-span-6" : "hidden md:block md:col-span-5 lg:col-span-6 md:col-start-1"}`} />
-        </div>
-      </div>
-    </TriggerSection>
-  );
-}
-
-function SceneCenter({
-  onEnter,
-  kicker,
-  title,
-  body,
-  columns,
-}: {
-  onEnter: () => void;
-  kicker: string;
-  title: React.ReactNode;
-  body: React.ReactNode;
-  columns: { title: string; items: string[] }[];
-}) {
-  return (
-    <TriggerSection onEnter={onEnter}>
-      <div className="mx-auto w-full max-w-7xl px-6 sm:px-12">
-        <div className="min-h-[70vh] flex items-center">
-          <div className="w-full text-center">
-            
-            {/* Kicker Badge - Increased bottom margin for more separation from Title */}
-            <div className="inline-flex items-center justify-center bg-ink/80 border border-white/10 px-6 py-2 rounded-full mb-12 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
-              <span className="font-mono text-xs tracking-[0.3em] uppercase text-white font-bold">
-                {kicker}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h2 className="font-display text-7xl sm:text-[10rem] leading-[0.82] tracking-tighter text-white mix-blend-difference">
-              {title}
-            </h2>
-
-            {/* Body - Increased top margin for better separation from Title */}
-            <p className="mt-12 mx-auto max-w-4xl font-serif text-xl sm:text-2xl leading-relaxed text-white/85">
-              {body}
-            </p>
-
-            {/* Column Content - Increased top margin and padding for significant separation */}
-            <div className="mt-24 text-left">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-white/25 pt-16">
-                {columns.map((c) => (
-                  <div key={c.title} className="pl-6 border-l border-white/40">
-                    <div className="font-display text-3xl text-white mb-5">{c.title}</div>
-                    <ul className="space-y-4 font-serif text-lg text-white/75 leading-relaxed">
-                      {c.items.map((it) => (
-                        <li key={it} className="flex gap-3">
-                          <span className="text-mint text-xl leading-none">•</span>
-                          <span>{it}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-
-              {/* soft scrim behind columns for legibility - adjusted margin for new spacing */}
-              <div className="pointer-events-none mt-[-20rem] h-[20rem] w-full bg-gradient-to-t from-black/55 via-black/10 to-transparent rounded-[2rem]" />
-            </div>
+          <p className="text-2xl font-medium leading-tight tracking-tight opacity-70">
+            {body}
+          </p>
+          <div className="flex gap-4 opacity-40">
+            {notes.map((n: string) => (
+              <span key={n} className="text-[9px] uppercase tracking-widest border border-current px-2 py-1">{n}</span>
+            ))}
           </div>
         </div>
       </div>
@@ -459,27 +179,50 @@ function SceneCenter({
   );
 }
 
-function TriggerSection({
-  children,
-  onEnter,
-}: {
-  children: React.ReactNode;
-  onEnter: () => void;
-}) {
+function SceneCenter({ kicker, title, body, columns, onEnter }: any) {
+  return (
+    <TriggerSection onEnter={onEnter}>
+      <div className="mx-auto max-w-7xl px-12 py-32 space-y-24">
+        <div className="space-y-12 text-center">
+           <div className="inline-block border-2 border-current px-6 py-2 text-xs font-black uppercase tracking-[0.4em]">
+             {kicker}
+           </div>
+           <h2 className="text-[15vw] font-black leading-[0.8] tracking-tighter md:text-[12rem]">
+             {title}
+           </h2>
+           <p className="mx-auto max-w-3xl text-2xl font-medium opacity-70">
+             {body}
+           </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-px bg-current/10 border border-current/10 md:grid-cols-3">
+          {columns.map((c: any) => (
+            <div key={c.title} className="bg-inherit p-10 space-y-8">
+               <h3 className="text-xl font-black tracking-tighter uppercase">{c.title}</h3>
+               <ul className="space-y-4 opacity-70">
+                 {c.items.map((it: string) => (
+                   <li key={it} className="flex gap-4 text-sm leading-snug italic">
+                     <span className="text-[#7FD069]">•</span>
+                     {it}
+                   </li>
+                 ))}
+               </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </TriggerSection>
+  );
+}
+
+function TriggerSection({ children, onEnter }: any) {
   return (
     <motion.section
-      className="h-screen w-full flex items-end md:items-center"
       onViewportEnter={onEnter}
       viewport={{ margin: "-50% 0px -50% 0px" }}
+      className="min-h-screen flex items-center"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 28, filter: "blur(1px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full pb-20 md:pb-0"
-      >
-        {children}
-      </motion.div>
+      {children}
     </motion.section>
   );
 }
