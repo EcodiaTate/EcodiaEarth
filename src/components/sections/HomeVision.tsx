@@ -37,8 +37,8 @@ export function HomeVision() {
 
           <div className="max-w-xl space-y-8">
             <p className="font-mono text-xl md:text-2xl leading-relaxed text-[#2D2B28]/80">
-              Ecodia turns real-world care into sidequests. Designed to repeat.
-              Progress you can see - alone or together.
+              Ecodia sidequests.
+              Progress, experience, connect.
             </p>
           </div>
         </div>

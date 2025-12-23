@@ -9,7 +9,10 @@ import { useRef } from "react";
  * 1. No 3D Perspective/Glows (Rule 1)
  * 2. Heavy Strokes & Charcoal Ink (Rule 4)
  * 3. Functional Checklist Logic (Rule 6)
+ * 
  */
+
+
 
 export function HomeEntry() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -44,10 +47,17 @@ export function HomeEntry() {
               </span>
             </div>
 
-            <h2 className="font-black text-[10vw] lg:text-[9rem] leading-[0.8] tracking-tighter mb-12">
-              WORK WITH <br />
-              <span className="text-[#396041]">ECODIA.</span>
-            </h2>
+             <motion.h2 
+                       className="font-black text-[11vw] lg:text-[8.5rem] leading-[0.8] tracking-tighter"
+                     >
+                       WORK WITH <br />
+                       <span 
+                         className="text-transparent" 
+                         style={{ WebkitTextStroke: "1.5px #396041" }}
+                       >
+                         ECODIA
+                       </span>
+                     </motion.h2>
 
             <p className="font-mono text-xl md:text-2xl opacity-70 max-w-2xl leading-relaxed">
               For partners, backers, and builders. Practical next steps.

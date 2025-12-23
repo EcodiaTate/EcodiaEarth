@@ -2,215 +2,165 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, cubicBezier } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const ECODIA_BEZIER = [0.19, 1, 0.22, 1] as const;
+const ECODIA_EASE = cubicBezier(0.19, 1, 0.22, 1);
 
-export function HomePorts() {
+export function HomeLeafIndex() {
+  const containerRef = React.useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const massY = useTransform(scrollYProgress, [0, 1], [0, -140]);
+
   return (
     <section
-      id="ports"
-      className="relative w-full overflow-hidden bg-[#F9F8F5] text-[#2D2B28]"
+      ref={containerRef}
+      className="relative w-full overflow-hidden bg-[#F9F8F5] text-[#2D2B28] py-40 lg:py-72"
     >
-      {/* perimeter + perforation (unique motif vs other sections) */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-0 top-0 h-px w-full bg-[#2D2B28] opacity-[0.06]" />
-        <div className="absolute left-0 bottom-0 h-px w-full bg-[#2D2B28] opacity-[0.06]" />
+      {/* Rails */}
+      <div className="pointer-events-none absolute inset-0 border-r border-[#2D2B28] opacity-[0.03] right-[15%]" />
+      <div className="pointer-events-none absolute inset-0 border-l border-[#2D2B28] opacity-[0.03] left-[8%]" />
+      <div className="pointer-events-none absolute top-[12%] w-full h-px bg-[#2D2B28] opacity-[0.03]" />
 
-        {/* perforated rails */}
-        <div className="absolute left-[6%] top-0 h-full w-[1px] bg-[#2D2B28] opacity-[0.06]" />
-        <div className="absolute right-[6%] top-0 h-full w-[1px] bg-[#2D2B28] opacity-[0.06]" />
-
-        <div className="absolute left-[6%] top-0 h-full w-10 opacity-[0.12]">
-          {[...Array(18)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute left-3 h-2 w-2 rounded-full border border-[#2D2B28]"
-              style={{ top: `${i * 90 + 44}px` }}
-            />
-          ))}
-        </div>
-
-        <div className="absolute right-[6%] top-0 h-full w-10 opacity-[0.12]">
-          {[...Array(18)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute right-3 h-2 w-2 rounded-full border border-[#2D2B28]"
-              style={{ top: `${i * 90 + 44}px` }}
-            />
-          ))}
-        </div>
-
-        {/* faint sweep mark */}
-        <div className="absolute -left-[30%] top-[40%] h-[520px] w-[520px] rounded-full border border-[#2D2B28] opacity-[0.06]" />
-        <div className="absolute -right-[25%] top-[10%] h-[680px] w-[680px] rounded-full border border-[#2D2B28] opacity-[0.05]" />
-      </div>
-
-      <div className="mx-auto max-w-7xl px-8 py-44">
-        {/* header */}
-        <div className="mb-20 max-w-4xl">
-          <div className="mb-8 flex items-center gap-4">
-            <div
-              className="h-3 w-3 bg-[#396041]"
-              style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
-            />
-            <span className="font-mono text-[10px] uppercase tracking-[0.5em] opacity-40">
-              Index
+      <div className="relative z-10 px-[8%]">
+        {/* Header */}
+        <header className="mb-40">
+          <div className="mb-12 flex items-baseline gap-6">
+            <span className="font-mono text-[10px] font-black uppercase tracking-[0.8em]">
+              Index 00.00
             </span>
+            <div className="h-px w-24 bg-[#2D2B28] opacity-20" />
           </div>
 
-          <h2 className="font-black text-[8vw] lg:text-[6.5rem] leading-[0.9] tracking-tighter">
-            ENTRY POINTS <br />
-            <span className="text-transparent" style={{ WebkitTextStroke: "1px #2D2B28" }}>
-              IN USE.
-            </span>
-          </h2>
+          {/* Big leaf takes the title slot */}
+          <motion.div style={{ y: massY }} className="relative">
+            <img
+              src="/icons/leaf-black.svg"
+              alt="Ecodia leaf"
+              className="h-[18vh] w-auto max-h-[220px] lg:max-h-[320px] opacity-90"
+            />
+          </motion.div>
+        </header>
 
-          <p className="mt-10 max-w-xl font-mono text-lg opacity-60 leading-relaxed">
-            Start anywhere. It connects.
-          </p>
-        </div>
-
-        {/* ports row */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
-          <PortCard
+        {/* Nodes */}
+        <div className="grid grid-cols-1 gap-32 lg:grid-cols-12">
+          <UnitNode
             href="/eco"
-            label="ECO"
-            title="Sidequests + record"
-            meta="Work → log → accumulate"
-            accent="#7FD069"
-            col="lg:col-span-7"
+            label="Door 01"
+            title="ECO"
+            detail="Sidequests."
+            stamp="E"
+            accent="#396041"
+            className="lg:col-span-7"
           />
 
-          <PortCard
-            href="/eco-local"
-            label="ECO LOCAL"
-            title="Local return"
-            meta="Places → circulation → spend local"
+          <UnitNode
+            href="/ecolocal"
+            label="Door 02"
+            title="ECOLOCAL"
+            detail="Local."
+            stamp="L"
             accent="#F4D35E"
-            col="lg:col-span-5"
+            className="lg:col-start-8 lg:col-span-5 lg:-mt-16"
+            titleClassName="text-6xl lg:text-7xl"
           />
         </div>
 
-        {/* secondary rail (small, not “big choice”) */}
-        <div className="mt-14 flex flex-col gap-8 border-t border-[#2D2B28]/10 pt-10 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3 opacity-30">
-            <div className="h-2 w-2 bg-[#2D2B28]" />
-            <div className="font-mono text-[9px] uppercase tracking-[0.6em]">
-              Home // Ports
+        {/* Footer */}
+        <footer className="mt-60 flex flex-col gap-16">
+          <div className="h-px w-full bg-[#2D2B28] opacity-10" />
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <div className="space-y-2">
+              <div className="font-mono text-[10px] font-black uppercase tracking-widest">
+                Status
+              </div>
+              <div className="font-mono text-[10px] opacity-40 uppercase tracking-widest">
+                Active
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1">
+              {[...Array(32)].map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-8 w-px bg-[#2D2B28] ${
+                    i % 4 === 0 ? "opacity-40" : "opacity-10"
+                  }`}
+                />
+              ))}
             </div>
           </div>
-
-          <div className="flex flex-wrap gap-4">
-            <MiniJump href="/values">Values</MiniJump>
-            <MiniJump href="/greenprint">Greenprint</MiniJump>
-            <MiniJump href="/labs">Labs</MiniJump>
-          </div>
-        </div>
+        </footer>
       </div>
     </section>
   );
 }
 
-function PortCard({
+function UnitNode({
   href,
   label,
   title,
-  meta,
+  detail,
+  stamp,
   accent,
-  col,
-}: {
-  href: string;
-  label: string;
-  title: string;
-  meta: string;
-  accent: string;
-  col: string;
-}) {
+  className,
+  titleClassName,
+}: any) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.1, ease: ECODIA_BEZIER }}
-      viewport={{ once: true, margin: "-80px" }}
-      className={`relative ${col}`}
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1.5, ease: ECODIA_EASE }}
+      viewport={{ once: true }}
+      className={`relative group ${className}`}
     >
-      <Link
-        href={href}
-        className="group relative block border border-[#2D2B28]/20 bg-[#F9F8F5] p-14 lg:p-16 overflow-hidden"
-      >
-        {/* header stripe */}
-        <div className="pointer-events-none absolute left-0 top-0 h-2 w-full opacity-[0.12]" style={{ backgroundColor: accent }} />
-
-        {/* left trace */}
-        <div
-          className="pointer-events-none absolute left-0 top-0 h-full w-1 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-          style={{ backgroundColor: accent }}
-        />
-
-        {/* internal grid lines */}
-        <div className="pointer-events-none absolute inset-0 opacity-[0.06]">
-          <div className="absolute left-10 top-0 h-full w-px bg-[#2D2B28]" />
-          <div className="absolute right-10 top-0 h-full w-px bg-[#2D2B28]" />
-          <div className="absolute left-0 top-10 h-px w-full bg-[#2D2B28]" />
-        </div>
-
-        <div className="relative z-10 space-y-10">
-          <div className="flex items-start justify-between gap-10">
-            <div className="space-y-3">
-              <div className="flex items-center gap-4">
-                <div
-                  className="h-3 w-3"
-                  style={{
-                    backgroundColor: accent,
-                    clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                  }}
-                />
-                <span className="font-mono text-[10px] font-black uppercase tracking-[0.55em] opacity-40">
-                  {label}
-                </span>
-              </div>
-
-              <div className="font-mono text-[10px] uppercase tracking-[0.45em] opacity-30">
-                {meta}
-              </div>
+      <Link href={href} className="block">
+        <div className="relative border-t-[2px] border-[#2D2B28] pt-8 overflow-hidden">
+          {/* Label */}
+          <div className="flex justify-between items-start mb-12">
+            <div className="flex flex-col gap-1">
+              <span className="font-mono text-[10px] font-black uppercase tracking-[0.4em]">
+                {label}
+              </span>
+              <div className="h-0.5 w-8" style={{ backgroundColor: accent }} />
             </div>
-
-            <ArrowUpRight
-              size={18}
-              className="opacity-20 group-hover:opacity-60 transition-opacity"
-            />
+            <span className="font-mono text-[10px] font-black opacity-20 group-hover:opacity-100 transition-opacity">
+              {stamp}
+            </span>
           </div>
 
-          <h3 className="font-black text-4xl lg:text-6xl leading-[0.95] tracking-tighter">
-            {title}
-          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
+            <h3
+              className={`font-black leading-none tracking-tighter uppercase break-words ${
+                titleClassName ?? "text-7xl lg:text-8xl"
+              }`}
+            >
+              {title}
+            </h3>
 
-          <div className="pt-10 border-t border-[#2D2B28]/10 flex items-center justify-between">
-            <span className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">
-              Open
-            </span>
-            <div className="flex gap-2 opacity-30">
-              {[...Array(7)].map((_, i) => (
-                <div key={i} className="h-px w-8 bg-[#2D2B28]" />
-              ))}
+            <div className="pb-2">
+              <p className="font-mono text-xs uppercase tracking-widest opacity-40 mb-6 leading-relaxed">
+                {detail}
+              </p>
+              <div className="flex items-center gap-4 group-hover:translate-x-2 transition-transform duration-700">
+                <span className="font-mono text-[10px] font-black uppercase">
+                  Open
+                </span>
+                <ArrowUpRight size={14} strokeWidth={3} />
+              </div>
             </div>
+          </div>
+
+          {/* Trace */}
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity duration-1000">
+            <img src="/icons/leaf-black.svg" alt="" className="h-6 w-6" />
           </div>
         </div>
       </Link>
     </motion.div>
-  );
-}
-
-function MiniJump({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="group inline-flex items-center gap-3 border border-[#2D2B28]/20 px-6 py-3 font-mono text-[10px] uppercase tracking-[0.35em] opacity-50 hover:opacity-100 hover:bg-[#2D2B28] hover:text-[#F9F8F5] transition-all"
-    >
-      {children}
-      <ArrowUpRight size={14} className="opacity-40 group-hover:opacity-80" />
-    </Link>
   );
 }

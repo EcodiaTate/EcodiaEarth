@@ -107,12 +107,12 @@ export function HeroTitle() {
             <div className="space-y-2">
               <div className="h-[1px] w-32 bg-[#2D2B28] opacity-20" />
               <p className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-40">
-                Locally anchored • ongoing
+                Because local • ongoing
               </p>
             </div>
             <div className="hidden md:block">
               <p className="max-w-xs font-mono text-[11px] leading-relaxed opacity-60">
-                Ecodia. It’s a world that’s already unfolding.
+                A world that’s already unfolding.
               </p>
             </div>
           </div>

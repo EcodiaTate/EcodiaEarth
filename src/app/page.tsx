@@ -12,7 +12,7 @@ import { HomeValues } from "@/components/sections/HomeValues";
 import { HomeEcosystem } from "@/components/sections/HomeEcosystem";
 import { HomeVision } from "@/components/sections/HomeVision";
 import { HomeEntry } from "@/components/sections/HomeEntry";
-import { HomePorts } from "@/components/sections/HomePorts";
+import { HomeLeafIndex } from "@/components/sections/HomePorts";
 import { HomePressLegal } from "@/components/sections/HomePressLegal";
 
 // Shell
@@ -41,23 +41,16 @@ export default function HomePage() {
           className="absolute bottom-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-mint/40 rounded-full blur-[160px] opacity-70 mix-blend-multiply"
         />
       </div>
-
-      {/* Hero */}
       <HeroTitle />
+      <section id="values"><HomeLeafIndex /></section>
       <HomeVision />
       <StickyNarrative />
       <section id="tech"><TechnologySection /></section>
       <section id="eco"><HomeEcosystem /></section>
       <section id="labs"><HomeLabs /></section>
       <section id="values"><HomeValues /></section>
-      <section id="values"><HomePorts /></section>
-      <HomePressLegal />
-      {/* CTA-style Entry placed near the bottom */}
       <HomeEntry />
-
-      {/* Press / Legal hub */}
-  
-
+      <HomePressLegal />
       <Footer />
     </main>
   );
