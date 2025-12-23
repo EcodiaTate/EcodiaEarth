@@ -62,8 +62,8 @@ export default function EntryPage() {
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]">
         <div className="absolute left-[8%] top-0 h-full w-px bg-[#2D2B28]" />
         <div className="absolute left-0 top-[15%] h-px w-full bg-[#2D2B28]" />
-        <div className="absolute -right-[10%] -top-[10%] h-[800px] w-[800px] rounded-full border border-[#2D2B28]" />
-      </div>
+<div className="pointer-events-none absolute -right-[60vw] -top-[60vw] h-[120vw] w-[120vw] rounded-full border border-[#2D2B28] opacity-20 md:-right-[10%] md:-top-[10%] md:h-[800px] md:w-[800px]" />
+</div>
 
       <div className="relative z-10 pl-[8%] pr-[15%] py-32">
         {/* Hero */}

@@ -28,7 +28,7 @@ export function HomeEntry() {
     <section
       ref={ref}
       id="entry"
-      className="relative py-48 bg-[#F9F8F5] text-[#2D2B28] overflow-hidden border-t-4 border-[#2D2B28]"
+      className="relative py-48 bg-[#F9F8F5] text-[#2D2B28] overflow-hidden"
     >
       {/* 1. CALIBRATION RESIDUE (Rule 6) */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
