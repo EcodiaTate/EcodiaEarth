@@ -12,7 +12,7 @@ const EASE = cubicBezier(0.19, 1, 0.22, 1);
 const SECTIONS = [
   {
     id: "01",
-    label: "Product",
+    label: "Sidequests",
     sub: "Real-world sidequests",
     theme: "#7FD069",
     content: [
@@ -23,7 +23,7 @@ const SECTIONS = [
   },
   {
     id: "02",
-    label: "Local",
+    label: "ECO Local",
     sub: "Value kept close",
     theme: "#F4D35E",
     content: [
@@ -97,9 +97,9 @@ export default function CompanySection() {
             </span>
           </div>
 
-          <h1 className="text-[10rem] font-black leading-[0.75] tracking-tighter sm:text-[14rem]">
-            BUILDING <br />
-            <span className="italic font-light opacity-10">TOOLS.</span>
+          <h1 className="text-[10rem] font-black leading-[0.9] tracking-tighter sm:text-[14rem]">
+            THE NEXT <br />
+            <span className="italic font-light opacity-10">WORLD.</span>
           </h1>
 
           <div className="mt-12 flex flex-col md:flex-row justify-between items-start gap-12">
@@ -198,7 +198,7 @@ export default function CompanySection() {
               <div className="space-y-2">
                 <SmoothLink
                   href="/contact"
-                  className="flex w-full items-center justify-between border border-[#F9F8F5]/20 px-6 py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#F9F8F5] hover:text-[#2D2B28] transition-colors"
+                  className="flex w-full items-center justify-between border border-[#F9F8F5]/20 px-6 py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#F9F8F5] text-[#f9f8f5] hover:text-[#2D2B28] transition-colors"
                 >
                   Send a note <ArrowUpRight size={14} />
                 </SmoothLink>
