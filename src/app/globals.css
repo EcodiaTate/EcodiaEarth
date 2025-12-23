@@ -58,12 +58,32 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  /* globals.css */
 
+  body {
+    background: var(--bg);
+  }
+  
+  /* global grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;              /* above everything */
+    mix-blend-mode: multiply;   /* makes it visible on light panels */
+  
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 240px 240px;
+  }
+  
   ::selection {
     background: color-mix(in oklab, var(--mint) 35%, white);
     color: var(--ink);
   }
 
+ 
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
     letter-spacing: 0.2px;

@@ -42,7 +42,7 @@ export function HomeValues() {
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40 block mb-6">
             Field notes
           </span>
-          <h2 className="font-black text-[10vw] lg:text-[10rem] leading-[0.78] tracking-tighter">
+          <h2 className="font-black text-[9vw] lg:text-[9rem] leading-[0.78] tracking-tighter">
   HOW THIS <br />
   <span className="text-transparent" style={{ WebkitTextStroke: "1px #2D2B28" }}>
     WORLD WORKS.

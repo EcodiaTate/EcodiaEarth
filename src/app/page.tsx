@@ -20,9 +20,9 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white text-ink selection:bg-mint selection:text-ink perspective-1000">
+    <main className="min-h-screen bg-white text-ink home-bg selection:bg-mint selection:text-ink perspective-1000">
       {/* Cinematic overlays */}
-      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.8] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
+      <div className="fixed inset-0 pointer-events-none " />
 
       <HeroTitle />
       <section id="values"><HomeLeafIndex /></section>
