@@ -16,8 +16,8 @@ const SECTIONS = [
     sub: "Real-world sidequests",
     theme: "#7FD069",
     content: [
-      "Small actions that add up.",
-      "You do something real. It’s noticed, and it carries."
+      "Real-world sidequests.",
+      "Action becomes momentum. Progress becomes shared.",
     ],
     calibration: "Field v1",
   },
@@ -27,8 +27,8 @@ const SECTIONS = [
     sub: "Value kept close",
     theme: "#F4D35E",
     content: [
-      "Start with the block you stand on.",
-      "Shops, studios, neighbours - gains that stay in reach."
+      "Local rewards that circulate.",
+      "Participation that strengthens the places you’re already in.",
     ],
     calibration: "Local grid v4",
   },
@@ -38,8 +38,8 @@ const SECTIONS = [
     sub: "Repair & reuse",
     theme: "#396041",
     content: [
-      "Make things last. Fix what can be kept.",
-      "Craft over novelty."
+      "Make better things with what already exists.",
+      "Repair, reuse, and build taste for longevity.",
     ],
     calibration: "Materials v2",
   },
@@ -63,8 +63,13 @@ export default function CompanySection() {
           onClick={() => router.back()}
           className="group flex items-center gap-4 border-b-2 border-[#2D2B28] pb-1 transition-all"
         >
-          <ArrowLeft size={14} className="group-hover:-translate-x-2 transition-transform duration-500" />
-          <span className="text-[10px] font-black uppercase tracking-[0.4em]">Back</span>
+          <ArrowLeft
+            size={14}
+            className="group-hover:-translate-x-2 transition-transform duration-500"
+          />
+          <span className="text-[10px] font-black uppercase tracking-[0.4em]">
+            Back
+          </span>
         </button>
       </div>
 
@@ -80,8 +85,16 @@ export default function CompanySection() {
         {/* Header */}
         <header className="mb-32 max-w-5xl">
           <div className="flex items-center gap-3 mb-12">
-            <div className="h-4 w-4 bg-[#2D2B28]" style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }} />
-            <span className="text-[10px] uppercase tracking-[0.6em] opacity-40">Ecodia</span>
+            <div
+              className="h-4 w-4 bg-[#2D2B28]"
+              style={{
+                clipPath:
+                  "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+              }}
+            />
+            <span className="text-[10px] uppercase tracking-[0.6em] opacity-40">
+              Ecodia
+            </span>
           </div>
 
           <h1 className="text-[10rem] font-black leading-[0.75] tracking-tighter sm:text-[14rem]">
@@ -91,10 +104,12 @@ export default function CompanySection() {
 
           <div className="mt-12 flex flex-col md:flex-row justify-between items-start gap-12">
             <p className="max-w-md text-xl leading-tight opacity-80">
-              Tools for real life. From consuming to building, together.
+              A world where participation carries weight.
             </p>
             <div className="border-l border-[#2D2B28] pl-6">
-              <div className="text-[9px] uppercase tracking-widest opacity-40 mb-1">Status</div>
+              <div className="text-[9px] uppercase tracking-widest opacity-40 mb-1">
+                Status
+              </div>
               <div className="text-sm font-black uppercase">Active</div>
             </div>
           </div>
@@ -107,14 +122,24 @@ export default function CompanySection() {
               key={s.id}
               onClick={() => setActive(idx)}
               className={`relative flex flex-col items-start p-10 pt-6 transition-all duration-700 ${
-                active === idx ? "bg-[#2D2B28] text-[#F9F8F5]" : "hover:bg-[#2D2B28]/5"
+                active === idx
+                  ? "bg-[#2D2B28] text-[#F9F8F5]"
+                  : "hover:bg-[#2D2B28]/5"
               }`}
             >
-              <span className={`mb-12 text-[10px] font-black ${active === idx ? "text-[#7FD069]" : "opacity-20"}`}>
+              <span
+                className={`mb-12 text-[10px] font-black ${
+                  active === idx ? "text-[#7FD069]" : "opacity-20"
+                }`}
+              >
                 [{s.id}]
               </span>
-              <h3 className="text-4xl font-black uppercase tracking-tighter mb-2">{s.label}</h3>
-              <span className="text-[10px] uppercase tracking-widest opacity-50">{s.sub}</span>
+              <h3 className="text-4xl font-black uppercase tracking-tighter mb-2">
+                {s.label}
+              </h3>
+              <span className="text-[10px] uppercase tracking-widest opacity-50">
+                {s.sub}
+              </span>
 
               {active === idx && (
                 <motion.div
@@ -142,7 +167,10 @@ export default function CompanySection() {
               >
                 <div className="space-y-10">
                   {item.content.map((p, i) => (
-                    <p key={i} className="text-3xl font-medium leading-[1.1] tracking-tight max-w-2xl">
+                    <p
+                      key={i}
+                      className="text-3xl font-medium leading-[1.1] tracking-tight max-w-2xl"
+                    >
                       {p}
                     </p>
                   ))}
@@ -161,9 +189,11 @@ export default function CompanySection() {
           {/* Aside */}
           <aside className="lg:col-span-5 flex flex-col justify-end">
             <div className="bg-[#2D2B28] p-12 text-[#F9F8F5]">
-              <h4 className="mb-6 text-[10px] font-black uppercase tracking-[0.5em]">Get in touch</h4>
+              <h4 className="mb-6 text-[10px] font-black uppercase tracking-[0.5em]">
+                Get in touch
+              </h4>
               <p className="mb-12 text-sm opacity-60 leading-relaxed">
-                For people who build. We’ll reply as soon as we can.
+                For people building the world with us.
               </p>
               <div className="space-y-2">
                 <SmoothLink
@@ -179,14 +209,18 @@ export default function CompanySection() {
 
         {/* Footer */}
         <footer className="mt-64 flex flex-col md:flex-row items-end justify-between border-t border-[#2D2B28]/10 pt-12 opacity-30">
-          <div className="text-[9px] uppercase tracking-[0.6em]">Ecodia • [Ref 77]</div>
+          <div className="text-[9px] uppercase tracking-[0.6em]">
+            Ecodia • [Ref 77]
+          </div>
           <div className="flex items-center gap-12 mt-8 md:mt-0">
             <div className="flex gap-2">
               {[...Array(8)].map((_, i) => (
                 <div key={i} className="h-px w-4 bg-[#2D2B28]" />
               ))}
             </div>
-            <div className="text-[9px] uppercase tracking-[0.6em]">2025 • Active</div>
+            <div className="text-[9px] uppercase tracking-[0.6em]">
+              2025 • Active
+            </div>
           </div>
         </footer>
       </div>

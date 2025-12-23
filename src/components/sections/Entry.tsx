@@ -9,27 +9,27 @@ const ECODIA_BEZIER = [0.19, 1, 0.22, 1] as const;
 const DOORS = [
   {
     label: "PARTNER",
-    sub: "Bring a site. We bring the pattern.",
+    sub: "Bring a place. We’ll map a first pass together.",
     intent: "partner",
-    icon: <Anchor size={20} strokeWidth={1.5} />
+    icon: <Anchor size={20} strokeWidth={1.5} />,
   },
   {
     label: "BUILD",
-    sub: "Hands and code. Make it work in the real.",
+    sub: "Design and ship. Keep it usable.",
     intent: "build",
-    icon: <ToolCase size={20} strokeWidth={1.5} />
+    icon: <ToolCase size={20} strokeWidth={1.5} />,
   },
   {
     label: "DEPLOY",
-    sub: "Stand up a node. Keep it tidy.",
+    sub: "Stand up a node. Keep it running.",
     intent: "deploy",
-    icon: <Map size={20} strokeWidth={1.5} />
+    icon: <Map size={20} strokeWidth={1.5} />,
   },
   {
     label: "OBSERVE",
-    sub: "Read the signals. Adjust course.",
+    sub: "Look closely. Tell us what you notice.",
     intent: "other",
-    icon: <Eye size={20} strokeWidth={1.5} />
+    icon: <Eye size={20} strokeWidth={1.5} />,
   },
 ];
 
@@ -70,13 +70,17 @@ export default function EntryPage() {
         <section className="mb-64 grid grid-cols-1 gap-24 lg:grid-cols-12">
           <div className="lg:col-span-9 space-y-16">
             <div className="flex items-center gap-6">
-              <span className="text-[11px] font-black uppercase tracking-[0.6em] opacity-20">Brief</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.6em] opacity-20">
+                Brief
+              </span>
               <div className="h-px w-32 bg-[#2D2B28] opacity-10" />
             </div>
 
             <h1 className="text-[9rem] font-black leading-[0.75] tracking-tighter sm:text-[11rem] lg:text-[13rem]">
               START <br />
-              <span className="italic font-light opacity-10 text-[#396041]">THE WORK.</span>
+              <span className="italic font-light opacity-10 text-[#396041]">
+                HERE.
+              </span>
             </h1>
 
             <div className="inline-block border-2 border-[#2D2B28] px-8 py-4 text-[11px] font-black uppercase tracking-[0.4em]">
@@ -84,7 +88,8 @@ export default function EntryPage() {
             </div>
 
             <p className="max-w-3xl text-3xl font-medium leading-tight tracking-tighter opacity-80 border-l-4 border-[#2D2B28] pl-12">
-              Less talk. More trace. Ecodia turns care into things people can actually do and see.
+              Ecodia turns participation into something you can actually do.
+              Clear entry points. Real places. Momentum that holds.
             </p>
           </div>
 
@@ -92,13 +97,15 @@ export default function EntryPage() {
           <div className="lg:col-span-3 flex items-end">
             <div className="border-4 border-[#2D2B28] bg-[#F9F8F5] p-10 relative w-full">
               <div className="mb-10 border-b-2 border-[#2D2B28] pb-6">
-                <span className="text-[11px] font-black uppercase tracking-[0.5em]">Steps</span>
+                <span className="text-[11px] font-black uppercase tracking-[0.5em]">
+                  Steps
+                </span>
               </div>
               <ul className="space-y-8">
                 {[
-                  { id: "01", text: "Pick your door." },
-                  { id: "02", text: "Say what you’ll bring." },
-                  { id: "03", text: "We answer, then get on with it." }
+                  { id: "01", text: "Pick a door." },
+                  { id: "02", text: "Write the short version." },
+                  { id: "03", text: "We reply. It moves." },
                 ].map((step) => (
                   <li key={step.id} className="flex gap-6 items-start">
                     <span className="text-[10px] font-black opacity-20 mt-1">{step.id}</span>
@@ -116,20 +123,26 @@ export default function EntryPage() {
         <section className="relative -ml-[8%] -mr-[15%] bg-[#2D2B28] px-[8%] py-48 text-[#F9F8F5]">
           <div className="max-w-7xl grid grid-cols-1 gap-24 lg:grid-cols-2 lg:items-center">
             <div className="space-y-12">
-              <div className="text-[11px] font-black uppercase tracking-[0.6em] opacity-40 italic">Orientation</div>
+              <div className="text-[11px] font-black uppercase tracking-[0.6em] opacity-40 italic">
+                Orientation
+              </div>
               <h2 className="text-[6rem] font-black leading-[0.85] tracking-tighter sm:text-[8rem]">
-                MECHANISM <br /> OVER MESSAGE.
+                STRUCTURE <br /> OVER NOISE.
               </h2>
               <p className="text-2xl font-medium opacity-60 leading-tight max-w-lg">
-                Care is common. Structure isn’t. We bias for things that hold together.
+                People already know what matters. This is about making participation
+                easy to enter and hard to lose.
               </p>
             </div>
+
             <div className="border-l border-[#F9F8F5]/20 p-16 space-y-10">
               <p className="text-4xl font-black tracking-tighter text-[#7FD069] leading-none">
-                Participation by default.
+                Participation, by default.
               </p>
               <div className="h-px w-full bg-[#F9F8F5]/10" />
-              <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">Operational: live</p>
+              <p className="text-[11px] font-black uppercase tracking-[0.4em] opacity-40">
+                Status: live
+              </p>
             </div>
           </div>
         </section>
@@ -137,7 +150,9 @@ export default function EntryPage() {
         {/* Doors */}
         <section id="doors" className="py-64">
           <div className="flex items-center gap-8 mb-24">
-            <span className="text-[11px] font-black uppercase tracking-[0.6em] opacity-20">Access</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.6em] opacity-20">
+              Access
+            </span>
             <div className="h-px flex-1 bg-[#2D2B28] opacity-5" />
           </div>
 
@@ -151,8 +166,12 @@ export default function EntryPage() {
                 <div className="mb-20 flex h-16 w-16 items-center justify-center border border-[#2D2B28] group-hover:border-[#F9F8F5]">
                   {d.icon}
                 </div>
-                <h3 className="text-4xl font-black tracking-tighter mb-6 uppercase">{d.label}</h3>
-                <p className="text-sm font-medium opacity-60 group-hover:opacity-100 leading-tight mb-12">{d.sub}</p>
+                <h3 className="text-4xl font-black tracking-tighter mb-6 uppercase">
+                  {d.label}
+                </h3>
+                <p className="text-sm font-medium opacity-60 group-hover:opacity-100 leading-tight mb-12">
+                  {d.sub}
+                </p>
                 <div className="absolute bottom-10 right-10 opacity-0 group-hover:opacity-40 transition-opacity">
                   <ArrowUpRight size={24} />
                 </div>
@@ -164,8 +183,12 @@ export default function EntryPage() {
         {/* Footer */}
         <footer className="mt-64 border-t-8 border-[#2D2B28] pt-16 flex flex-col md:flex-row justify-between items-end gap-16">
           <div className="space-y-6">
-            <div className="text-[11px] font-black uppercase tracking-[0.6em] opacity-30 italic">Final frame</div>
-            <h2 className="text-8xl font-black tracking-tighter leading-none">THE WORLD WE <br /> BUILD NEXT.</h2>
+            <div className="text-[11px] font-black uppercase tracking-[0.6em] opacity-30 italic">
+              Final frame
+            </div>
+            <h2 className="text-8xl font-black tracking-tighter leading-none">
+              THE WORLD WE <br /> BUILD NEXT.
+            </h2>
           </div>
           <SmoothLink
             href="/contact?intent=partner"

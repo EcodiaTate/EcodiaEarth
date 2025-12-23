@@ -20,7 +20,7 @@ const ZONES: Readonly<Zone[]> = [
   {
     id: "ZONE_01",
     title: "PEOPLE",
-    subtitle: "Active_Nodes",
+    subtitle: "Active_Places",
     desc: "It starts where you are. Friends, neighbours, builders - choosing to take part in the local grid.",
     color: "bg-[#F9F8F5]",
     text: "text-[#2D2B28]",

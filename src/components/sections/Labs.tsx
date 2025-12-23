@@ -35,9 +35,12 @@ export default function LabsSection() {
         {/* Header */}
         <header className="mb-64 space-y-16">
           <div className="flex items-center gap-4">
-            <div className="h-4 w-4 bg-[#7FD069]" style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }} />
+            <div
+              className="h-4 w-4 bg-[#7FD069]"
+              style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
+            />
             <span className="text-[10px] font-black uppercase tracking-[0.6em] opacity-40">
-              Ecodia Labs // R&D
+              Ecodia Labs // R&amp;D
             </span>
           </div>
 
@@ -48,14 +51,14 @@ export default function LabsSection() {
           <div className="grid grid-cols-1 gap-24 lg:grid-cols-12">
             <div className="lg:col-span-8">
               <p className="text-3xl font-medium leading-tight tracking-tighter opacity-80 border-l border-[#2D2B28] pl-12">
-                Tools that back the street-level world. <br />
-                Hardware. Sense-making. Field logic.
+                Field-grade tools. <br />
+                Sensors, coordination, and rules that survive contact.
               </p>
             </div>
             <nav className="flex flex-col gap-6 lg:col-span-4 lg:items-end lg:justify-end">
-              <Jump href="#work">Work_Log</Jump>
+              <Jump href="#work">Work</Jump>
               <Jump href="#ip">IP</Jump>
-              <Jump href="#partner">Initiate_Handshake</Jump>
+              <Jump href="#partner">Contact</Jump>
             </nav>
           </div>
         </header>
@@ -63,30 +66,30 @@ export default function LabsSection() {
         {/* Work log */}
         <section id="work" className="mb-96">
           <div className="mb-24 border-b-4 border-[#2D2B28] pb-10 flex justify-between items-end">
-            <h2 className="text-[11px] font-black uppercase tracking-[0.6em]">Current_Deployments</h2>
-            <span className="text-[10px] opacity-20 uppercase tracking-widest italic">Live_Strata</span>
+            <h2 className="text-[11px] font-black uppercase tracking-[0.6em]">Work log</h2>
+            <span className="text-[10px] opacity-20 uppercase tracking-widest italic">Active</span>
           </div>
 
           <div className="divide-y divide-[#2D2B28]/10 border-b border-[#2D2B28]/10">
             <LineItem
               id="01"
               code="DISTRICT_ARCHITECTURE"
-              title="District Foundation"
-              body="Requirements for an Ecodia district. Participation mechanics and local integration that hold up under use."
+              title="District foundation"
+              body="Requirements for a district. Participation mechanics and local wiring that keep working."
               tags={["Mechanics", "Nodes", "Integration"]}
             />
             <LineItem
               id="02"
               code="STRUCTURAL_GREENING"
-              title="Urban Heat Mitigation"
-              body="Biodiversity and heat sensors at street level. Tooling for shade, water, and thermal load."
+              title="Urban heat mitigation"
+              body="Street sensing for shade, water, heat load. Tools that make conditions legible."
               tags={["Sensors", "Biodiversity", "Heat"]}
             />
             <LineItem
               id="03"
               code="SYSTEMIC_COORDINATION"
-              title="Coordination Software"
-              body="Infrastructure for collective action. Big jobs made legible to a local grid."
+              title="Coordination software"
+              body="Collective work rendered as a grid. Jobs move. People stay oriented."
               tags={["Coordination", "Tooling", "Legibility"]}
             />
           </div>
@@ -95,29 +98,28 @@ export default function LabsSection() {
         {/* IP & research */}
         <section id="ip" className="mb-96 grid grid-cols-1 gap-32 lg:grid-cols-12">
           <div className="lg:col-span-7 space-y-16">
-            <div className="text-[11px] font-black uppercase tracking-[0.6em] opacity-30 italic">Section_02 // IP</div>
+            <div className="text-[11px] font-black uppercase tracking-[0.6em] opacity-30 italic">
+              Section 02 // IP
+            </div>
             <h2 className="text-7xl font-black leading-[0.8] tracking-tighter sm:text-9xl">
               HOW WE <br /> HOLD <br /> THE WORK.
             </h2>
             <div className="space-y-12 text-2xl font-medium leading-tight opacity-70 border-l border-[#2D2B28] pl-12">
-              <p>
-                Labs anchors ideas that need long timelines. We test the hard parts alone before they enter the field.
-              </p>
-              <p>
-                Licensing, open docs, and experimental tech live here so the local grid stays durable.
-              </p>
+              <p>Long timelines live here. Prototypes, docs, and tests before they ship into public use.</p>
+              <p>Licensing and publication live here too. The pattern stays transferable.</p>
             </div>
           </div>
+
           <div className="lg:col-span-5 flex items-end">
             <div className="border-4 border-[#2D2B28] bg-[#F9F8F5] p-12 space-y-12 relative w-full">
               <h3 className="text-[11px] font-black uppercase tracking-[0.5em] border-b border-[#2D2B28]/10 pb-6">
-                Principles of Build
+                Build notes
               </h3>
               <ul className="space-y-8">
-                <Principle icon={<Compass size={18} strokeWidth={1.5} />} text="Field pilots over claims." />
-                <Principle icon={<Cpu size={18} strokeWidth={1.5} />} text="Only parts that extend." />
+                <Principle icon={<Compass size={18} strokeWidth={1.5} />} text="Field runs over claims." />
+                <Principle icon={<Cpu size={18} strokeWidth={1.5} />} text="Parts that extend." />
                 <Principle icon={<Activity size={18} strokeWidth={1.5} />} text="Human intent stays central." />
-                <Principle icon={<Zap size={18} strokeWidth={1.5} />} text="Start from use, not theory." />
+                <Principle icon={<Zap size={18} strokeWidth={1.5} />} text="Use first. Theory later." />
               </ul>
               <div className="absolute -top-2 -left-2 h-6 w-6 border-t-4 border-l-4 border-[#2D2B28]" />
             </div>
@@ -131,26 +133,26 @@ export default function LabsSection() {
               INITIATE <br /> COLLABORATION.
             </h2>
             <p className="text-3xl font-medium tracking-tighter opacity-60 max-w-2xl leading-tight">
-              If you’re building districts, greening streets, or engineering the next layer, bring your labour.
+              Districts. Streets. Coordination. If you’re working in the same direction, step in.
             </p>
             <SmoothLink
               href="/contact"
               className="inline-block bg-[#2D2B28] px-16 py-8 text-xs font-black uppercase tracking-[0.5em] text-[#F9F8F5] transition-all duration-700 hover:bg-[#396041]"
             >
-              Start_Handshake
+              Start
             </SmoothLink>
           </div>
         </section>
 
         {/* Footer */}
         <footer className="mt-48 flex items-center justify-between border-t border-[#2D2B28]/10 pt-16 opacity-30">
-          <div className="text-[10px] font-black uppercase tracking-[0.8em]">Ecodia.Labs // Archive_Ref_IP</div>
+          <div className="text-[10px] font-black uppercase tracking-[0.8em]">Ecodia.Labs // Archive</div>
           <div className="flex gap-1">
             {[...Array(8)].map((_, i) => (
               <div key={i} className="h-8 w-px bg-[#2D2B28]" />
             ))}
           </div>
-          <div className="text-[10px] font-black uppercase tracking-[0.8em]">2025 // Drift_Active</div>
+          <div className="text-[10px] font-black uppercase tracking-[0.8em]">2025</div>
         </footer>
       </div>
     </main>
@@ -164,7 +166,10 @@ function Jump({ href, children }: { href: string; children: React.ReactNode }) {
       className="text-[11px] font-black uppercase tracking-[0.4em] opacity-30 transition-all duration-700 hover:opacity-100 hover:text-[#7FD069] flex items-center gap-4 group"
     >
       {children}
-      <ArrowDownRight size={14} className="group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
+      <ArrowDownRight
+        size={14}
+        className="group-hover:translate-x-1 group-hover:translate-y-1 transition-transform"
+      />
     </a>
   );
 }
@@ -194,10 +199,12 @@ function LineItem({
           <div className="text-[11px] font-black opacity-20 mb-2">[{id}]</div>
           <div className="text-[10px] uppercase tracking-[0.4em] font-black opacity-40">{code}</div>
         </div>
+
         <div className="lg:col-span-7 space-y-6">
           <h3 className="text-5xl font-black tracking-tighter uppercase leading-none">{title}</h3>
           <p className="text-2xl font-medium opacity-70 leading-tight max-w-3xl">{body}</p>
         </div>
+
         <div className="lg:col-span-3 flex flex-wrap gap-2 lg:justify-end">
           {tags.map((t) => (
             <span
@@ -209,6 +216,7 @@ function LineItem({
           ))}
         </div>
       </div>
+
       <div className="absolute left-0 top-0 h-full w-1 bg-[#7FD069] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
     </motion.div>
   );

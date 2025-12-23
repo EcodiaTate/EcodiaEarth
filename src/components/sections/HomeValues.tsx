@@ -7,29 +7,25 @@ const PRINCIPLES = [
   {
     id: "01",
     title: "Shared Upside",
-    text:
-      "When a place improves, the upside should circulate through the people who live there. Value returns to the setting.",
+    text: "When a place gains, value circulates through the people already living there. Return stays local first.",
     color: "text-[#2D2B28]",
   },
   {
     id: "02",
     title: "Design Over Discipline",
-    text:
-      "Good systems lower friction. Participation becomes easy to begin, easy to repeat, and simple to carry.",
+    text: "Structure decides what repeats. Participation follows what the world makes possible.",
     color: "text-[#7FD069]", // Mint Stain
   },
   {
     id: "03",
     title: "Doing Counts",
-    text:
-      "Progress is made of what gets done. Small actions leave a trace when they’re shared and carried forward.",
+    text: "Progress is the work that lands. What gets done carries forward.",
     color: "text-[#2D2B28]",
   },
   {
     id: "04",
     title: "Mutual Benefit",
-    text:
-      "Participation lasts when everyone gets something real from it. Personal benefit and shared good reinforce each other.",
+    text: "It lasts when benefit is shared. Personal return and shared return move together.",
     color: "text-[#F4D35E]", // Gold Stain
   },
 ];
@@ -48,10 +44,7 @@ export function HomeValues() {
           </span>
           <h2 className="font-black text-[8vw] lg:text-[8rem] leading-[0.8] tracking-tighter">
             HOW THIS <br />
-            <span
-              className="text-transparent"
-              style={{ WebkitTextStroke: "1px #2D2B28" }}
-            >
+            <span className="text-transparent" style={{ WebkitTextStroke: "1px #2D2B28" }}>
               WORLD WORKS.
             </span>
           </h2>
@@ -67,14 +60,14 @@ export function HomeValues() {
         {/* CTA: FOOTER MARK */}
         <div className="mt-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div className="font-mono text-[9px] uppercase tracking-widest opacity-30 leading-loose">
-            Patterns in use <br />
-            Updated as we learn
+            In use <br />
+            Revised in motion
           </div>
           <Link
             href="/values"
             className="border border-[#2D2B28] px-12 py-6 font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-[#2D2B28] hover:text-[#F9F8F5] transition-all"
           >
-            Read the values →
+            Read the notes →
           </Link>
         </div>
       </div>
@@ -87,7 +80,7 @@ function PrincipleRow({ data, index }: { data: any; index: number }) {
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      className="group py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
+      className="group py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-start relative"
     >
       <div className="md:col-span-1 font-mono text-xs opacity-20">[{data.id}]</div>
 

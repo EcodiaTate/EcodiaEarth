@@ -3,9 +3,8 @@
 import Link from "next/link";
 
 const DOCUMENTATION = [
-  { title: "Public Manifest", desc: "Intent and baseline.", link: "/manifest" },
-  { title: "Data Model", desc: "What we collect, why, and how it’s protected.", link: "/data-model" },
-  { title: "Governance", desc: "How decisions change over time.", link: "/governance" },
+  { title: "Data Model", desc: "What we collect, why, and how it’s protected.", link: "https://ecodia.au/legal" },
+  { title: "Governance", desc: "How decisions change over time.", link: "/legal" },
   { title: "Press Desk", desc: "Assets and field notes.", link: "/press" },
 ];
 

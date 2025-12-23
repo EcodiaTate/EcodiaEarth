@@ -112,7 +112,7 @@ export function HeroTitle() {
             </div>
             <div className="hidden md:block">
               <p className="max-w-xs font-mono text-[11px] leading-relaxed opacity-60">
-                Ecodia isn’t a system to join. It’s a world that’s already unfolding.
+                Ecodia. It’s a world that’s already unfolding.
               </p>
             </div>
           </div>

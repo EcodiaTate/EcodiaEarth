@@ -46,14 +46,14 @@ export default function ECOLocalYouthSection() {
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 border-l border-[#2D2B28] pl-16">
               <p className="lg:col-span-8 text-3xl font-medium leading-tight tracking-tighter opacity-80">
-                The old loop rewards attention. ECO Local rewards action. Small moves that change how a place feels.
+                The old economy rewards attention. ECO Local rewards action. Moves that change how a place holds.
               </p>
               <div className="lg:col-span-4 flex flex-col justify-end items-start">
                 <SmoothLink
                   href="https://ecodia.au/auth/login"
                   className="group flex w-full items-center justify-between bg-[#2D2B28] p-10 text-[#F9F8F5] transition-all hover:bg-[#396041]"
                 >
-                  <span className="text-xs font-black uppercase tracking-[0.4em]">Open Ecodia</span>
+                  <span className="text-xs font-black uppercase tracking-[0.4em]">Enter Ecodia</span>
                   <ArrowRight className="transition-transform group-hover:translate-x-2" />
                 </SmoothLink>
                 <div className="mt-6 flex items-center gap-3 text-[10px] opacity-40 uppercase tracking-widest">
@@ -67,10 +67,10 @@ export default function ECOLocalYouthSection() {
 
         {/* Steps */}
         <section className="mb-64 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-y border-[#2D2B28]">
-          <ManifestoStep num="01" title="Spot" desc="Find places that hold up. Start there." />
-          <ManifestoStep num="02" title="Relief" desc="Get something useful, right now. No hoops." />
-          <ManifestoStep num="03" title="Back" desc="Send ECO to a place you believe in." />
-          <ManifestoStep num="04" title="Proof" desc="Watch the change add up. Quiet, visible, real." />
+          <ManifestoStep num="01" title="Spot" desc="Start with a place you return to." />
+          <ManifestoStep num="02" title="Take" desc="Choose something useful. It lands in your hands." />
+          <ManifestoStep num="03" title="Send" desc="Route ECO into a local place you back." />
+          <ManifestoStep num="04" title="Carry" desc="Watch it accumulate across people and days." />
         </section>
 
         {/* ECO */}
@@ -84,10 +84,12 @@ export default function ECOLocalYouthSection() {
             <div className="absolute bottom-12 right-12 h-6 w-6 border-r border-b border-[#2D2B28]" />
           </div>
           <div className="lg:col-span-6 space-y-12">
-            <h2 className="text-6xl font-black tracking-tighter uppercase leading-[0.9]">ENERGY OF <br />SHARED PROGRESS.</h2>
+            <h2 className="text-6xl font-black tracking-tighter uppercase leading-[0.9]">
+              ENERGY OF <br />SHARED PROGRESS.
+            </h2>
             <div className="space-y-10 text-2xl font-medium leading-tight opacity-70">
-              <p>ECO measures contribution. You can’t buy it. You earn it by doing things that hold together.</p>
-              <p className="opacity-40 italic">It’s a signal you can point to.</p>
+              <p>ECO measures work. It doesn’t arrive through purchase. It moves through what holds together.</p>
+              <p className="opacity-40 italic">A number that stays attached.</p>
             </div>
           </div>
         </section>
@@ -100,13 +102,13 @@ export default function ECOLocalYouthSection() {
               IS SOMETHING WE DO.
             </h2>
             <p className="max-w-xl text-2xl opacity-80 leading-tight">
-              Come build with us. Free for youth. Built to last.
+              Youth access. Local circulation. The world you live in, responding.
             </p>
             <SmoothLink
               href="https://ecodia.au/auth/login"
               className="inline-block border-4 border-[#7FD069] px-16 py-8 text-sm font-black uppercase tracking-[0.4em] text-[#7FD069] transition-all hover:bg-[#7FD069] hover:text-[#2D2B28]"
             >
-              Join Ecodia
+              Enter
             </SmoothLink>
           </div>
         </section>

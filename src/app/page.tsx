@@ -12,6 +12,7 @@ import { HomeValues } from "@/components/sections/HomeValues";
 import { HomeEcosystem } from "@/components/sections/HomeEcosystem";
 import { HomeVision } from "@/components/sections/HomeVision";
 import { HomeEntry } from "@/components/sections/HomeEntry";
+import { HomePorts } from "@/components/sections/HomePorts";
 import { HomePressLegal } from "@/components/sections/HomePressLegal";
 
 // Shell
@@ -49,6 +50,7 @@ export default function HomePage() {
       <section id="eco"><HomeEcosystem /></section>
       <section id="labs"><HomeLabs /></section>
       <section id="values"><HomeValues /></section>
+      <section id="values"><HomePorts /></section>
       <HomePressLegal />
       {/* CTA-style Entry placed near the bottom */}
       <HomeEntry />

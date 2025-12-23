@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { useRef } from "react";
@@ -131,9 +132,9 @@ function NarrativeItem({ feature, index, progress }: { feature: any, index: numb
             className="mt-12 p-6 border border-[#2D2B28]/10 bg-[#F4D35E]/5 inline-block"
           >
             <span className="font-mono text-[10px] uppercase block mb-4">Final_Calibration_Complete</span>
-            <button className="bg-[#2D2B28] text-[#F9F8F5] px-8 py-4 text-xs font-black uppercase tracking-widest hover:bg-[#396041] transition-colors">
+            <Link href="/company" className="bg-[#2D2B28] text-[#F9F8F5] px-8 py-4 text-xs font-black uppercase tracking-widest hover:bg-[#396041] transition-colors">
               Enter_The_Local_Grid →
-            </button>
+            </Link>
           </motion.div>
         )}
       </div>
