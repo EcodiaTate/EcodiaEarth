@@ -52,7 +52,7 @@ export function TechnologySection() {
               <span className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Field Notes</span>
             </div>
 
-            <h2 className="font-black text-[10vw] lg:text-[7rem] leading-[0.8] tracking-tighter">
+            <h2 className="font-black text-[10vw] lg:text-[10rem] leading-[0.8] tracking-tighter">
               TECH AS <br /> <span className="text-[#396041]">CRAFT.</span>
             </h2>
 

@@ -48,7 +48,7 @@ export function HomeEntry() {
             </div>
 
              <motion.h2 
-                       className="font-black text-[11vw] lg:text-[8.5rem] leading-[0.8] tracking-tighter"
+                       className="font-black text-[10vw] lg:text-[10rem] leading-[0.8] tracking-tighter"
                      >
                        WORK WITH <br />
                        <span 

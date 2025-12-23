@@ -68,6 +68,16 @@ export default function ValuesSection() {
       ref={containerRef}
       className="relative min-h-screen w-full overflow-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]"
     >
+      <div
+  aria-hidden
+  className="fixed inset-0 z-50 pointer-events-none opacity-[0.10] mix-blend-multiply"
+  style={{
+    backgroundImage: "url(/textures/noise.svg)",
+    backgroundRepeat: "repeat",
+    backgroundSize: "280px 280px",
+  }}
+/>
+
       {/* 1. ASYMMETRIC EXIT */}
       <div className="fixed right-[8%] top-12 z-50">
         <button
