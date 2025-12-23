@@ -36,48 +36,49 @@ export default function VisionSection() {
 
       {/* 3. CONTENT STREAM (FIELD LOGS) */}
       <div className="relative z-30 -mt-[100vh]">
-        <Scene
-          onEnter={() => setMode("friction")}
-          align="left"
-          kicker="Log_01.1 // The Weight"
-          title="THE FUTURE FELT HEAVY."
-          body="Sustainability was a burden to carry. Participation asked for sacrifice and offered no return. Good intent stayed private, scattered, and stalled by friction."
-          notes={["System_Strain", "Participation_Gap", "Inertial_Resistance"]}
-        />
+      <Scene
+  onEnter={() => setMode("friction")}
+  align="left"
+  kicker="Log_01 // Weight"
+  title="THE FUTURE WAS HEAVY."
+  body="Participation felt like a cost. Good intent stayed private and stalled in friction."
+  notes={["Friction", "Private_Effort", "Stall"]}
+/>
 
         <div className="h-[50vh]" />
 
         <Scene
-          onEnter={() => setMode("clarity")}
-          align="right"
-          kicker="Log_02.0 // The Sprout"
-          title="BUILD BETTER DEFAULTS."
-          body="Ecodia is the architecture of the world we build next. A world where participation is the default condition—calm, structural, and worth repeating."
-          notes={["Node_Activation", "Shared_Upside", "Visible_Drift"]}
-        />
+  onEnter={() => setMode("clarity")}
+  align="right"
+  kicker="Log_02 // Sprout"
+  title="BETTER DEFAULTS."
+  body="Ecodia sets calm, repeatable conditions. Participation becomes the easy choice."
+  notes={["Node_Activation", "Shared_Upside", "Visible_Drift"]}
+/>
+
 
         <div className="h-[50vh]" />
 
         <SceneCenter
-          onEnter={() => setMode("system")}
-          kicker="Protocol_Active"
-          title="ECOLOGY AS OS."
-          body="A world is shaped by residue. Ecodia makes participation natural—allowing progress to accumulate without the noise of marketing."
-          columns={[
-            {
-              title: "Visibility",
-              items: ["Progress becomes physical", "Care becomes structural", "Momentum travels through nodes"],
-            },
-            {
-              title: "Benefit",
-              items: ["Personal and shared logic overlap", "Local economies gain mass", "Collective good is the default"],
-            },
-            {
-              title: "Continuity",
-              items: ["Projects outlive attention", "Communities hold memory", "The grid builds forward"],
-            },
-          ]}
-        />
+  onEnter={() => setMode("system")}
+  kicker="Protocol_Active"
+  title="ECOLOGY, IN USE."
+  body="Residue shapes the world. Ecodia makes participation natural so progress can accumulate without spectacle."
+  columns={[
+    {
+      title: "Seen",
+      items: ["Progress shows up in place", "Care sits in structure", "Momentum moves through nodes"],
+    },
+    {
+      title: "Return",
+      items: ["Personal and shared overlap", "Local economies keep the gain", "Reward matches the work"],
+    },
+    {
+      title: "Carry",
+      items: ["Projects outlive attention", "Communities hold memory", "The grid keeps building"],
+    },
+  ]}
+/>
 
         <div className="h-[50vh]" />
       </div>
@@ -93,13 +94,13 @@ function BackgroundLens({ mode }: { mode: ViewMode }) {
     <div className="relative w-full h-full overflow-hidden">
       {/* BASE TOPOGRAPHY */}
       <div className={`absolute inset-0 transition-opacity duration-1000 ${mode === 'system' ? 'opacity-20 grayscale' : 'opacity-40'}`}>
-        <Image
-          src="/img/eco-district.png"
-          alt="District Map"
-          fill
-          className="object-cover"
-          priority
-        />
+      <Image
+  src="/img/eco-district.png"
+  alt="Local field map"
+  fill
+  className="object-cover"
+  priority
+/>
       </div>
 
       {/* MODE: FRICTION (DARK / GRAIN) */}
@@ -129,9 +130,9 @@ function InertialHUD({ mode }: { mode: ViewMode }) {
   return (
     <div className="absolute inset-0 pointer-events-none z-20 p-12 flex flex-col justify-between">
       <div className="flex justify-between items-start opacity-30">
-        <div className="font-mono text-[9px] uppercase tracking-[0.5em]">
-          Vision_Telemetry // {mode.toUpperCase()}
-        </div>
+      <div className="font-mono text-[9px] uppercase tracking-[0.5em]">
+  Vision_Log // {mode.toUpperCase()}
+</div>
         <div className="text-right font-mono text-[8px] tracking-[0.2em]">
           Lat: -26.6500 <br /> Lon: 153.0667
         </div>

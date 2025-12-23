@@ -1,109 +1,65 @@
-// src/components/sections/HomeLegalPress.tsx (Open by Design)
 "use client";
 
 import Link from "next/link";
 
 const DOCUMENTATION = [
-  { title: "Public Manifest", desc: "What we’re building and why.", link: "/manifest" },
-  { title: "Data Model", desc: "What we collect and how it’s protected.", link: "/data-model" },
-  { title: "Governance", desc: "How decisions are made and changed.", link: "/governance" },
-  { title: "Press Desk", desc: "Facts, assets, and contact.", link: "/press" },
+  { title: "Public Manifest", desc: "Intent and baseline.", link: "/manifest" },
+  { title: "Data Model", desc: "What we collect, why, and how it’s protected.", link: "/data-model" },
+  { title: "Governance", desc: "How decisions change over time.", link: "/governance" },
+  { title: "Press Desk", desc: "Assets and field notes.", link: "/press" },
 ];
 
 export function HomePressLegal() {
-  const DEEP_JADE = "#2d4a33";
-  const BRIGHT_GOLD = "#f4d35e";
-  const PURE_WHITE = "#ffffff";
-
   return (
-    <section
-      className="relative w-full py-24 md:py-40 px-4 md:px-8 text-white overflow-hidden"
-      style={{ backgroundColor: DEEP_JADE }}
-    >
-      {/* soft glow */}
-      <div className="absolute top-0 left-1/2 w-full h-1/2 bg-white/10 opacity-50 blur-3xl rounded-full transform -translate-x-1/2" />
+    <section className="relative w-full py-40 bg-[#F9F8F5] text-[#2D2B28] overflow-hidden">
+      {/* Offset grid residue */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute left-[15%] h-full w-[1px] bg-[#2D2B28]" />
+        <div className="absolute top-[30%] w-full h-[1px] bg-[#2D2B28]" />
+      </div>
 
-      <div className="mx-auto max-w-7xl relative z-10">
-        {/* header */}
-        <header className="mb-12 md:mb-20 max-w-4xl border-b-2 border-white/30 pb-4">
-          <p className="font-mono text-lg uppercase tracking-[0.4em] text-white/90 mb-4">
-            SYSTEM ARCHIVE / OPEN ACCESS
-          </p>
+      <div className="relative z-10 mx-auto max-w-7xl px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:items-end mb-24">
+          <header className="lg:col-span-8">
+            <div className="flex items-center gap-3 mb-8 opacity-40">
+              <img src="/icons/leaf-black.svg" className="w-4 h-4" alt="residue" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em]">Archive</span>
+            </div>
 
-          <h2 className="font-display text-5xl sm:text-7xl tracking-tighter leading-[1.05]">
-            <span
-              className="text-transparent"
-              style={{
-                WebkitTextStroke: `2px ${BRIGHT_GOLD}`,
-                textShadow: `0 0 5px rgba(255, 255, 255, 0.4)`,
-              }}
-            >
-              OPEN BY
-            </span>
-            <span className="block" style={{ color: PURE_WHITE }}>
-              DESIGN.
-            </span>
-          </h2>
-        </header>
+            <h2 className="font-black text-[12vw] lg:text-[9rem] leading-[0.8] tracking-tighter">
+              OPEN BY <br /> <span className="text-[#396041]">DESIGN.</span>
+            </h2>
+          </header>
 
-        {/* glass panel */}
-        <div
-          className="w-full p-6 md:p-12 shadow-2xl border-4 border-white/50 backdrop-blur-xl"
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.08)",
-            borderRadius: "20px",
-            boxShadow: `0 0 20px rgba(255, 255, 255, 0.1), 0 0 80px ${BRIGHT_GOLD}20`,
-          }}
-        >
-          <p className="font-mono text-sm uppercase tracking-widest text-white/70 mb-8 border-b border-white/30 pb-2">
-            // Core documents. Always available.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {DOCUMENTATION.map((doc, index) => (
-              <Link
-                key={index}
-                href={doc.link}
-                className="block relative p-4 border-b border-white/40 pb-6 transition-colors duration-300
-                           md:border-b-0 md:border-r md:pr-6 md:pb-4 md:h-full"
-                style={{
-                  borderRightColor:
-                    index % 2 === 0 ? "rgba(255, 255, 255, 0.4)" : "transparent",
-                  borderBottomColor:
-                    index >= DOCUMENTATION.length - 2 ? "transparent" : "rgba(255, 255, 255, 0.4)",
-                }}
-              >
-                <span
-                  className="font-mono text-xs uppercase tracking-widest block mb-2"
-                  style={{ color: BRIGHT_GOLD }}
-                >
-                  // 0{index + 1}
-                </span>
-
-                <h3 className="font-display text-2xl md:text-3xl tracking-tight text-white">
-                  {doc.title}
-                </h3>
-                <p className="mt-2 text-base text-white/70">{doc.desc}</p>
-
-                <span className="mt-4 inline-flex items-center gap-2 font-mono text-sm text-white/70">
-                  Open
-                  <span className="text-xl inline-block font-extrabold" style={{ color: BRIGHT_GOLD }}>
-                    →
-                  </span>
-                </span>
-              </Link>
-            ))}
+          <div className="lg:col-span-4 border-l border-[#2D2B28] pl-8 pb-4">
+            <p className="font-mono text-sm opacity-60 leading-relaxed max-w-[280px]">
+              Everything here is working text from active development.
+            </p>
           </div>
+        </div>
 
-          {/* footer link */}
-          <div className="mt-12 pt-6 border-t border-white/30 text-center">
+        {/* Log grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-[#2D2B28]">
+          {DOCUMENTATION.map((doc, index) => (
             <Link
-              href="/press"
-              className="font-mono text-sm uppercase tracking-[0.3em] text-white/90 underline underline-offset-4 decoration-white/50"
+              key={index}
+              href={doc.link}
+              className="group relative p-8 border-b border-[#2D2B28]/10 lg:border-r lg:border-b-0 hover:bg-[#2D2B28] hover:text-[#F9F8F5] transition-all duration-300"
             >
-              // Press desk
+              <span className="font-mono text-[9px] uppercase tracking-widest opacity-40 group-hover:opacity-100">
+                // 0{index + 1}
+              </span>
+              <h3 className="font-black text-2xl uppercase tracking-tighter mt-6 mb-2">
+                {doc.title}
+              </h3>
+              <p className="font-mono text-[11px] opacity-60 leading-snug group-hover:opacity-80">
+                {doc.desc}
+              </p>
+              <div className="mt-8 font-mono text-[10px] uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity">
+                Open file →
+              </div>
             </Link>
-          </div>
+          ))}
         </div>
       </div>
     </section>

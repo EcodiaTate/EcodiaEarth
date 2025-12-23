@@ -1,15 +1,11 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, cubicBezier } from "framer-motion";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 
-/**
- * ECODIA CONTACT INTERFACE (THE HANDSHAKE)
- * Materiality: Warm Paper (#F9F8F5) | Charcoal Ink (#2D2B28)
- * Strategy: No Invitation Energy. Briefing Documentation.
- */
+const EASE = cubicBezier(0.19, 1, 0.22, 1);
 
 type Intent = "partner" | "invest" | "build" | "deploy" | "press" | "other";
 
@@ -19,7 +15,6 @@ export default function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
-  // Form state
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,172 +42,156 @@ export default function ContactSection() {
     e.preventDefault();
     if (charge < 100) return;
     setIsSending(true);
-    // Simulate systemic integration
     window.setTimeout(() => {
       setIsSending(false);
       setIsSubmitted(true);
-    }, 1200);
+    }, 1800);
   };
 
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]">
-      
-      {/* 1. EXIT PROTOCOL */}
-      <div className="fixed right-12 top-12 z-50">
+    <main className="relative min-h-screen w-full overflow-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]">
+      {/* Exit */}
+      <div className="fixed right-[8%] top-12 z-50">
         <button
           onClick={() => router.back()}
-          className="group flex items-center gap-3 border border-[#2D2B28] px-4 py-2 transition-all hover:bg-[#2D2B28] hover:text-[#F9F8F5]"
+          className="group flex items-center gap-4 border-b-2 border-[#2D2B28] pb-1 transition-all"
         >
-          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-[10px] font-black uppercase tracking-[0.3em]">Exit</span>
+          <ArrowLeft size={14} className="group-hover:-translate-x-2 transition-transform duration-500" />
+          <span className="text-[10px] font-black uppercase tracking-[0.4em]">Back</span>
         </button>
       </div>
 
-      {/* 2. CALIBRATION GRID */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
-        <div className="absolute left-[15%] top-0 h-full w-px bg-[#2D2B28]" />
-        <div className="absolute top-[25%] left-0 w-full h-px bg-[#2D2B28]" />
+      {/* Grid */}
+      <div className="pointer-events-none absolute inset-0 opacity-5">
+        <div className="absolute left-[8%] top-0 h-full w-px bg-[#2D2B28]" />
+        <div className="absolute top-[12%] left-0 w-full h-px bg-[#2D2B28]" />
+        <div className="absolute left-[20%] top-0 h-full w-[0.5px] bg-[#2D2B28]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-2xl px-8 py-32 min-h-screen flex flex-col justify-center">
+      <div className="relative z-10 pl-[8%] pr-[15%] py-32 min-h-screen flex flex-col justify-start">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
               key="briefing"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              className="space-y-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, x: 40 }}
+              transition={{ duration: 1, ease: EASE }}
+              className="space-y-24"
             >
-              {/* HEADER: MASSIVE ANCHOR */}
-              <header className="space-y-6">
+              <header className="space-y-12">
                 <div className="flex items-center gap-4">
-                  <div className="h-2.5 w-2.5 bg-[#396041]" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">
-                    Handshake_Protocol // Briefing
+                  <div className="h-3 w-3 bg-[#396041]" style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }} />
+                  <span className="text-[10px] font-black uppercase tracking-[0.6em] opacity-40">
+                    Contact
                   </span>
                 </div>
-                <h1 className="text-6xl font-black leading-[0.8] tracking-tighter sm:text-7xl">
-                  SUBMIT <br />
-                  <span className="italic font-light opacity-30 text-[#396041]">RESIDUE.</span>
+                <h1 className="text-[9rem] font-black leading-[0.75] tracking-tighter sm:text-[12rem]">
+                  SEND <br />
+                  <span className="italic font-light opacity-10">A NOTE.</span>
                 </h1>
-                <p className="max-w-sm text-sm opacity-60 uppercase tracking-wide leading-relaxed">
-                  State your intent. Outline your contribution. The system will respond once the signal is processed.
+                <p className="max-w-md text-sm opacity-60 uppercase tracking-[0.2em] leading-relaxed">
+                  Tell us what you have in mind.
                 </p>
               </header>
 
-              {/* FORM ARCHITECTURE */}
-              <form onSubmit={handleSubmit} className="space-y-12">
-                <div className="grid grid-cols-1 gap-12 border-l-2 border-[#2D2B28]/10 pl-8">
-                  
-                  {/* Field: Intent */}
-                  <div className="space-y-4">
-                    <label className="text-[9px] font-black uppercase tracking-[0.4em] opacity-40">01_Intent</label>
-                    <select
-                      value={formData.intent}
-                      onChange={(e) => setFormData({ ...formData, intent: e.target.value as Intent })}
-                      className="w-full bg-transparent border-b-2 border-[#2D2B28] py-4 text-xl font-bold uppercase tracking-tighter outline-none appearance-none cursor-pointer hover:border-[#7FD069] transition-colors"
-                    >
-                      <option value="partner">Node_Partner</option>
-                      <option value="invest">System_Backer</option>
-                      <option value="build">Labor_Builder</option>
-                      <option value="deploy">Site_Deployment</option>
-                      <option value="press">Signal_Observer</option>
-                      <option value="other">General_Drift</option>
-                    </select>
-                  </div>
+              <form onSubmit={handleSubmit} className="max-w-3xl space-y-20">
+                <div className="grid grid-cols-1 gap-16">
+                  {/* Fields */}
+                  {[
+                    { id: "01", label: "Intent", type: "select", key: "intent" },
+                    { id: "02", label: "Name", type: "text", key: "name", placeholder: "Your name" },
+                    { id: "03", label: "Email", type: "email", key: "email", placeholder: "name@email.com" },
+                    { id: "04", label: "Note", type: "textarea", key: "note", placeholder: "A few lines are enough" },
+                  ].map((field) => (
+                    <div key={field.id} className="group space-y-4 border-l-4 border-transparent hover:border-[#2D2B28] pl-8 transition-all">
+                      <label className="text-[10px] font-black uppercase tracking-[0.5em] opacity-30 group-hover:opacity-100 transition-opacity">
+                        {field.id} {field.label}
+                      </label>
 
-                  {/* Field: Name */}
-                  <div className="space-y-4">
-                    <label className="text-[9px] font-black uppercase tracking-[0.4em] opacity-40">02_Identifier</label>
-                    <input
-                      type="text"
-                      placeholder="Name / Entity"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-transparent border-b-2 border-[#2D2B28] py-4 text-xl font-bold tracking-tighter outline-none placeholder:opacity-20 hover:border-[#7FD069] transition-colors"
-                    />
-                  </div>
-
-                  {/* Field: Email */}
-                  <div className="space-y-4">
-                    <label className="text-[9px] font-black uppercase tracking-[0.4em] opacity-40">03_Coordinate</label>
-                    <input
-                      type="email"
-                      placeholder="Email Address"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-transparent border-b-2 border-[#2D2B28] py-4 text-xl font-bold tracking-tighter outline-none placeholder:opacity-20 hover:border-[#7FD069] transition-colors"
-                    />
-                  </div>
-
-                  {/* Field: Note */}
-                  <div className="space-y-4">
-                    <label className="text-[9px] font-black uppercase tracking-[0.4em] opacity-40">04_Briefing</label>
-                    <textarea
-                      rows={4}
-                      placeholder="State capacity, location, or request."
-                      value={formData.note}
-                      onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-                      className="w-full bg-transparent border-b-2 border-[#2D2B28] py-4 text-xl font-bold tracking-tighter outline-none placeholder:opacity-20 hover:border-[#7FD069] transition-colors resize-none"
-                    />
-                  </div>
+                      {field.type === "select" ? (
+                        <select
+                          value={formData.intent}
+                          onChange={(e) => setFormData({ ...formData, intent: e.target.value as Intent })}
+                          className="w-full bg-transparent py-4 text-4xl font-black uppercase tracking-tighter outline-none appearance-none cursor-pointer border-b border-[#2D2B28]/10 focus:border-[#2D2B28]"
+                        >
+                          <option value="partner">Partner</option>
+                          <option value="invest">Backer</option>
+                          <option value="build">Builder</option>
+                          <option value="deploy">Deploy</option>
+                          <option value="press">Press</option>
+                          <option value="other">Other</option>
+                        </select>
+                      ) : field.type === "textarea" ? (
+                        <textarea
+                          rows={2}
+                          placeholder={field.placeholder}
+                          value={formData.note}
+                          onChange={(e) => setFormData({ ...formData, note: e.target.value })}
+                          className="w-full bg-transparent py-4 text-4xl font-black tracking-tighter outline-none placeholder:opacity-20 border-b border-[#2D2B28]/10 focus:border-[#2D2B28] resize-none"
+                        />
+                      ) : (
+                        <input
+                          type={field.type}
+                          placeholder={field.placeholder}
+                          value={(formData as any)[field.key]}
+                          onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+                          className="w-full bg-transparent py-4 text-4xl font-black tracking-tighter outline-none placeholder:opacity-20 border-b border-[#2D2B28]/10 focus:border-[#2D2B28]"
+                        />
+                      )}
+                    </div>
+                  ))}
                 </div>
 
-                {/* HANDSHAKE EXECUTION */}
-                <div className="pt-8">
+                <div className="pt-12">
                   <button
                     type="submit"
                     disabled={charge < 100 || isSending}
-                    className="group relative w-full border-4 border-[#2D2B28] bg-[#2D2B28] py-8 text-[#F9F8F5] transition-all disabled:opacity-20 disabled:grayscale disabled:cursor-not-allowed hover:bg-transparent hover:text-[#2D2B28]"
+                    className="group relative flex items-center justify-between w-full bg-[#2D2B28] p-12 text-[#F9F8F5] transition-all disabled:opacity-5 disabled:grayscale"
                   >
-                    <div className="flex items-center justify-between px-12">
-                      <span className="text-xs font-black uppercase tracking-[0.5em]">
-                        {isSending ? "Processing_Signal..." : "Initiate_Handshake"}
-                      </span>
-                      {isSending ? <Loader2 className="animate-spin" size={20} /> : <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />}
-                    </div>
+                    <span className="text-xs font-black uppercase tracking-[0.8em]">
+                      {isSending ? "Sending…" : "Send"}
+                    </span>
+                    {isSending ? <Loader2 className="animate-spin" size={24} /> : <ArrowRight size={24} />}
+
+                    {/* Progress */}
+                    <div
+                      className="absolute bottom-0 left-0 h-1 bg-[#7FD069] transition-all duration-1000"
+                      style={{ width: `${charge}%` }}
+                    />
                   </button>
-                  <div className="mt-6 flex justify-between items-center opacity-30 text-[9px] uppercase tracking-widest">
-                    <span>Handshake_Status: {charge}% Ready</span>
-                    <span>Direct_Protocol_Enabled</span>
-                  </div>
                 </div>
               </form>
             </motion.div>
           ) : (
             <motion.div
               key="success"
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="border-4 border-[#2D2B28] p-16 text-center space-y-8"
+              transition={{ duration: 1, ease: EASE }}
+              className="max-w-4xl border-l-8 border-[#396041] p-24 space-y-12"
             >
-              <div className="mx-auto flex h-24 w-24 items-center justify-center border-2 border-[#396041] rounded-full">
-                <Check size={40} className="text-[#396041]" />
-              </div>
-              <div className="space-y-4">
-                <h2 className="text-5xl font-black tracking-tighter">SIGNAL_LOCKED.</h2>
-                <p className="text-lg opacity-70">
-                  Your Briefing has been recorded. Ecodia will drift a response to your coordinate shortly.
-                </p>
-              </div>
-              <div className="pt-8 border-t border-[#2D2B28]/10 flex justify-center gap-4">
-                 <div className="h-2 w-2 rounded-full bg-[#7FD069]" />
-                 <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Node_Awaiting_Calibration</span>
+              <h2 className="text-[8rem] font-black tracking-tighter leading-none">THANK YOU.</h2>
+              <p className="text-2xl opacity-70 max-w-xl">
+                We’ve got your note and will reply soon.
+              </p>
+              <div className="pt-12 flex items-center gap-6 border-t border-[#2D2B28]/10">
+                <div className="h-4 w-4 bg-[#7FD069]" />
+                <span className="text-[10px] font-black uppercase tracking-widest opacity-40">Message received</span>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* FOOTER: CROP MARKS */}
-      <footer className="fixed bottom-12 left-12 right-12 flex justify-between items-end pointer-events-none opacity-20">
-         <div className="text-[8px] uppercase tracking-[0.5em]">26.6500° S // 2025</div>
-         <div className="flex gap-1">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-6 w-px bg-[#2D2B28]" />
-            ))}
-         </div>
+      {/* Crop marks */}
+      <footer className="fixed bottom-12 left-[8%] right-[8%] flex justify-between items-end pointer-events-none opacity-20">
+        <div className="text-[8px] uppercase tracking-[0.8em]">Coordinates: 26.6500° S // 153.0667° E</div>
+        <div className="flex gap-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-px w-8 bg-[#2D2B28]" />
+          ))}
+        </div>
       </footer>
     </main>
   );

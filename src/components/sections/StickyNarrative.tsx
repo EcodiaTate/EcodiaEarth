@@ -1,200 +1,142 @@
-// src/components/sections/StickyNarrative.tsx
 "use client";
 
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-import { ActivationButton } from "@/components/ui/ActivationButton";
 import { useRef } from "react";
-
 const FEATURES = [
   {
     id: "01",
     title: "PLAY",
-    subtitle: "Step in. Start small. It counts.",
-    desc: "It shouldn’t feel heavy to take part. You do something small, and you become part of what’s already happening.",
+    subtitle: "Join the drift",
+    desc: "Start where you are. Follow what moves. The work has already begun.",
     align: "items-start text-left",
-    color: "text-ink",
-    barColor: "bg-ink",
+    color: "text-[#2D2B28]",
+    offset: "pl-[8%]",
   },
   {
     id: "02",
     title: "CREATE",
-    subtitle: "Make the culture, that builds the world.",
-    desc: "Culture isn’t something we consume. It’s something people make, together, from where they are - and where they want to be.",
+    subtitle: "Build what lasts",
+    desc: "Culture grows from use, not display. Make what others can build on.",
     align: "items-end text-right",
-    color: "text-mint",
-    barColor: "bg-mint",
+    color: "text-[#396041]",
+    offset: "pr-[12%]",
   },
   {
     id: "03",
     title: "THRIVE",
-    subtitle: "A world that gives back.",
-    desc: "A world you don’t have to fight to stay in.",
-    align: "items-center text-center",
-    color: "text-gold",
-    barColor: "bg-gold",
+    subtitle: "Connect the grid",
+    desc: "Strength lives in connection. The more you give, the more it holds.",
+    align: "items-start text-left",
+    color: "text-[#F4D35E]",
+    offset: "pl-[15%]",
   },
 ] as const;
 
-type Feature = (typeof FEATURES)[number];
-
 export function StickyNarrative() {
   const containerRef = useRef<HTMLDivElement>(null);
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const scrollHeight = `${FEATURES.length * 100}vh`;
-
-  // Progress bar fades away at the very end
-  const progressBarOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.92, 0.98, 1],
-    [1, 1, 0, 0]
-  );
-  const progressBarScaleY = useTransform(
-    scrollYProgress,
-    [0, 0.92, 0.98, 1],
-    [1, 1, 0.001, 0.001]
-  );
-
   return (
-    <>
-      <section
-        ref={containerRef}
-        className="relative bg-white"
-        style={{ height: scrollHeight }}
-      >
-        <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
-          {/* BACKGROUND GRID */}
-          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
-
-          <div className="relative w-full max-w-[90rem] mx-auto px-6 sm:px-12 h-full z-10">
-            {FEATURES.map((feature, index) => {
-              const rangeStep = 1 / FEATURES.length;
-              const start = index * rangeStep;
-              const end = start + rangeStep;
-
-              return (
-                <NarrativeItem
-                  key={feature.id}
-                  feature={feature}
-                  range={[start, end]}
-                  progress={scrollYProgress}
-                  showActivation={feature.id === "03"}
-                />
-              );
-            })}
-          </div>
-
-          {/* PROGRESS BAR */}
-          <motion.div
-            className="absolute bottom-0 left-0 h-2 w-full z-20 origin-bottom bg-transparent"
-            style={{ opacity: progressBarOpacity, scaleY: progressBarScaleY }}
-          >
-            <motion.div
-              className="h-full bg-ink origin-left"
-              style={{ scaleX: scrollYProgress }}
+    <section ref={containerRef} className="relative bg-[#F9F8F5]" style={{ height: "300vh" }}>
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        
+        {/* 1. CALIBRATION TICKS (Replaces Progress Bar) */}
+        <div className="absolute left-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 opacity-20">
+          {[...Array(12)].map((_, i) => (
+            <motion.div 
+              key={i}
+              className="h-[1px] w-4 bg-[#2D2B28]"
+              style={{ 
+                width: useTransform(scrollYProgress, 
+                  [i / 12, (i + 1) / 12], 
+                  ["16px", "40px"]
+                ),
+                opacity: useTransform(scrollYProgress, 
+                  [i / 12, (i + 1) / 12], 
+                  [0.2, 1]
+                )
+              }}
             />
-          </motion.div>
+          ))}
+          <span className="font-mono text-[9px] rotate-90 mt-8 tracking-[0.3em] uppercase">Scale_Readout</span>
         </div>
-      </section>
-    </>
+
+        {/* 2. THE LEAF AS RESIDUE (Rule 3) */}
+        <div className="absolute top-12 right-12 opacity-40">
+          <img src="/icons/leaf-black.svg" className="w-6 h-6" alt="residue" />
+        </div>
+
+        {/* 3. NARRATIVE LAYERS */}
+        <div className="relative h-full w-full">
+          {FEATURES.map((feature, index) => (
+            <NarrativeItem 
+              key={feature.id} 
+              feature={feature} 
+              index={index} 
+              progress={scrollYProgress} 
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
-function NarrativeItem({
-  feature,
-  range,
-  progress,
-  showActivation,
-}: {
-  feature: Feature;
-  range: [number, number];
-  progress: MotionValue<number>;
-  showActivation?: boolean;
-}) {
-  const [start, end] = range;
+function NarrativeItem({ feature, index, progress }: { feature: any, index: number, progress: MotionValue<number> }) {
+  const start = index * 0.33;
+  const end = (index + 1) * 0.33;
 
-  const opacity = useTransform(
-    progress,
-    [start, start + 0.08, end - 0.08, end],
-    [0, 1, 1, 0]
-  );
-
-  const y = useTransform(progress, [start, end], [70, -70]);
-  const clip = useTransform(
-    progress,
-    [start, start + 0.1],
-    ["inset(110% 0 0 0)", "inset(0% 0 0 0)"]
-  );
-
-  const pointerEvents = useTransform(opacity, (v) =>
-    v > 0.15 ? "auto" : "none"
-  );
-
-  /* ---------------- BUTTON TIMING (FIXED) ---------------- */
-
-  // Appears very early, stays visible most of the panel
-  const btnOpacity = useTransform(
-    progress,
-    [start + 0.08, start + 0.16, end - 0.12, end],
-    [0, 1, 1, 0]
-  );
-
-  const btnY = useTransform(
-    progress,
-    [start + 0.08, start + 0.18],
-    [24, 0]
-  );
-
+  // Rule 8: No bounce. Movement ends early.
+  const opacity = useTransform(progress, [start, start + 0.05, end - 0.05, end], [0, 1, 1, 0]);
+  const driftY = useTransform(progress, [start, end], ["40px", "-40px"]);
+  
   return (
     <motion.div
-      className={`absolute inset-0 flex flex-col justify-center ${feature.align} px-4 md:px-20`}
-      style={{ opacity, pointerEvents }}
+      className={`absolute inset-0 flex flex-col justify-center ${feature.align} ${feature.offset} z-10`}
+      style={{ opacity }}
     >
-      {/* DECORATIVE BAR */}
-      <motion.div
-        className={`mb-6 h-2 w-24 ${feature.barColor}`}
-        style={{
-          scaleX: useTransform(progress, [start, start + 0.2], [0, 1]),
-          originX: 0,
-        }}
-      />
+      <div className="max-w-2xl">
+        {/* FIELD NOTE HEADER */}
+        <div className="flex items-center gap-3 mb-4 opacity-40">
+          <span className="font-mono text-[10px] tracking-[0.4em]">REF_LOG_{feature.id}</span>
+          <div className="h-[1px] w-12 bg-[#2D2B28]" />
+        </div>
 
-      {/* SUBTITLE */}
-      <div className="overflow-hidden mb-2">
-        <motion.span
-          className="block font-serif italic text-2xl text-muted"
-          style={{ y }}
+        {/* SUBTITLE: THE DRIFT (Rule 2) */}
+        <motion.span 
+          style={{ y: driftY }}
+          className="block font-mono text-sm uppercase tracking-[0.2em] mb-4 text-[#2D2B28]/60"
         >
           {feature.subtitle}
         </motion.span>
+
+        {/* TITLE: MASS (Rule 2) */}
+        <h2 className={`font-black text-[12vw] leading-[0.85] tracking-tighter ${feature.color} mb-8`}>
+          {feature.title}
+        </h2>
+
+        {/* DESCRIPTION: FIELD LOGS (Rule 4) */}
+        <p className="font-mono text-lg md:text-xl text-[#2D2B28]/80 leading-relaxed max-w-md">
+          {feature.desc}
+        </p>
+
+        {/* RESIDUE MARK */}
+        {index === 2 && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mt-12 p-6 border border-[#2D2B28]/10 bg-[#F4D35E]/5 inline-block"
+          >
+            <span className="font-mono text-[10px] uppercase block mb-4">Final_Calibration_Complete</span>
+            <button className="bg-[#2D2B28] text-[#F9F8F5] px-8 py-4 text-xs font-black uppercase tracking-widest hover:bg-[#396041] transition-colors">
+              Enter_The_Local_Grid →
+            </button>
+          </motion.div>
+        )}
       </div>
-
-      {/* TITLE */}
-      <motion.h2
-        className={`font-display text-[15vw] leading-[0.92] tracking-tighter ${feature.color} pt-[0.08em]`}
-        style={{ clipPath: clip }}
-      >
-        {feature.title}
-      </motion.h2>
-
-      {/* DESCRIPTION */}
-      <motion.p className="mt-8 text-xl md:text-2xl text-muted font-light max-w-lg leading-relaxed">
-        {feature.desc}
-      </motion.p>
-
-      {/* ACTIVATION BUTTON (THRIVE ONLY) */}
-      {showActivation && (
-        <motion.div
-          className="mt-12 flex justify-center"
-          style={{ opacity: btnOpacity, y: btnY }}
-        >
-          <ActivationButton />
-        </motion.div>
-      )}
     </motion.div>
   );
 }

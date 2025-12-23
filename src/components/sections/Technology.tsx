@@ -8,108 +8,109 @@ import { ArrowLeft, Cpu, Database, Share2, Activity } from "lucide-react";
 
 /**
  * ECODIA TECHNOLOGY MANIFESTO
- * Materiality: Warm Paper (#F9F8F5) | Charcoal Ink (#2D2B28)
  * Strategy: Technology as Material Craft.
+ * Physics: Inertial Drift [0.19, 1, 0.22, 1]
  */
 
+const ECODIA_BEZIER = [0.19, 1, 0.22, 1] as const;
 const MODULES = [
   {
     id: "SYS_01",
     name: "FIELD_SIGNALS",
     title: "Reality, held",
-    desc: "Grounded in physical sites. We interpret local variables—people, weather, streets—and translate them into a responsive systemic layer.",
+    desc: "Grounded in place. We read people, weather, and streets, then respond with simple, physical logic.",
     specs: ["SOURCE: Ground", "TEMPO: Steady", "WEIGHT: Light"],
-    trace: "#7FD069", // Mint
-    icon: <Activity size={18} />
+    trace: "#7FD069",
+    icon: <Activity size={24} strokeWidth={1.5} />,
   },
   {
     id: "SYS_02",
     name: "SHARED_RECORD",
-    title: "The Consensus",
-    desc: "A shared memory for progress. We maintain simple rules and human language to ensure the record remains coherent without feeling heavy.",
+    title: "Plain record",
+    desc: "A memory of progress in human language. Short rules. Clear proof. Coherent without weight.",
     specs: ["RULES: Clear", "PROOF: Simple", "STYLE: Calm"],
-    trace: "#F4D35E", // Gold
-    icon: <Database size={18} />
+    trace: "#F4D35E",
+    icon: <Database size={24} strokeWidth={1.5} />,
   },
   {
     id: "SYS_03",
     name: "LOCAL_RETURN",
     title: "Value, kept close",
-    desc: "Participation creates value that must not drift. Benefits are anchored to the sites that generated them: the streets and the local economy.",
+    desc: "Participation creates value that stays near its source. It returns to streets, shops, and crews that earned it.",
     specs: ["FLOW: Near", "PATH: Direct", "PACE: Ongoing"],
-    trace: "#396041", // Forest
-    icon: <Share2 size={18} />
+    trace: "#396041",
+    icon: <Share2 size={24} strokeWidth={1.5} />,
   },
 ] as const;
+
 
 export default function TechnologySection() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
-
-  // Measurement drift
-  const rulerY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const rulerY = useTransform(scrollYProgress, [0, 1], [-150, 150]);
 
   return (
     <main
       ref={containerRef}
-      className="relative min-h-screen w-full overflow-x-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]"
+      className="relative min-h-screen w-full overflow-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]"
     >
-      {/* 1. EXIT PROTOCOL */}
-      <div className="fixed right-12 top-12 z-50">
+      {/* 1. ASYMMETRIC EXIT (PINNED RIGHT 8%) */}
+      <div className="fixed right-[8%] top-12 z-50">
         <button
           onClick={() => router.back()}
-          className="group flex items-center gap-3 border border-[#2D2B28] px-4 py-2 transition-all hover:bg-[#2D2B28] hover:text-[#F9F8F5]"
+          className="group flex items-center gap-4 border-b border-[#2D2B28] pb-1 transition-all"
         >
-          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-[10px] font-black uppercase tracking-[0.3em]">Return</span>
+          <ArrowLeft size={14} className="group-hover:-translate-x-2 transition-transform duration-700" />
+          <span className="text-[10px] font-black uppercase tracking-[0.4em]">Return_Logic</span>
         </button>
       </div>
 
-      {/* 2. TOPOGRAPHIC GRID */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
-        <div className="absolute left-[15%] top-0 h-full w-px bg-[#2D2B28]" />
-        <div className="absolute top-[25%] left-0 w-full h-px bg-[#2D2B28]" />
+      {/* 2. CALIBRATION GRID (RESIDUE) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.05]">
+        <div className="absolute left-[8%] top-0 h-full w-px bg-[#2D2B28]" />
+        <div className="absolute top-[12%] left-0 w-full h-px bg-[#2D2B28]" />
+        <motion.div style={{ y: rulerY }} className="absolute right-[15%] top-0 h-full w-px bg-[#2D2B28] opacity-20" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-8 py-32">
+      <div className="relative z-10 pl-[8%] pr-[15%] py-32">
         
-        {/* HEADER: VISUAL MASS */}
-        <header className="mb-48 space-y-12 border-b-4 border-[#2D2B28] pb-16">
+        {/* HEADER: MAXIMUM MASS */}
+        <header className="mb-64 space-y-16 border-b-8 border-[#2D2B28] pb-24">
           <div className="flex items-center gap-4">
-            <Cpu size={14} className="opacity-40" />
-            <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-50">
-              Technical_Briefing // Open_Build
+            <Cpu size={18} className="opacity-40" />
+            <span className="text-[11px] font-black uppercase tracking-[0.6em] opacity-40">
+              Technical_Briefing // Open_Build_v2
             </span>
           </div>
 
-          <h1 className="text-6xl font-black leading-[0.8] tracking-tighter sm:text-8xl lg:text-9xl">
+          <h1 className="text-[8.5rem] font-black leading-[0.75] tracking-tighter sm:text-[11rem] lg:text-[13rem]">
             THE CRAFT <br />
-            <span className="italic font-light opacity-30 text-[#396041]">UNDERNEATH.</span>
+            <span className="italic font-light opacity-10 text-[#396041]">UNDERNEATH.</span>
           </h1>
 
-          <p className="max-w-2xl text-2xl font-medium leading-tight tracking-tight opacity-70">
-            Technology is not separate from the soil. It is another material used to 
-            shape the world we share—handled calmly, carefully, and in public.
-          </p>
+          <p className="max-w-3xl text-3xl font-medium leading-tight tracking-tighter opacity-80 border-l border-[#2D2B28] pl-12">
+  Technology is another material. We use it in public, calmly, to shape shared space.
+</p>
+
         </header>
 
         {/* 3. PROTOCOL LIST: STRATA LOGIC */}
-        <div className="flex flex-col border-t border-[#2D2B28]/10">
+        <div className="flex flex-col border-t-2 border-[#2D2B28]">
           {MODULES.map((mod, i) => (
             <TechRow key={mod.id} data={mod} index={i} />
           ))}
         </div>
 
         {/* FOOTER: MEASUREMENT TICKS */}
-        <footer className="mt-48 flex items-center justify-between border-t border-[#2D2B28]/10 pt-12 opacity-20">
-            <div className="text-[8px] uppercase tracking-[0.5em]">Material_Source // 2025</div>
-            <div className="flex gap-1">
-               {[...Array(8)].map((_, i) => (
-                 <div key={i} className="h-4 w-[1px] bg-[#2D2B28]" />
+        <footer className="mt-64 flex items-center justify-between border-t border-[#2D2B28]/10 pt-16 opacity-30">
+            <div className="text-[10px] font-black uppercase tracking-[0.8em]">Material_Source // 2025</div>
+            <div className="flex gap-2">
+               {[...Array(12)].map((_, i) => (
+                 <div key={i} className={`h-6 w-px bg-[#2D2B28] ${i % 4 === 0 ? 'h-10' : ''}`} />
                ))}
             </div>
-            <div className="text-[8px] uppercase tracking-[0.5em]">Ecodia.Sys // Beta_State</div>
+            <div className="text-[10px] uppercase tracking-[0.8em]">Ecodia.Sys // Beta_Locked</div>
         </footer>
       </div>
     </main>
@@ -119,20 +120,20 @@ export default function TechnologySection() {
 function TechRow({ data, index }: { data: any; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="group relative border-b border-[#2D2B28]/10 py-16 transition-colors hover:bg-[#2D2B28]/[0.02]"
+      transition={{ duration: 1.2, ease: ECODIA_BEZIER, delay: index * 0.1 }}
+      className="group relative border-b border-[#2D2B28]/10 py-24 transition-all duration-700 hover:bg-[#2D2B28]/[0.02] hover:pl-8"
     >
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:items-start">
+      <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:items-start">
         {/* LEFT: SPECS */}
-        <div className="md:col-span-3 space-y-4">
-          <div className="flex items-center gap-3">
-             <div className="h-2 w-2 rounded-full" style={{ backgroundColor: data.trace }} />
-             <span className="text-xs font-black tracking-widest">{data.id}</span>
+        <div className="md:col-span-3 space-y-6">
+          <div className="flex items-center gap-4">
+             <div className="h-4 w-4" style={{ backgroundColor: data.trace, clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }} />
+             <span className="text-[11px] font-black tracking-[0.4em] uppercase">{data.id}</span>
           </div>
-          <div className="space-y-1 text-[9px] uppercase tracking-widest opacity-40">
+          <div className="space-y-2 text-[10px] font-black uppercase tracking-[0.3em] opacity-30 italic">
             {data.specs.map((s: string) => (
               <div key={s}>{s}</div>
             ))}
@@ -140,14 +141,14 @@ function TechRow({ data, index }: { data: any; index: number }) {
         </div>
 
         {/* RIGHT: CONTENT */}
-        <div className="md:col-span-9 space-y-6">
-          <div className="flex items-center gap-4">
-            <div className="opacity-20">{data.icon}</div>
-            <h2 className="text-4xl font-black tracking-tighter uppercase sm:text-5xl">
+        <div className="md:col-span-9 space-y-8">
+          <div className="flex items-center gap-6">
+            <div className="opacity-20 group-hover:opacity-100 transition-opacity duration-700">{data.icon}</div>
+            <h2 className="text-5xl font-black tracking-tighter uppercase sm:text-7xl leading-none">
               {data.title}
             </h2>
           </div>
-          <p className="max-w-2xl text-xl leading-snug opacity-70">
+          <p className="max-w-3xl text-2xl font-medium leading-tight opacity-70">
             {data.desc}
           </p>
         </div>
@@ -155,7 +156,7 @@ function TechRow({ data, index }: { data: any; index: number }) {
       
       {/* THE TRACE: VERTICAL RESIDUE */}
       <div 
-        className="absolute left-0 top-0 h-full w-1 opacity-0 transition-opacity group-hover:opacity-100" 
+        className="absolute left-0 top-0 h-full w-1 opacity-0 transition-opacity duration-700 group-hover:opacity-100" 
         style={{ backgroundColor: data.trace }}
       />
     </motion.div>

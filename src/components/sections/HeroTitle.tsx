@@ -1,18 +1,18 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, cubicBezier, type Transition } from "framer-motion";
 import * as React from "react";
 
 /**
  * ECODIA HERO: THE PRIME DIRECTIVE
- * 1. Nothing is centered. (Rule 1)
- * 2. Mass over Hierarchy. (Rule 2)
- * 3. Color as Functional Energy (Mint/Gold as state changes). (Rule 5)
+ * 1. Metadata as functional residue.
+ * 2. Inertial drift on coordinate blocks.
+ * 3. Calibration grid alignment.
  */
 
-const baseInertialTransition = {
-  type: "tween", // No bounce (Rule 8)
-  ease: [0.19, 1, 0.22, 1], // Heavy start, early end
+const baseInertialTransition: Transition = {
+  type: "tween",
+  ease: cubicBezier(0.19, 1, 0.22, 1), // was [0.19, 1, 0.22, 1]
   duration: 1.4,
 };
 
@@ -23,7 +23,7 @@ export function HeroTitle() {
     offset: ["start start", "end start"],
   });
 
-  // Inertial Drift: Movement starts late and ends early (Rule 8)
+  // Inertial Drift for the main content and metadata
   const yDrift = useTransform(scrollYProgress, [0, 0.5], ["0px", "120px"]);
   const opacityDrift = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
@@ -32,34 +32,47 @@ export function HeroTitle() {
       ref={ref}
       className="relative min-h-[140vh] w-full bg-[#F9F8F5] overflow-hidden"
     >
-      {/* 1. CALIBRATION RESIDUE (The Grid) */}
+      {/* 1. CALIBRATION GRID */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]">
         <div className="absolute left-[8%] top-0 h-full w-[1px] bg-[#2D2B28]" />
         <div className="absolute left-0 top-[20%] h-[1px] w-full bg-[#2D2B28]" />
+        <div className="absolute right-[8%] top-0 h-full w-[1px] bg-[#2D2B28]" />
       </div>
 
-      {/* 2. OFFSET LOGO (The Seedling as Glyph) */}
+      {/* 2. CONTROL DECK: COORDINATES (Offset edges) */}
+      <motion.div
+        style={{ opacity: opacityDrift }}
+        className="absolute top-12 left-12 right-12 z-20 flex justify-between pointer-events-none"
+      >
+        <div className="flex flex-col gap-1 font-mono text-[10px] text-[#2D2B28]/40 uppercase tracking-[0.3em]">
+          <span>LAT: 26.6528° S</span>
+          <span className="text-[#F4D35E] animate-pulse-fast">Anchored</span>
+        </div>
+        <div className="flex flex-col gap-1 font-mono text-[10px] text-[#2D2B28]/40 uppercase tracking-[0.3em] text-right">
+          <span>LNG: 153.0896° E</span>
+          <span className="text-[#7FD069] animate-pulse-fast">Connected</span>
+        </div>
+      </motion.div>
+
+      {/* 3. LOGO GLYPH (Tucked Left) */}
       <motion.div
         style={{ y: yDrift, opacity: opacityDrift }}
         className="absolute left-[5%] top-[10vh] z-10"
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <div className="h-12 w-[1px] bg-[#2D2B28]" />
           <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-[#2D2B28]/40">
-            Node_01 // Seedling
+            Seedling
           </span>
-          {/* The Tech-Leaf Glyph (Rule 3) */}
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path 
-              d="M10 30C10 30 10 10 30 10M10 30C10 30 30 30 30 10" 
-              stroke="#7FD069" 
-              strokeWidth="1.5"
-            />
-          </svg>
+          <img
+            src="/icons/leaf-black.svg"
+            className="w-8 h-8 opacity-80"
+            alt="Ecodia Glyph"
+          />
         </div>
       </motion.div>
 
-      {/* 3. THE TITLE: MAXIMUM MASS & OFFSET (Rule 1 & 2) */}
+      {/* 4. MAIN TITLE MASS */}
       <div className="relative pt-[35vh] pl-[8%] pr-[5%]">
         <motion.div
           initial={{ x: -20, opacity: 0 }}
@@ -67,58 +80,60 @@ export function HeroTitle() {
           transition={baseInertialTransition}
           className="relative"
         >
-          {/* LINE 1: CHARCOAL MASS */}
           <h1 className="flex flex-col font-black leading-[0.8] tracking-tighter text-[#2D2B28]">
             <span className="text-[14vw] md:text-[12rem]">THE WORLD</span>
-            
-            {/* LINE 2: OFFSET & STAIN */}
+
             <span className="ml-[10%] flex items-baseline gap-4">
-              <span 
+              <span
                 className="text-[14vw] md:text-[12rem] text-transparent"
                 style={{ WebkitTextStroke: "2px #2D2B28" }}
               >
                 WE BUILD
               </span>
-              {/* Functional Energy: Mint means "Active" (Rule 5) */}
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 1, ...baseInertialTransition }}
-                className="h-4 w-4 rounded-full bg-[#7FD069]" 
+                transition={{ ...baseInertialTransition, delay: 1 }}
+                className="h-4 w-4 rounded-full bg-[#7FD069]"
               />
             </span>
 
-            {/* LINE 3: THE FINAL CHECKPOINT */}
             <span className="text-[18vw] md:text-[15rem] text-[#396041]">
               NEXT<span className="text-[#F4D35E]">.</span>
             </span>
           </h1>
-          
-          {/* MEASUREMENT TICKS (Rule 6) */}
+
           <div className="mt-12 flex items-end gap-24">
             <div className="space-y-2">
               <div className="h-[1px] w-32 bg-[#2D2B28] opacity-20" />
-              <p className="font-mono text-[9px] uppercase tracking-widest opacity-40">
-                Structural_Integrity_Verified
+              <p className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-40">
+                Locally anchored • ongoing
               </p>
             </div>
             <div className="hidden md:block">
               <p className="max-w-xs font-mono text-[11px] leading-relaxed opacity-60">
-                [SYSTEM_NOTE]: Ecodia is not a destination. It is the functional 
-                residue of collective human intent.
+                Ecodia isn’t a system to join. It’s a world that’s already unfolding.
               </p>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* 4. INERTIAL DRIFT ELEMENTS (Rule 8) */}
-      <motion.div 
+      {/* 5. LARGE BACKGROUND DRIFT */}
+      <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], ["0px", "-200px"]) }}
         className="absolute bottom-[10%] right-[-5%] font-black text-[20vw] opacity-[0.02] pointer-events-none select-none"
       >
         ECODIA
       </motion.div>
+
+      <style jsx global>{`
+        @keyframes pulse-fast {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+        .animate-pulse-fast { animation: pulse-fast 1.5s infinite; }
+      `}</style>
     </section>
   );
 }

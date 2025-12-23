@@ -43,29 +43,7 @@ export default function HomePage() {
 
       {/* Hero */}
       <HeroTitle />
-
-      {/* Vision peek near the top; full page lives at /vision */}
-     
-
-      {/* Control Deck - coordinates & global pulse keyframes */}
-      <section className="relative w-full max-w-[90rem] mx-auto px-6 sm:px-12 -mt-2">
-        <div className="w-full flex items-center justify-between gap-8 md:gap-0">
-          <div className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest min-w-[120px] text-left">
-            <span>LAT: 26.6528° S</span>
-            <span className="text-gold/80 animate-pulse-fast">ACTIVE / CONNECTED</span>
-          </div>
-          <div className="hidden md:flex flex-col gap-1 font-mono text-[10px] text-ink/40 uppercase tracking-widest min-w-[120px] text-right">
-            <span>LNG: 153.0896° E</span>
-            <span className="text-mint/80 animate-pulse-fast">SYSTEM ONLINE</span>
-          </div>
-        </div>
-        <style jsx global>{`
-          @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-          .animate-pulse-fast { animation: pulse-fast 1s infinite; }
-        `}</style>
-      </section>
       <HomeVision />
-      {/* Narrative + core sections (with anchor IDs for Wayfinder) */}
       <StickyNarrative />
       <section id="tech"><TechnologySection /></section>
       <section id="eco"><HomeEcosystem /></section>
