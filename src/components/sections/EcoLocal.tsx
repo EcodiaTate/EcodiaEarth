@@ -40,7 +40,7 @@ export default function EcoLocalSection() {
             <div className="flex items-center gap-4">
               <span className="h-[2px] w-12 bg-[#2D2B28] opacity-20" />
               <span className="text-[10px] tracking-[0.6em] uppercase opacity-40">
-                Local registry
+                Local index
               </span>
             </div>
 
@@ -51,7 +51,7 @@ export default function EcoLocalSection() {
 
             <div className="grid grid-cols-1 gap-24 border-l border-[#2D2B28] pl-16 lg:grid-cols-2 lg:items-end">
               <p className="text-3xl font-medium leading-tight tracking-tighter opacity-80 max-w-xl">
-                Places you return to become part of the world. Value circulates.
+                Your usual spots. Count them.
               </p>
 
               <div className="pb-4">
@@ -74,18 +74,14 @@ export default function EcoLocalSection() {
           <DocumentationCard
             step="01"
             title="Spot"
-            body="Find the places that set the tone."
+            body="Pick a place you already go."
           />
           <DocumentationCard
             step="02"
             title="Mark"
-            body="Do the sidequest. Leave the leaf."
+            body="Do a sidequest. Leave a leaf."
           />
-          <DocumentationCard
-            step="03"
-            title="Share"
-            body="Your ECO builds. Others step in."
-          />
+          <DocumentationCard step="03" title="Share" body="Log it. ECO stacks." />
         </section>
 
         {/* Split content */}
@@ -98,11 +94,11 @@ export default function EcoLocalSection() {
               </span>
             </div>
             <h2 className="mb-12 text-6xl font-black tracking-tighter uppercase leading-[0.85]">
-              MAKE YOUR <br />
-              REGULARS COUNT.
+              MAKE <br />
+              REGULARS REAL.
             </h2>
             <p className="mb-16 max-w-md text-xl opacity-70 leading-tight">
-              Return with intent. Collect marks from places that hold up.
+              Go back on purpose. Build a trail that others can follow.
             </p>
             <div className="h-px w-48 bg-[#2D2B28]" />
           </div>
@@ -116,11 +112,11 @@ export default function EcoLocalSection() {
                 </span>
               </div>
               <h2 className="mb-12 text-5xl font-black tracking-tighter uppercase leading-none">
-                JOIN THE GRID.
+                JOIN THE MAP.
               </h2>
               <p className="mb-16 text-lg opacity-70 leading-snug">
-                Register as a place. Shops, studios, hubs — the ones people come
-                back to.
+                If people return here, you belong here. Shops, studios, little
+                hubs.
               </p>
             </div>
             <SmoothLink
@@ -142,7 +138,9 @@ export default function EcoLocalSection() {
               <div key={i} className="h-8 w-px bg-[#2D2B28]" />
             ))}
           </div>
-          <div className="text-[10px] uppercase tracking-[0.8em]">Status • 2025</div>
+          <div className="text-[10px] uppercase tracking-[0.8em]">
+            Status • 2025
+          </div>
         </footer>
       </main>
     </div>

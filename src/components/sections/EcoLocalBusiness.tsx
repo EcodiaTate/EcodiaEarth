@@ -52,33 +52,33 @@ export default function ECOLocalBusinessSection() {
               <div
                 className="h-3 w-3 bg-[#7FD069]"
                 style={{
-                  clipPath:
-                    "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 }}
               />
               <span className="text-[10px] uppercase tracking-[0.6em] opacity-40">
-                Local onboarding
+                Local • Places
               </span>
             </div>
 
             <h1 className="text-[8rem] font-black leading-[0.75] tracking-tighter sm:text-[10rem] lg:text-[12rem]">
-              BUILT FOR <br />
-              PLACES THAT{" "}
-              <span className="opacity-10 italic font-light">LAST.</span>
+              A PLACE <br />
+              THAT HOLDS<span className="opacity-10 italic font-light">.</span>
             </h1>
 
             <div className="grid grid-cols-1 gap-16 border-t border-[#2D2B28] pt-16 md:grid-cols-2">
               <p className="text-3xl font-medium leading-[1.1] tracking-tighter opacity-80">
-                If your place runs on standards, this fits. Ecodia turns that
-                into signal.
+                Participation gathers here.  
+                Rewards circulate here.  
+                The place becomes stronger.
               </p>
+
               <div className="flex flex-col justify-end items-start md:items-end">
                 <SmoothLink
-                  href="/business"
+                  href="https://ecodia.au/app/my-eco-bizz"
                   className="group relative flex w-full max-w-sm items-center justify-between bg-[#2D2B28] p-10 text-[#F9F8F5] transition-all hover:bg-[#7FD069] hover:text-[#2D2B28]"
                 >
                   <span className="text-xs font-black uppercase tracking-[0.4em]">
-                    Register your place
+                    Add your place
                   </span>
                   <ArrowRight className="transition-transform group-hover:translate-x-2" />
                 </SmoothLink>
@@ -92,23 +92,23 @@ export default function ECOLocalBusinessSection() {
           <div className="grid grid-cols-1 divide-y divide-[#2D2B28] md:grid-cols-2 md:divide-x md:divide-y-0 lg:grid-cols-4">
             <IntegrationPillar
               icon={<ShieldCheck size={20} strokeWidth={1.5} />}
-              title="Check"
-              desc="A fit check. Practices over promises."
+              title="Register"
+              desc="A place enters the map."
             />
             <IntegrationPillar
               icon={<Zap size={20} strokeWidth={1.5} />}
               title="Offer"
-              desc="One offer with weight. The kind people remember."
+              desc="One local reward takes shape."
             />
             <IntegrationPillar
               icon={<Fingerprint size={20} strokeWidth={1.5} />}
-              title="Backed by ECO"
-              desc="Visitors move ECO to your place. A vote for how you run it."
+              title="Circulation"
+              desc="ECO moves through visits."
             />
             <IntegrationPillar
               icon={<BarChart3 size={20} strokeWidth={1.5} />}
-              title="Signals"
-              desc="See what’s happening: visits, marks, return patterns."
+              title="Accumulation"
+              desc="Returns gather over time."
             />
           </div>
         </section>
@@ -118,18 +118,19 @@ export default function ECOLocalBusinessSection() {
           <div className="lg:col-span-7">
             <div className="space-y-16">
               <h2 className="text-6xl font-black tracking-tighter leading-none">
-                WORK, NOT <br />
-                OFFSETS.
+                WHAT HAPPENS <br />
+                STAYS ATTACHED.
               </h2>
+
               <div className="space-y-12 text-2xl font-medium leading-tight opacity-70 border-l border-[#2D2B28] pl-12">
-                <p>Ecodia shows what happened here.</p>
+                <p>Visits leave a mark.</p>
                 <p className="italic opacity-40">
-                  When someone scans at your counter, ECO moves to your place. A
-                  mark in the world.
+                  Over time, the place carries its own history.
                 </p>
               </div>
             </div>
           </div>
+
           <div className="lg:col-span-5 relative flex items-center justify-center bg-[#2D2B28]/[0.02] border border-[#2D2B28]/10 aspect-square">
             <div className="grid grid-cols-6 gap-4 opacity-10">
               {[...Array(36)].map((_, i) => (
@@ -139,9 +140,9 @@ export default function ECOLocalBusinessSection() {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="h-48 w-48 border border-[#2D2B28] flex flex-col items-center justify-center p-8 text-center">
                 <div className="text-[10px] uppercase tracking-[0.5em] font-black leading-relaxed">
-                  Place integrity
+                  Place
                   <br />
-                  locked
+                  present
                 </div>
               </div>
             </div>
@@ -152,17 +153,18 @@ export default function ECOLocalBusinessSection() {
         <section className="bg-[#2D2B28] p-24 text-[#F9F8F5] relative overflow-hidden">
           <div className="max-w-4xl space-y-16">
             <h2 className="text-7xl font-black tracking-tighter sm:text-9xl leading-[0.8]">
-              JOIN THE <br />
-              GRID.
+              ENTER THE <br />
+              WORLD.
             </h2>
             <p className="max-w-xl text-2xl opacity-60 leading-tight">
-              Structure over ads. Signal over noise.
+              A place joins.  
+              Participation follows.
             </p>
             <SmoothLink
               href="https://ecodia.au/auth/login"
               className="inline-block border-4 border-[#7FD069] px-16 py-8 text-sm font-black uppercase tracking-[0.4em] text-[#7FD069] transition-all hover:bg-[#7FD069] hover:text-[#2D2B28]"
             >
-              Request access
+              Access it
             </SmoothLink>
           </div>
         </section>
@@ -173,14 +175,12 @@ export default function ECOLocalBusinessSection() {
             {[...Array(12)].map((_, i) => (
               <div
                 key={i}
-                className={`h-6 w-px bg-[#2D2B28] ${
-                  i % 4 === 0 ? "h-10" : ""
-                }`}
+                className={`h-6 w-px bg-[#2D2B28] ${i % 4 === 0 ? "h-10" : ""}`}
               />
             ))}
           </div>
           <div className="text-[10px] font-black uppercase tracking-[0.6em]">
-            Ecodia • Business • Ref 42
+            Ecodia • Local • Business
           </div>
         </footer>
       </div>

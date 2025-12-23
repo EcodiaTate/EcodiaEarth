@@ -65,13 +65,14 @@ export default function EcoSection() {
               className="space-y-24"
             >
               <h1 className="text-[8rem] font-black leading-[0.75] tracking-tighter sm:text-[10rem] lg:text-[12rem]">
-                NOT A MESSAGE. <br />
+                NOT A PITCH. <br />
                 <span className="opacity-10 italic font-light">RESIDUE.</span>
               </h1>
 
               <div className="space-y-16 max-w-2xl border-l border-[#2D2B28] pl-12">
                 <p className="text-3xl font-medium leading-tight tracking-tight">
                   The leaf is the unit.
+                  <br />
                   A mark left after contact.
                 </p>
 
@@ -83,15 +84,15 @@ export default function EcoSection() {
                     {[
                       {
                         id: "01",
-                        text: "Where hands already go — corners, hinges, touch points.",
+                        text: "Where hands already go — edges, latches, touch points.",
                       },
                       {
                         id: "02",
-                        text: "Where wear accumulates — surfaces shaped by time.",
+                        text: "Where wear collects — surfaces shaped by use.",
                       },
                       {
                         id: "03",
-                        text: "As a maintenance mark — a note that stays on the object.",
+                        text: "As a maintenance note — a mark that stays with the object.",
                       },
                     ].map((item) => (
                       <li key={item.id} className="flex items-start gap-8 group">
@@ -122,12 +123,14 @@ export default function EcoSection() {
                   </span>
                 </div>
                 <h2 className="text-[7rem] font-black tracking-tighter sm:text-[9rem] leading-none">
-                  THE OPEN <br />LOOP.
+                  OPEN <br />
+                  LOOP.
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
                   <p className="text-2xl font-medium opacity-70 leading-tight">
-                    Motion held open.
-                    The interval before the mark lands.
+                    A gap left on purpose.
+                    <br />
+                    The moment before it lands.
                   </p>
                   <div className="flex gap-12 justify-end">
                     <div className="h-24 w-24 border border-[#2D2B28]/20 flex items-center justify-center group hover:bg-[#2D2B28] hover:text-[#F9F8F5] transition-colors duration-700">
@@ -158,12 +161,13 @@ export default function EcoSection() {
               <div className="lg:col-span-6">
                 <div className="space-y-20">
                   <p className="text-4xl font-medium leading-[1.1] tracking-tighter">
-                    Shared progress, carried as energy.
-                    It moves through work.
+                    Progress you can carry.
+                    <br />
+                    Measured in work.
                   </p>
                   <div className="grid grid-cols-2 gap-px bg-[#2D2B28]/10 border border-[#2D2B28]/10">
                     <MetricBox label="Unit" value="1 leaf" />
-                    <MetricBox label="State" value="Inertial" />
+                    <MetricBox label="State" value="Open loop" />
                     <MetricBox label="Source" value="Work" />
                     <MetricBox label="Trace" value="Mint" />
                   </div>
@@ -192,7 +196,7 @@ export default function EcoSection() {
   );
 }
 
-function OpenLoopGlyph({ rotation = 0 }) {
+function OpenLoopGlyph({ rotation = 0 }: { rotation?: number }) {
   return (
     <motion.svg
       style={{ rotate: rotation }}
