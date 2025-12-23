@@ -1,402 +1,224 @@
-// src/components/sections/PressSection.tsx
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowLeft, Download, Copy, Check, FileText, Camera, Type } from "lucide-react";
 
-// Brand refs (for humans, not code):
-// Mint  #7FD069
-// Gold  #F4D35E
-// Forest#396041
-// Ink   #0F1712
+/**
+ * ECODIA PRESS REGISTRY (MEDIA KIT)
+ * Strategy: Asset Documentation. No Invitation.
+ * Materiality: Warm Paper (#F9F8F5) | Charcoal Ink (#2D2B28)
+ */
 
 const ASSETS = [
   {
     id: "LOG_01",
     type: "VECTOR",
-    title: "Primary logo",
+    title: "ECO",
     format: "SVG / PNG",
     size: "12KB",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 text-forest">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-        <path
-          d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"
-          fill="currentColor"
-        />
-      </svg>
-    ),
+    trace: "#7FD069", // Mint
+    icon: <img src="/icons/leaf-black.svg" alt="" className="w-8 h-8 opacity-80" />,
   },
   {
     id: "LOG_02",
     type: "WORDMARK",
-    title: "Wordmark",
+    title: "ECODIA_TYPE",
     format: "SVG / PNG",
     size: "18KB",
-    icon: <span className="font-display text-2xl text-forest">Ecodia</span>,
+    trace: "#396041", // Forest
+    icon: <span className="font-black text-xl tracking-tighter uppercase">Ecodia</span>,
   },
   {
     id: "FNT_01",
-    type: "TYPE",
-    title: "Fonts",
+    type: "TYPEFACE",
+    title: "SYSTEM_MONO",
     format: "WOFF2",
     size: "45KB",
-    icon: <span className="font-mono text-[10px] uppercase tracking-widest text-forest/70">Aa</span>,
+    trace: "#2D2B28",
+    icon: <Type size={20} />,
   },
   {
     id: "IMG_01",
-    type: "PHOTO",
-    title: "Press photos",
-    format: "JPG",
-    size: "2.4MB",
-    icon: (
-      <div className="w-full h-full flex items-center justify-center">
-        <span className="font-mono text-[8px] text-forest/60 uppercase tracking-widest">
-          Preview
-        </span>
-      </div>
-    ),
+    type: "FIELD_LOG",
+    title: "PRESS_PHOTOGRAPHY",
+    format: "RAW / JPG",
+    size: "142MB",
+    trace: "#F4D35E", // Gold
+    icon: <Camera size={20} />,
   },
 ];
 
 const COPY = {
-  oneLiner: "A new way to do good, together.",
-  short: `Ecodia turns real-world impact into sidequests - small actions that fit the day and add up when they’re shared.`,
-  long: `Ecodia is a world we’re building.\n\nIt’s designed around real-world sidequests - small, tangible actions that strengthen local places and make progress visible over time.\n\nIt doesn’t rely on guilt or motivation. It relies on better defaults: clear prompts, shared progress, and systems that make participation feel natural.`,
-  usage: `Use “sidequests” as the core metaphor.\nAvoid mission language.\nKeep it practical, calm, and specific.`,
+  oneLiner: "Infrastructure for the world we build next.",
+  short: `Ecodia captures the residue of physical action. We facilitate the transition from theoretical care to practical infrastructure.`,
+  long: `Ecodia is a system for physical participation. \n\nIt is designed around verified sidequests—tangible actions that strengthen local ecosystems and make progress visible as physical residue.\n\nEcodia does not support the attention economy. It relies on structural defaults: clear prompts, shared labor, and inertial growth.`,
+  usage: `Use “sidequests” to describe labor units.\nDo not use mission statements.\nMaintain a technical, calm, and documentarian tone.`,
 };
 
 export default function PressSection() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
 
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-  const bgTextY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const halo = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-
-  const docRef = useMemo(() => "Media_Kit / Notes_v1", []);
+  const driftY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
     <main
       ref={containerRef}
-      className="relative w-full min-h-screen bg-white text-forest overflow-hidden selection:bg-[#FF4D35] selection:text-white"
+      className="relative min-h-screen w-full overflow-x-hidden bg-[#F9F8F5] font-mono text-[#2D2B28] selection:bg-[#7FD069]"
     >
-      {/* BACKGROUND */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        {/* grain */}
-        <div className="absolute inset-0 opacity-35 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
-        {/* grid */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#396041 1px, transparent 1px), linear-gradient(90deg, #396041 1px, transparent 1px)",
-            backgroundSize: "44px 44px",
-          }}
-        />
-        {/* soft halos */}
-        <motion.div
-          style={{ y: halo }}
-          className="absolute -top-44 -right-44 w-[70vw] h-[70vw] rounded-full bg-[#7FD069]/18 blur-[90px]"
-        />
-        <div className="absolute -bottom-52 -left-52 w-[70vw] h-[70vw] rounded-full bg-[#F4D35E]/18 blur-[100px]" />
-
-        {/* big whisper text */}
-        <motion.div style={{ y: bgTextY }} className="absolute top-24 left-0 w-full text-center">
-          <h1 className="font-display text-[18vw] text-[#7FD069] opacity-[0.16] leading-none select-none uppercase">
-            PRESS
-            <br />
-            KIT
-          </h1>
-        </motion.div>
+      {/* 1. EXIT PROTOCOL (OFFSET) */}
+      <div className="fixed right-12 top-12 z-50">
+        <button
+          onClick={() => router.back()}
+          className="group flex items-center gap-3 border border-[#2D2B28] px-4 py-2 transition-all hover:bg-[#2D2B28] hover:text-[#F9F8F5]"
+        >
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-[10px] font-black uppercase tracking-[0.3em]">Exit</span>
+        </button>
       </div>
 
-      {/* CLOSE */}
-<motion.button
-  onClick={() => router.back()}
-  initial={{ y: -24, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-  className="fixed top-6 right-6 z-50 active:scale-[0.99] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4D35]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-  aria-label="Close"
->
-  <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-forest/12 shadow-[0_10px_24px_rgba(15,23,18,0.10)] hover:border-[#FF4D35]/35 transition-colors active:translate-y-[1px]"
- >
-    <span className="relative flex items-center justify-center w-6 h-6 rounded-full border border-[#FF4D35]/35 bg-[#FF4D35]/10">
-      <span className="absolute w-3.5 h-[2px] bg-[#FF4D35] rotate-45" />
-      <span className="absolute w-3.5 h-[2px] bg-[#FF4D35] -rotate-45" />
-    </span>
+      {/* 2. TOPOGRAPHIC GRID (RESIDUE) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
+        <div className="absolute left-[5%] top-0 h-full w-px bg-[#2D2B28]" />
+        <div className="absolute top-[15%] left-0 w-full h-px bg-[#2D2B28]" />
+        <div className="absolute right-[10%] top-0 h-full w-px bg-[#2D2B28]" />
+      </div>
 
-    <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-[#FF4D35]">
-      Close
-    </span>
-
-    <span className="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-forest/35">
-      Press kit
-    </span>
-  </div>
-</motion.button>
-
-
-      {/* CONTENT */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32">
-        {/* HEADER */}
-        <div className="mb-16 md:mb-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 border-b-2 border-forest/10 pb-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-5 px-3 py-1 bg-[#FF4D35]/10 rounded-full border border-[#FF4D35]/20">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FF4D35]">
-                {docRef}
-              </span>
-            </div>
-
-            <h2 className="font-display text-[12vw] sm:text-7xl md:text-9xl tracking-tighter uppercase leading-[0.82] text-forest">
-              THE
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest to-[#7FD069]">
-                STORY
-              </span>
-            </h2>
-
-            <p className="mt-6 font-serif text-xl text-forest/65 leading-relaxed max-w-2xl">
-              A small set of copy blocks and assets you can lift directly. Written to stay calm, practical, and true to the product.
-            </p>
+      <div className="relative z-10 mx-auto max-w-7xl px-8 py-32">
+        
+        {/* HEADER: VISUAL MASS */}
+        <header className="mb-48 space-y-12 border-b-4 border-[#2D2B28] pb-16">
+          <div className="flex items-center gap-4">
+            <FileText size={14} className="opacity-40" />
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">
+              Media_Registry // Public_Assets_v4.2
+            </span>
           </div>
 
-          {/* mini quick facts */}
-          <div className="hidden lg:block text-right">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-forest/50 mb-2">
-              Quick notes
-            </div>
-            <div className="space-y-1 font-mono text-xs uppercase tracking-widest text-forest/70">
-              <div>Location: Australia</div>
-              <div>Focus: real-world sidequests</div>
-              <div>Style: calm / minimal</div>
-            </div>
+          <h1 className="text-6xl font-black leading-[0.8] tracking-tighter sm:text-8xl lg:text-9xl">
+            THE <br />
+            <span className="italic font-light opacity-30 text-[#396041]">STORY.</span>
+          </h1>
+
+          <p className="max-w-2xl text-2xl font-medium leading-tight tracking-tight opacity-70">
+            Systemic residues and documentation blocks. 
+            Calm. Practical. True to the work.
+          </p>
+        </header>
+
+        {/* 3. MAIN GRID: INERTIAL POSITIONING */}
+        <div className="grid grid-cols-1 gap-24 lg:grid-cols-12">
+          
+          {/* COPY SECTION */}
+          <div className="lg:col-span-7 space-y-16">
+            <div className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40 mb-8">Section_01 // Verbals</div>
+            <CopyBlock title="Constant" text={COPY.oneLiner} />
+            <CopyBlock title="Brief" text={COPY.short} />
+            <CopyBlock title="Extended" text={COPY.long} isMultiline />
+            <CopyBlock title="Doctrine" text={COPY.usage} isMultiline isSubtle />
           </div>
-        </div>
 
-        {/* MAIN GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* COPY */}
-          <div className="lg:col-span-7 space-y-6">
-            <CopyCard title="One-liner" text={COPY.oneLiner} />
-            <CopyCard title="Short" text={COPY.short} />
-            <CopyCard title="Long" text={COPY.long} multiline />
-            <CopyCard title="Usage notes" text={COPY.usage} multiline subtle />
-          </div>
-
-          {/* ASSETS */}
-          <div className="lg:col-span-5 space-y-5">
-            <div className="flex items-center justify-between border-b border-forest/10 pb-2 mb-2">
-              <span className="font-mono text-xs font-bold uppercase text-forest">
-                Visual assets
-              </span>
-              <span className="font-mono text-xs text-[#FF4D35]">Ready when you are</span>
-            </div>
-
-            {/* Asset shelf */}
-            <div className="rounded-3xl border border-forest/10 bg-white/70 backdrop-blur-sm p-4 md:p-5 shadow-sm">
-              <div className="space-y-3">
+          {/* ASSET SECTION */}
+          <aside className="lg:col-span-5">
+            <div className="sticky top-32 space-y-12 lg:pl-12 border-l border-[#2D2B28]/10">
+              <div className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">Section_02 // Visuals</div>
+              
+              <div className="space-y-4">
                 {ASSETS.map((asset, i) => (
-                  <AssetCartridge key={asset.id} data={asset} index={i} />
+                  <AssetRow key={asset.id} data={asset} index={i} />
                 ))}
               </div>
 
-              <div className="mt-5 pt-5 border-t border-forest/10">
-                <p className="font-serif text-sm text-forest/60 leading-relaxed">
-                  If you need a specific format or lockup, leave a note - we’ll add it to the kit.
-                </p>
+              {/* PALETTE TRACES */}
+              <div className="pt-12 space-y-6">
+                 <h3 className="text-[9px] font-black uppercase tracking-[0.3em] opacity-40">System_Palette</h3>
+                 <div className="grid grid-cols-5 gap-2">
+                    <Swatch color="#0F1712" />
+                    <Swatch color="#396041" />
+                    <Swatch color="#7FD069" />
+                    <Swatch color="#F4D35E" />
+                    <Swatch color="#F9F8F5" border />
+                 </div>
+              </div>
+
+              <div className="pt-12 border-t border-[#2D2B28]/10">
+                 <a href="mailto:press@ecodia.au" className="flex items-center justify-between w-full border-2 border-[#2D2B28] p-6 text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:bg-[#2D2B28] hover:text-[#F9F8F5]">
+                    Request_Briefing <Download size={14} />
+                 </a>
               </div>
             </div>
-
-            {/* Tiny brand cues */}
-            <div className="grid grid-cols-3 gap-3">
-              <Swatch name="Ink" value="#0F1712" />
-              <Swatch name="Forest" value="#396041" />
-              <Swatch name="Mint" value="#7FD069" />
-              <Swatch name="Gold" value="#F4D35E" />
-              <Swatch name="Gem" value="#7F69D0" />
-              </div>
-          </div>
+          </aside>
         </div>
 
-        {/* FOOTER */}
-        <div className="mt-24 rounded-3xl overflow-hidden border border-[#7FD069]/30 shadow-sm">
-          <div className="relative p-8 md:p-10 bg-[linear-gradient(135deg,rgba(127,208,105,0.14),rgba(244,211,94,0.10),rgba(255,255,255,0.0))]">
-            <div className="absolute inset-0 pointer-events-none opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
-            <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-              <div>
-                <h3 className="font-display text-3xl text-forest mb-2">Press</h3>
-                <p className="font-serif text-forest/65">
-                  Quotes, context, or a clean asset pack.
-                </p>
-              </div>
-
-              <a
-                href="mailto:press@ecodia.au"
-                className="w-full md:w-auto px-6 py-4 bg-forest text-white rounded-2xl active:scale-95 transition-transform text-center"
-              >
-                <span className="font-mono text-xs uppercase tracking-widest">
-                  press@ecodia.au
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* quiet final note */}
-        <div className="mt-12 text-center font-mono text-[10px] uppercase tracking-widest text-forest/40">
-          // Keep it practical. Let the product speak //
-        </div>
+        {/* FOOTER: MEASUREMENT TICKS */}
+        <footer className="mt-64 flex items-center justify-between opacity-20 border-t border-[#2D2B28]/10 pt-12">
+            <div className="text-[8px] uppercase tracking-[0.5em]">26.6500° S // Post-Marketing</div>
+            <div className="h-px flex-1 mx-12 bg-[#2D2B28]" />
+            <div className="text-[8px] uppercase tracking-[0.5em]">Ecodia.Press // 2025</div>
+        </footer>
       </div>
     </main>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* CopyCard                                                                    */
-/* -------------------------------------------------------------------------- */
+/** ----------------------------- COMPONENTS ----------------------------- */
 
-function CopyCard({
-  title,
-  text,
-  multiline,
-  subtle,
-}: {
-  title: string;
-  text: string;
-  multiline?: boolean;
-  subtle?: boolean;
-}) {
+function CopyBlock({ title, text, isMultiline = false, isSubtle = false }: any) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(text);
     setCopied(true);
-    setTimeout(() => setCopied(false), 1600);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div
-      onClick={handleCopy}
-      className={`
-        group relative cursor-pointer rounded-3xl border transition-all duration-200
-        active:scale-[0.985]
-        ${copied ? "bg-forest border-forest text-white" : "bg-white/80 backdrop-blur border-forest/10 text-forest hover:border-[#7FD069]/60"}
-      `}
-    >
-      {/* top label */}
-      <div
-        className={`
-          absolute -top-3 left-6 text-[10px] font-mono uppercase px-3 py-1 rounded-md border
-          ${copied ? "bg-[#7FD069] text-forest border-[#7FD069]" : "bg-white text-forest border-forest/20"}
-        `}
-      >
-        {title}
+    <div className={`group relative transition-all ${isSubtle ? 'opacity-40' : ''}`}>
+      <div className="mb-4 flex items-baseline gap-4">
+        <span className="text-[9px] font-black uppercase tracking-[0.2em] opacity-30">{title}</span>
+        <button onClick={handleCopy} className="opacity-0 group-hover:opacity-100 transition-opacity">
+          {copied ? <Check size={12} className="text-[#7FD069]" /> : <Copy size={12} />}
+        </button>
       </div>
-
-      <div className="p-7 md:p-9">
-        <p
-          className={`
-            font-serif leading-relaxed
-            ${multiline ? "text-lg md:text-xl whitespace-pre-line" : "text-xl md:text-2xl"}
-            ${subtle ? (copied ? "text-white/85" : "text-forest/65") : copied ? "text-white" : "text-forest"}
-          `}
-        >
-          {multiline ? text : `“${text}”`}
-        </p>
-
-        <div className="mt-6 flex items-center gap-3">
-          <div
-            className={`
-              w-9 h-9 rounded-full flex items-center justify-center border
-              ${copied ? "bg-white border-white text-forest" : "bg-[#7FD069]/12 border-[#7FD069]/40 text-forest"}
-            `}
-          >
-            {copied ? "✓" : "⎘"}
-          </div>
-          <span
-            className={`
-              font-mono text-[10px] uppercase font-bold tracking-wider
-              ${copied ? "text-[#7FD069]" : "text-forest/45"}
-            `}
-          >
-            {copied ? "Copied" : "Tap to copy"}
-          </span>
-        </div>
-      </div>
-
-      {/* underline */}
-      <div className="absolute bottom-0 left-0 h-[3px] bg-[#7FD069] w-0 group-hover:w-full transition-all duration-500 ease-out opacity-70" />
+      <p className={`text-2xl font-medium tracking-tight leading-tight transition-colors ${copied ? 'text-[#7FD069]' : ''} ${isMultiline ? 'text-lg whitespace-pre-line' : ''}`}>
+        {isMultiline ? text : `"${text}"`}
+      </p>
     </div>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* AssetCartridge                                                              */
-/* -------------------------------------------------------------------------- */
-
-function AssetCartridge({ data, index }: { data: any; index: number }) {
+function AssetRow({ data, index }: any) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.08 }}
-      className="group flex items-stretch h-20 md:h-24 bg-white border border-forest/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md active:scale-[0.99] transition-all"
+    <motion.div 
+      initial={{ opacity: 0, x: 10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="group flex items-center justify-between border border-[#2D2B28]/10 p-6 transition-colors hover:bg-[#2D2B28] hover:text-[#F9F8F5]"
     >
-      {/* preview */}
-      <div className="w-20 md:w-24 shrink-0 bg-forest/[0.04] flex items-center justify-center border-r border-forest/10">
-        {data.icon}
-      </div>
-
-      {/* meta */}
-      <div className="flex-1 p-3 md:p-4 flex flex-col justify-center min-w-0">
-        <div className="flex items-center justify-between gap-3">
-          <h4 className="font-display text-lg md:text-xl truncate text-forest">
-            {data.title}
-          </h4>
-          <span className="hidden md:inline-flex font-mono text-[10px] uppercase tracking-widest text-forest/40">
-            {data.type}
-          </span>
+      <div className="flex items-center gap-6">
+        <div className="h-10 w-10 flex items-center justify-center border border-current opacity-40">
+          {data.icon}
         </div>
-
-        <div className="mt-1 flex items-center gap-2">
-          <span className="font-mono text-[10px] bg-forest/5 px-2 py-0.5 rounded text-forest/80">
-            {data.format}
-          </span>
-          <span className="text-[10px] font-mono text-forest/40">{data.size}</span>
+        <div>
+          <div className="text-[10px] font-black tracking-tighter uppercase">{data.title}</div>
+          <div className="text-[8px] opacity-40 uppercase tracking-widest">{data.format} // {data.size}</div>
         </div>
       </div>
-
-      {/* action */}
-      <button
-        type="button"
-        className="w-16 md:w-20 bg-[#FF4D35] text-white flex flex-col items-center justify-center gap-1 active:bg-[#E53F2A] transition-colors"
-        aria-label="Download"
-      >
-        <span className="text-xl">↓</span>
-        <span className="hidden md:block text-[8px] font-mono uppercase tracking-widest">
-          Get
-        </span>
+      <button className="opacity-0 group-hover:opacity-100 transition-opacity">
+        <Download size={16} />
       </button>
     </motion.div>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Swatch                                                                      */
-/* -------------------------------------------------------------------------- */
-
-function Swatch({ name, value }: { name: string; value: string }) {
+function Swatch({ color, border = false }: { color: string, border?: boolean }) {
   return (
-    <div className="rounded-2xl border border-forest/10 bg-white/70 backdrop-blur-sm p-4 text-center">
-      <div className="h-10 rounded-xl border border-forest/10" style={{ background: value }} />
-      <div className="mt-3 font-mono text-[10px] uppercase tracking-widest text-forest/55">
-        {name}
-      </div>
-      <div className="mt-1 font-mono text-[10px] text-forest/35">{value}</div>
-    </div>
+    <div 
+      className={`aspect-square w-full rounded-full transition-transform hover:scale-110 ${border ? 'border border-[#2D2B28]/20' : ''}`}
+      style={{ backgroundColor: color }}
+    />
   );
 }

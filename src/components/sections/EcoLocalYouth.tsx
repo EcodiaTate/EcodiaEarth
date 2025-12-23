@@ -64,7 +64,7 @@ export default function ECOLocalYouthSection() {
               
               <div className="flex flex-col gap-8 pt-12 md:flex-row md:items-center">
                 <SmoothLink
-                  href="/auth/login"
+                  href="https://ecodia.au/auth/login"
                   className="bg-[#2D2B28] px-10 py-5 text-[#F9F8F5] text-xs font-black uppercase tracking-widest transition-transform active:scale-95"
                 >
                   Initiate Participation
@@ -152,7 +152,7 @@ export default function ECOLocalYouthSection() {
                 ECO Local is free for youth, permanent for the world.
               </p>
               <SmoothLink
-                href="/auth/login"
+                href="https://ecodia.au/auth/login"
                 className="inline-block border-2 border-[#7FD069] px-12 py-6 text-sm font-black uppercase tracking-widest text-[#7FD069] transition-all hover:bg-[#7FD069] hover:text-[#2D2B28]"
               >
                 Join Ecodia

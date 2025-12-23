@@ -142,14 +142,12 @@ export default function ECOLocalBusinessSection() {
             </p>
             <div className="flex flex-col items-center gap-6">
               <SmoothLink
-                href="/auth/login"
+                href="https://ecodia.au/auth/login"
                 className="bg-[#7FD069] px-16 py-8 text-sm font-black uppercase tracking-[0.3em] text-[#2D2B28] transition-transform active:scale-95"
               >
                 Request Access
               </SmoothLink>
-              <span className="text-[9px] uppercase tracking-widest opacity-40">
-                Limited Nodes per Sector Available
-              </span>
+             
             </div>
           </div>
         </section>

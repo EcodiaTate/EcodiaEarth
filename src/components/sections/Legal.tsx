@@ -148,7 +148,7 @@ export default function LegalSection() {
               <div className="space-y-6">
                 <h3 className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Summary</h3>
                 <ul className="space-y-4 text-xs font-bold uppercase tracking-widest opacity-60">
-                  <li className="flex items-center gap-3"><div className="h-1 w-1 bg-[#7FD069]" /> Privacy: Minimal.</li>
+                  <li className="flex items-center gap-3"><div className="h-1 w-1 bg-[#7FD069]" /> Privacy: Maximum.</li>
                   <li className="flex items-center gap-3"><div className="h-1 w-1 bg-[#396041]" /> Terms: Good Faith.</li>
                   <li className="flex items-center gap-3"><div className="h-1 w-1 bg-[#F4D35E]" /> Open: Extensible.</li>
                 </ul>
@@ -159,7 +159,7 @@ export default function LegalSection() {
                 <EntityBlock 
                   label="Operations"
                   name="Ecodia Pty Ltd"
-                  meta={["Jurisdiction: Australia", "Ref: Op_Co"]}
+                  meta={["Home: Australia", "Ref: Op_Co"]}
                 />
                 <EntityBlock 
                   label="Research"
