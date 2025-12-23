@@ -16,14 +16,12 @@ import { HomeLeafIndex } from "@/components/sections/HomePorts";
 import { HomePressLegal } from "@/components/sections/HomePressLegal";
 
 // Shell
-import { DigitalOverlay } from "@/components/intro/DigitalOverlay";
 import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-ink selection:bg-mint selection:text-ink perspective-1000">
       {/* Cinematic overlays */}
-      <DigitalOverlay />
       <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.8] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply" />
 
       {/* Atmosphere */}
