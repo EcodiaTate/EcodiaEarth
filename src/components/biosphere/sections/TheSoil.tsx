@@ -98,7 +98,7 @@ export const TheSoil = () => {
             transition={{ delay: 0.3, duration: 1 }}
             className="max-w-xl text-lg opacity-80 leading-relaxed font-serif"
           >
-            The Soil represents our local youth initiatives and ecological partnerships. No "User Profiles" here—only **Members of the Soil** contributing to the living mesh.
+            The Soil represents our local youth initiatives and ecological partnerships. No "User Profiles" here—only <b>Members of the Soil</b> contributing to the living mesh.
           </motion.p>
 
           {/* Member Grid: Non-OS Stats */}

@@ -11,10 +11,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) {
   return (
     <html lang="en" className="scrollbar-hide">
@@ -25,7 +23,6 @@ export default function RootLayout({
           <ScaleSelector />
           <main className="relative z-10">
             {children}
-            {modal}
           </main>
         </BiosphereProvider>
       </body>

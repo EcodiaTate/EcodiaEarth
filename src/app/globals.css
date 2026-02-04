@@ -147,3 +147,7 @@ section {
 svg path {
   vector-effect: non-scaling-stroke;
 }
+.theme-soil p {
+  text-shadow: 0 0 1px rgba(0,0,0,0.05);
+  letter-spacing: 0.01em;
+}
