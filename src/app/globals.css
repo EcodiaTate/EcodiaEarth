@@ -151,3 +151,35 @@ svg path {
   text-shadow: 0 0 1px rgba(0,0,0,0.05);
   letter-spacing: 0.01em;
 }
+
+/* Deep Dive Mode Adjustments */
+.mode-deep-dive {
+  --cursor-size: 20px;
+  --cursor-blur: 2px;
+}
+
+.mode-deep-dive main {
+  /* Give the page a more 'archival' feel with a subtle edge shadow */
+  box-shadow: 0 0 100px rgba(0,0,0,0.05);
+}
+
+.mode-deep-dive .scale-nav {
+  /* Fade out the scale selector slightly so it doesn't distract from deep reading */
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.theme-kinetic {
+  --bg-primary: #0a0a0a;
+  --text-primary: #ffffff;
+  --accent-color: #ffb300; /* Solar Gold */
+}
+
+.theme-studio section img {
+  filter: contrast(1.1) brightness(0.9) saturate(0.8);
+  /* This gives images that 'film-look' lookbook vibe */
+}
+
+.theme-source {
+  --grain-opacity: 0.02; /* Minimal texture for max precision */
+}

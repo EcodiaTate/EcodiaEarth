@@ -2,6 +2,8 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
+import Link from "next/link"
 
 export const TheHorizon = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,16 +27,27 @@ export const TheHorizon = () => {
           <span className="text-[10px] tracking-[1rem] uppercase opacity-50 mb-6">
             Layer 01: The Understory
           </span>
-          <h1 className="text-5xl md:text-7xl font-light tracking-[1.5em] uppercase text-balance leading-tight">
-            Ecodia <br/> Earth
-          </h1>
+
+          {/* LOGO + EARTH */}
+          <div className="flex flex-col items-center gap-4">
+            <div className="relative w-[320px] md:w-[400px] h-[120px]">
+              <Image
+                src="/img/ecodia-logo.png"
+                alt="Ecodia"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 2 }}
-            className="mt-12 max-w-xl text-lg italic opacity-60 font-serif"
+            className="mt-12 max-w-xl text-lg italic text-black font-serif"
           >
-            "We are not building a platform; we are planting a digital biosphere."
+            "The world we build next."
           </motion.p>
         </motion.div>
 
@@ -71,6 +84,12 @@ export const TheHorizon = () => {
           </div>
         </div>
       </div>
+      <Link href="/horizon">
+    <button className="px-8 py-4 border border-current/20 hover:border-[var(--accent-color)] transition-all uppercase tracking-widest text-[10px]">
+      Read the Manifesto
+    </button>
+  </Link>
     </section>
+    
   );
 };

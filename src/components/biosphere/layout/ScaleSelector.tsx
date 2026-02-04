@@ -28,12 +28,12 @@ export const ScaleSelector = () => {
           className="group relative flex items-center text-left"
         >
           {/* Tier Marker (Macro/Meso/Micro) */}
-          <span className="absolute -left-8 text-[10px] rotate-[-90deg] opacity-0 group-hover:opacity-40 transition-opacity">
+          <span className="absolute -left-8 text-[8px] rotate-[-90deg] opacity-0 group-hover:opacity-40 transition-opacity">
             {biome.tier}
           </span>
 
           <div className="flex flex-col">
-            <span className={`text-[10px] tracking-widest transition-all ${
+            <span className={`text-[8px] tracking-widest transition-all ${
               activeBiome === biome.id ? 'opacity-100' : 'opacity-0'
             }`}>
               {activeBiome === biome.id ? '● ACTIVE' : ''}

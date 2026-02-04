@@ -15,9 +15,8 @@ const members = [
 export const TheSoil = () => {
   const { setActiveBiome } = useBiosphere();
   
-  // Intersection Observer to trigger the "Soil" theme globally
   const { ref, inView } = useInView({ 
-    threshold: 0.4, // Triggers when 40% of the section is visible
+    threshold: 0.4,
     rootMargin: "-10% 0px -10% 0px" 
   });
 
@@ -33,12 +32,11 @@ export const TheSoil = () => {
       id="soil"
       className="relative min-h-screen py-32 px-12 overflow-hidden flex items-center"
     >
-      {/* Background Texture: Sun-bleached Paper Grain */}
       <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-multiply bg-[url('/textures/paper-grain.jpg')]" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center z-10">
         
-        {/* Visual Column: The Earthy Visuals */}
+        {/* Visual Column */}
         <div className="lg:col-span-5 relative">
           <motion.div 
             initial={{ clipPath: 'inset(100% 0% 0% 0%)', filter: 'blur(10px)' }}
@@ -46,7 +44,6 @@ export const TheSoil = () => {
             transition={{ duration: 1.8, ease: [0.19, 1, 0.22, 1] }}
             className="relative aspect-[4/5] overflow-hidden rounded-t-[10rem] rounded-b-[2rem]"
           >
-            {/* Grainy Film Photography - Placeholder logic included */}
             <div className="absolute inset-0 bg-stone-200" /> 
             <Image 
               src="/images/soil-community.jpg" 
@@ -57,7 +54,7 @@ export const TheSoil = () => {
             />
           </motion.div>
           
-          {/* Marginalia: The Field Note */}
+          {/* Marginalia */}
           <motion.div 
             initial={{ x: 30, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -82,10 +79,24 @@ export const TheSoil = () => {
             transition={{ duration: 1 }}
             className="space-y-6"
           >
+            {/* LOGO + HEADER LINE */}
             <div className="flex items-center gap-4">
               <span className="h-[1px] w-12 bg-[var(--accent-color)]" />
-              <h2 className="text-[10px] tracking-[0.5em] uppercase opacity-60">The Community</h2>
+
+              <div className="relative w-10 h-10">
+                <Image
+                  src="/img/eco-local-logo.png"
+                  alt="Eco Local"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <h2 className="text-[10px] tracking-[0.5em] uppercase opacity-60">
+                The Community
+              </h2>
             </div>
+
             <h3 className="text-5xl md:text-6xl font-serif leading-[1.1] text-[var(--text-primary)]">
               Grounded in <br/>
               <span className="italic text-[var(--accent-color)]">Collective Intent.</span>
@@ -98,10 +109,10 @@ export const TheSoil = () => {
             transition={{ delay: 0.3, duration: 1 }}
             className="max-w-xl text-lg opacity-80 leading-relaxed font-serif"
           >
-            The Soil represents our local youth initiatives and ecological partnerships. No "User Profiles" here—only <b>Members of the Soil</b> contributing to the living mesh.
+            The Soil represents our local youth initiatives and ecological partnerships. No "User Profiles" here - only <b>Members of the Soil</b> contributing to the living mesh.
           </motion.p>
 
-          {/* Member Grid: Non-OS Stats */}
+          {/* Member Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-8">
             {members.map((member, i) => (
               <motion.div 
@@ -124,7 +135,7 @@ export const TheSoil = () => {
             ))}
           </div>
 
-          {/* Action: The Token Button */}
+          {/* Action Button */}
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -145,7 +156,6 @@ export const TheSoil = () => {
         </div>
       </div>
 
-      {/* Aesthetic Thread Piece: The Root */}
       <div className="absolute bottom-0 left-1/2 w-[1px] h-32 bg-gradient-to-b from-[var(--accent-color)] to-transparent opacity-20" />
     </section>
   );

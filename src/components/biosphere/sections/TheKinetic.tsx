@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useBiosphere } from '@/context/BiosphereProvider';
+import React, { useEffect } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useBiosphere } from "@/context/BiosphereProvider";
 
 const pathStages = [
   { season: "Equinox", title: "Seeding the Mesh", desc: "Deployment of initial node clusters." },
   { season: "Solstice", title: "Solar Expansion", desc: "Kinetic energy harvesting protocols live." },
-  { season: "Harvest", title: "The Sovereign Yield", desc: "Full decentralization of local community data." }
+  { season: "Harvest", title: "The Sovereign Yield", desc: "Full decentralization of local community data." },
 ];
 
 export const TheKinetic = () => {
@@ -16,11 +17,11 @@ export const TheKinetic = () => {
   const { ref, inView } = useInView({ threshold: 0.4 });
 
   useEffect(() => {
-    if (inView) setActiveBiome('kinetic');
+    if (inView) setActiveBiome("kinetic");
   }, [inView, setActiveBiome]);
 
   return (
-    <section 
+    <section
       ref={ref}
       id="kinetic"
       className="relative min-h-[150vh] py-32 px-12 bg-[var(--bg-primary)] overflow-hidden"
@@ -38,9 +39,23 @@ export const TheKinetic = () => {
             <span className="source-code text-[10px] tracking-[0.5em] uppercase text-[var(--accent-color)] mb-4 block">
               03. The Movement
             </span>
-            <h2 className="text-6xl md:text-8xl font-light uppercase tracking-tighter text-[var(--text-primary)] mb-8">
-              The <span className="italic">Kinetic</span> <br/> Flow.
-            </h2>
+
+            {/* REPLACED "The Kinetic Flow." WITH LABS LOGO */}
+            <div className="space-y-6">
+              <div className="relative w-[240px] md:w-[320px] h-[84px]">
+                <Image
+                  src="/img/labs-logo.png"
+                  alt="Ecodia Labs"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              <h2 className="text-6xl md:text-8xl font-light uppercase tracking-tighter text-[var(--text-primary)] mb-8">
+                <span className="italic">Kinetic</span> <br /> Flow.
+              </h2>
+            </div>
           </motion.div>
         </header>
 
@@ -48,10 +63,10 @@ export const TheKinetic = () => {
           {/* The Seasonal Path (Roadmap as a Vine) */}
           <div className="lg:col-span-8 relative">
             <div className="absolute left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[var(--accent-color)] via-[var(--accent-color)] to-transparent opacity-30" />
-            
+
             <div className="space-y-32 relative">
               {pathStages.map((stage, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -60,7 +75,7 @@ export const TheKinetic = () => {
                 >
                   {/* The "Bloom" Point */}
                   <div className="absolute left-[18px] top-2 w-[15px] h-[15px] rounded-full bg-[var(--accent-color)] shadow-[0_0_20px_var(--accent-color)]" />
-                  
+
                   <span className="source-code text-[10px] uppercase opacity-40 mb-2 block">
                     {stage.season} Stage
                   </span>
@@ -75,13 +90,13 @@ export const TheKinetic = () => {
 
           {/* Partnerships in Growth (Business) */}
           <div className="lg:col-span-4 flex flex-col justify-center">
-            <motion.div 
+            <motion.div
               className="p-10 border border-current/10 backdrop-blur-md rounded-2xl bg-white/5"
-              whileHover={{ borderColor: 'var(--accent-color)' }}
+              whileHover={{ borderColor: "var(--accent-color)" }}
             >
               <h4 className="text-xs tracking-widest uppercase mb-6 opacity-80">Partnerships in Growth</h4>
               <p className="text-sm opacity-60 mb-8 leading-loose italic">
-                "We don't seek 'Users.' We seek systemic anchors—businesses ready to transition to the Biosphere."
+                "We don't seek 'Users.' We seek systemic anchors - businesses ready to transition to the Biosphere."
               </p>
               <button className="w-full py-4 border border-[var(--accent-color)] text-[var(--accent-color)] text-[10px] tracking-[0.3em] uppercase hover:bg-[var(--accent-color)] hover:text-black transition-all">
                 Sync with the Mesh
