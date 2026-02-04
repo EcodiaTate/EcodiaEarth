@@ -42,7 +42,7 @@ export default function ECOLocalYouthSection() {
             className="space-y-16"
           >
             <div className="text-[10px] uppercase tracking-[0.6em] opacity-30">
-              Eco Local • Youth
+              ECO Local • Youth
             </div>
 
             <h1 className="text-[8.5rem] font-black leading-[0.75] tracking-tighter sm:text-[11rem] lg:text-[13rem]">

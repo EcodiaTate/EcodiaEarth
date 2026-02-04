@@ -1,40 +1,9 @@
-// HomePage.tsx
-"use client";
+import { BiosphereStage } from "@/components/biosphere/layout/BiosphereStage";
 
-import { motion } from "framer-motion";
-
-// Sections
-import { HeroTitle } from "@/components/sections/HeroTitle";
-import { StickyNarrative } from "@/components/sections/StickyNarrative";
-import { TechnologySection } from "@/components/sections/HomeTech";
-import { HomeLabs } from "@/components/sections/HomeLabs";
-import { HomeValues } from "@/components/sections/HomeValues";
-import { HomeEcosystem } from "@/components/sections/HomeEcosystem";
-import { HomeVision } from "@/components/sections/HomeVision";
-import { HomeEntry } from "@/components/sections/HomeEntry";
-import { HomeLeafIndex } from "@/components/sections/HomePorts";
-import { HomePressLegal } from "@/components/sections/HomePressLegal";
-
-// Shell
-import { Footer } from "@/components/layout/Footer";
-
-export default function HomePage() {
+export default function Page() {
   return (
-    <main className="min-h-screen bg-white text-ink home-bg selection:bg-mint selection:text-ink perspective-1000">
-      {/* Cinematic overlays */}
-      <div className="fixed inset-0 pointer-events-none " />
-
-      <HeroTitle />
-      <section id="values"><HomeLeafIndex /></section>
-      <HomeVision />
-      <StickyNarrative />
-      <section id="tech"><TechnologySection /></section>
-      <section id="eco"><HomeEcosystem /></section>
-      <section id="labs"><HomeLabs /></section>
-      <section id="values"><HomeValues /></section>
-      <HomeEntry />
-      <HomePressLegal />
-      <Footer />
+    <main>
+      <BiosphereStage />
     </main>
   );
 }

@@ -11,7 +11,7 @@ const ZONES = [
     id: "ZONE_01",
     title: "PEOPLE",
     subtitle: "Active_Nodes",
-    desc: "It starts where you are. Friends, neighbours, builders—choosing to take part in the local grid.",
+    desc: "It begins nearby - friends, neighbours, makers. The local network of action and care.",
     color: "bg-[#F9F8F5]",
     text: "text-[#2D2B28]",
     metaOpacity: "opacity-40",
@@ -20,7 +20,7 @@ const ZONES = [
     id: "ZONE_02",
     title: "TECH",
     subtitle: "The_Engine",
-    desc: "Technology as craft: notice more, remove effort, help good choices travel through the strata.",
+    desc: "Tools that reduce effort and reveal connection. Quiet systems that keep good things moving.",
     color: "bg-[#F9F8F5]",
     text: "text-[#2D2B28]",
     metaOpacity: "opacity-40",
@@ -29,7 +29,7 @@ const ZONES = [
     id: "ZONE_03",
     title: "PLANET",
     subtitle: "The_Commons",
-    desc: "The shared places life happens. Care that isn't lonely. Physical residue that outlasts the digital.",
+    desc: "The shared terrain of life. What we touch, use, and tend - the physical story that outlasts us.",
     color: "bg-[#396041]", // Forest
     text: "text-[#F9F8F5]", // Paper
     metaOpacity: "opacity-60",
@@ -38,22 +38,23 @@ const ZONES = [
 
 export function HomeEcosystem() {
   const containerRef = useRef<HTMLDivElement>(null);
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   return (
-    <section ref={containerRef} className="relative w-full bg-[#F9F8F5] overflow-x-clip">
+    <section
+      ref={containerRef}
+      className="relative w-full bg-[#F9F8F5] overflow-x-clip"
+    >
       {/* Header: Visual Mass */}
-      <div className="sticky top-0 h-[100svh] flex flex-col items-start justify-center pointer-events-none z-0 pl-[8%]">
+      <div className="sticky top-0 h-[100svh] flex flex-col justify-center pointer-events-none z-0 px-[8%] md:px-[12%]">
         <motion.div
           style={{
             opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]),
             y: useTransform(scrollYProgress, [0, 0.2], [0, -50]),
           }}
-          className="text-left"
         >
           <span className="font-mono text-[10px] tracking-[0.6em] opacity-40 uppercase italic">
             Structural_Topology
@@ -64,10 +65,10 @@ export function HomeEcosystem() {
         </motion.div>
       </div>
 
-      {/* Calibration rails (kept inside the section to avoid fixed+transform weirdness) */}
+      {/* Calibration rails */}
       <div className="absolute inset-0 pointer-events-none z-10 opacity-5">
         <div className="absolute left-[8%] top-0 h-full w-px bg-[#2D2B28]" />
-        <div className="absolute right-[15%] top-0 h-full w-px bg-[#2D2B28]" />
+        <div className="absolute right-[8%] top-0 h-full w-px bg-[#2D2B28]" />
       </div>
 
       <div className="relative z-20">
@@ -95,8 +96,6 @@ function EcosystemCard({
 }) {
   const start = index * 0.33;
   const end = (index + 1) * 0.33;
-
-  // Use real viewport pixels (mobile-safe), not "100vh" strings.
   const [vh, setVh] = useState(0);
 
   useEffect(() => {
@@ -114,9 +113,8 @@ function EcosystemCard({
     <motion.div
       style={{ y, scale, zIndex: index + 10 }}
       transition={{ ease: ECODIA_BEZIER }}
-      className={`sticky top-0 h-[100svh] w-full ${zone.color} flex flex-col justify-center pl-[8%] pr-[15%] border-t border-[#2D2B28]/10 overflow-x-clip`}
+      className={`sticky top-0 h-[100svh] w-full ${zone.color} flex flex-col justify-center px-[8%] md:px-[12%] border-t border-[#2D2B28]/10 overflow-x-clip`}
     >
-      {/* Put “depth” on an inner wrapper so transforms don’t enlarge the visual overflow */}
       <div className="relative h-full w-full">
         <div className="max-w-5xl space-y-12">
           <motion.div style={{ x: textDrift }} className="flex items-center gap-6">
@@ -140,7 +138,7 @@ function EcosystemCard({
           </h3>
 
           <p
-            className={`font-mono text-2xl md:text-4xl max-w-3xl leading-[1.1] tracking-tighter opacity-80 ${zone.text}`}
+            className={`font-mono text-2xl md:text-4xl max-w-3xl leading-[1.15] tracking-tighter opacity-80 ${zone.text}`}
           >
             {zone.desc}
           </p>
@@ -154,10 +152,10 @@ function EcosystemCard({
             >
               <Link
                 href="/ecosystem"
-                className="group relative inline-flex items-center justify-between bg-[#F4D35E] text-[#2D2B28] px-16 py-10 font-black text-xs uppercase tracking-[0.5em] hover:bg-[#7FD069] transition-all"
+                className="group relative inline-flex items-center justify-between bg-[#F4D35E] text-[#2D2B28] px-14 py-8 font-black text-xs uppercase tracking-[0.4em] hover:bg-[#7FD069] transition-all"
               >
-                Explore_The_Strata
-                <span className="ml-8 group-hover:translate-x-2 transition-transform">
+                Explore the ecosystem
+                <span className="ml-6 group-hover:translate-x-2 transition-transform">
                   →
                 </span>
               </Link>
@@ -165,7 +163,7 @@ function EcosystemCard({
           )}
         </div>
 
-        {/* Calibration ticks */}
+        {/* Calibration marks */}
         <div
           className={`absolute bottom-16 right-[8%] flex flex-col items-end gap-2 ${zone.text} opacity-20`}
         >
@@ -179,7 +177,6 @@ function EcosystemCard({
           </div>
         </div>
 
-        {/* Crop mark */}
         <div
           className={`absolute top-16 right-[8%] h-12 w-12 border-t-2 border-r-2 border-current opacity-10 ${zone.text}`}
         />

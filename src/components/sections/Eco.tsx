@@ -84,15 +84,15 @@ export default function EcoSection() {
                     {[
                       {
                         id: "01",
-                        text: "Where hands already go — edges, latches, touch points.",
+                        text: "Where hands already go - edges, latches, touch points.",
                       },
                       {
                         id: "02",
-                        text: "Where wear collects — surfaces shaped by use.",
+                        text: "Where wear collects - surfaces shaped by use.",
                       },
                       {
                         id: "03",
-                        text: "As a maintenance note — a mark that stays with the object.",
+                        text: "As a maintenance note - a mark that stays with the object.",
                       },
                     ].map((item) => (
                       <li key={item.id} className="flex items-start gap-8 group">
