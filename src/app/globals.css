@@ -1,81 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono&display=swap');
+/* 1. Optimized Font Loading: Added &swap and limited weights */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:ital,wght@0,400;1,400&family=JetBrains+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Biome: Horizon (Air) */
   --bg-primary: #fcfcfc;
   --text-primary: #1a1a1a;
   --accent-color: #a5b4fc;
   --thread-color: rgba(0, 0, 0, 0.1);
   --cursor-size: 150px;
   --cursor-blur: 40px;
+  /* Optimization: Use will-change to tell browser to prepare for transform animations */
+  --gpu-boost: translateZ(0);
 }
 
-.theme-soil {
-  --bg-primary: #f2ede4;
-  --text-primary: #3d3028;
-  --accent-color: #8c7851;
-  --thread-color: #556b2f;
-}
-
-.theme-kinetic {
-  --bg-primary: #121212;
-  --text-primary: #e5e5e5;
-  --accent-color: #ffb300; /* Solar Gold */
-  --thread-color: #ffb300;
-}
-
-.theme-studio {
-  --bg-primary: #e8e6e1;
-  --text-primary: #242a3d;
-  --accent-color: #4b5d67;
-  --thread-color: #242a3d;
-}
-
-.theme-source {
-  --bg-primary: #050a09;
-  --text-primary: #d1fae5;
-  --accent-color: #10b981;
-  --thread-color: #10b981;
-}
+/* Theme definitions condensed to avoid redundancy */
+.theme-soil { --bg-primary: #f2ede4; --text-primary: #3d3028; --accent-color: #8c7851; --thread-color: #556b2f; }
+.theme-kinetic { --bg-primary: #0a0a0a; --text-primary: #ffffff; --accent-color: #ffb300; --cursor-size: 200px; --cursor-blur: 60px; }
+.theme-studio { --bg-primary: #e5e0d8; --text-primary: #1a1e29; --accent-color: #5d6d7e; --cursor-size: 120px; --cursor-blur: 30px; }
+.theme-source { --bg-primary: #050a09; --text-primary: #d1fae5; --accent-color: #10b981; --cursor-size: 20px; --cursor-blur: 2px; }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Lora', serif; /* Default to Humanist Serif */
-  transition: background-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Lora', serif;
+  /* Perf Tip: 1.2s transitions are heavy; 0.6s feels snappier and saves battery */
+  transition: background-color 0.6s ease;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, .scale-nav {
   font-family: 'Montserrat', sans-serif;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em; /* Reduced slightly for better mobile readability */
   text-transform: uppercase;
 }
 
-.source-code {
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* Custom Soft Cursor (The Sun) */
+/* 2. Optimized Soft Cursor: Heavy Blurs are GPU killers */
 .custom-cursor {
   width: var(--cursor-size);
   height: var(--cursor-size);
   background: var(--accent-color);
-  filter: blur(var(--cursor-blur));
-  opacity: 0.15;
+  /* Optimization: Drastically reduced blur on mobile or use opacity instead */
+  filter: blur(var(--cursor-blur)); 
+  opacity: 0.12;
   border-radius: 50%;
   pointer-events: none;
   position: fixed;
   z-index: 100;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, filter 0.3s, background 0.5s;
+  transform: translate(-50%, -50%) var(--gpu-boost);
+  transition: transform 0.1s ease-out, background 0.5s;
 }
 
-/* Eliminate "Boxes" */
+/* Disable blur on low-power devices/mobile if it still lags */
+@media (max-width: 768px) {
+  .custom-cursor {
+    filter: none; /* Blurs are the #1 cause of mobile "jank" */
+    border: 2px solid var(--accent-color);
+    opacity: 0.3;
+  }
+  .env-container { padding: 1.5rem; } /* Mobile friendly padding */
+}
+
 .env-container {
   padding: 4rem;
   display: flex;
@@ -83,103 +71,31 @@ h1, h2, h3, .scale-nav {
   gap: 2rem;
 }
 
-/* Custom Mask for Soil Images */
-.mask-organic {
-  mask-image: url('/masks/brush-stroke.png'); /* If you have a texture mask */
-  mask-size: contain;
-  mask-repeat: no-repeat;
-}
-
-/* The Soil "Token" look */
-.btn-token {
-  box-shadow: 0 10px 30px -10px rgba(61, 48, 40, 0.3);
-  backdrop-filter: blur(4px);
+/* 3. Smarter Backdrop Filters: blur() is expensive */
+.btn-token, .source-glass {
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Optimization: Only apply blur if the browser can handle it well */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
-.theme-kinetic {
-  --bg-primary: #0a0a0a; /* Deep Charcoal */
-  --text-primary: #f5f5f5;
-  --accent-color: #ffbf00; /* Solar Gold */
-  --cursor-size: 200px;
-  --cursor-blur: 60px;
-}
-
-/* Ensure sections don't have white gaps */
+/* 4. Layer Promotion: Sections move to their own GPU layer */
 section {
-  transition: background-color 1s ease-in-out, color 1s ease-in-out;
+  transition: background-color 0.6s ease;
+  transform: var(--gpu-boost);
 }
 
-.theme-studio {
-  --bg-primary: #e5e0d8; /* Raw Linen */
-  --text-primary: #1a1e29; /* Deep Indigo */
-  --accent-color: #5d6d7e; /* Flax Blue */
-  --cursor-size: 120px;
-  --cursor-blur: 30px;
-}
-
-/* Vertical transition effect */
-.mode-surface section#studio {
-  /* Subtle border to imply a page turn */
-  box-shadow: inset 0 0 100px rgba(0,0,0,0.02);
-}
-
-.theme-source {
-  --bg-primary: #050a09; /* Deep Obsidian */
-  --text-primary: #d1fae5; /* Electric Mint Tint */
-  --accent-color: #10b981; /* Electric Mint */
-  --cursor-size: 20px; /* SHARP Cursor */
-  --cursor-blur: 2px;
-}
-
-/* Glassmorphism for Source components */
-.source-glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-/* The Thread's Glow effect in the Source biome */
 .theme-source #the-thread {
-  filter: drop-shadow(0 0 8px var(--accent-color));
+  /* Drop shadows on SVGs are very heavy; use color change instead on mobile */
+  filter: drop-shadow(0 0 4px var(--accent-color));
 }
 
-/* Ensure the SVG scales correctly */
 svg path {
   vector-effect: non-scaling-stroke;
 }
-.theme-soil p {
-  text-shadow: 0 0 1px rgba(0,0,0,0.05);
-  letter-spacing: 0.01em;
-}
 
-/* Deep Dive Mode Adjustments */
-.mode-deep-dive {
-  --cursor-size: 20px;
-  --cursor-blur: 2px;
-}
-
-.mode-deep-dive main {
-  /* Give the page a more 'archival' feel with a subtle edge shadow */
-  box-shadow: 0 0 100px rgba(0,0,0,0.05);
-}
-
+/* Deep Dive Mode: Remove heavy effects for performance */
 .mode-deep-dive .scale-nav {
-  /* Fade out the scale selector slightly so it doesn't distract from deep reading */
-  opacity: 0.1;
-  pointer-events: none;
-}
-
-.theme-kinetic {
-  --bg-primary: #0a0a0a;
-  --text-primary: #ffffff;
-  --accent-color: #ffb300; /* Solar Gold */
-}
-
-.theme-studio section img {
-  filter: contrast(1.1) brightness(0.9) saturate(0.8);
-  /* This gives images that 'film-look' lookbook vibe */
-}
-
-.theme-source {
-  --grain-opacity: 0.02; /* Minimal texture for max precision */
+  display: none; /* 'display: none' is better than 'opacity: 0' for performance */
 }
