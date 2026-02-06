@@ -1,24 +1,34 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { motion, useSpring, useReducedMotion } from 'framer-motion';
 
 export default function CustomCursor() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
-  const springConfig = { damping: 25, stiffness: 150 };
+  // 1. Optimized Spring: Lower stiffness for the "Laggy/Organic" feel
+  // and better performance on high-refresh-rate monitors.
+  const springConfig = { damping: 30, stiffness: 120, restDelta: 0.01 };
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
 
   useEffect(() => {
+    // 2. Mobile Check: If it's a touch device, don't even add the listener
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     const handleMouseMove = (e: MouseEvent) => {
+      if (!isVisible) setIsVisible(true);
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isVisible]);
+
+  // 3. Early exit for Mobile & Reduced Motion users
+  if (!isVisible || shouldReduceMotion) return null;
 
   return (
     <motion.div
@@ -26,6 +36,11 @@ export default function CustomCursor() {
       style={{
         left: cursorX,
         top: cursorY,
+        // 4. Transform-based movement is 10x faster than 'top/left'
+        // But since we are using springs, Framer handles this best via 'x/y'
+        // if we weren't already setting the container position.
+        position: 'fixed',
+        pointerEvents: 'none',
       }}
     />
   );
